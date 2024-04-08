@@ -13224,9 +13224,17 @@ MonoBehaviour:
     spriteType: 0
     health: 10
     speed: 1
-  - spawnTime: 0.2
+  - spawnTime: 0.1
     spriteType: 1
     health: 15
+    speed: 1
+  - spawnTime: 0.1
+    spriteType: 2
+    health: 20
+    speed: 1
+  - spawnTime: 0.1
+    spriteType: 3
+    health: 25
     speed: 1
 --- !u!1 &366139508
 GameObject:
@@ -13367,7 +13375,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.185185
+  orthographic size: 8.791667
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -13502,6 +13510,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabs:
   - {fileID: 424285339462184896, guid: 1df858efe85e2a840ab69198b698cbfa, type: 3}
+  - {fileID: 2514192426124917062, guid: 3403651a35757104da2d4bdfb1264e83, type: 3}
 --- !u!1 &603202260
 GameObject:
   m_ObjectHideFlags: 0
@@ -14068,6 +14077,7 @@ Transform:
   - {fileID: 642733756}
   - {fileID: 603202261}
   - {fileID: 353559327}
+  - {fileID: 1542551125}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &936314359
@@ -14365,6 +14375,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 353559327}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1542551124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1542551125}
+  - component: {fileID: 1542551126}
+  m_Layer: 0
+  m_Name: Weapon 0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1542551125
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542551124}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 936314358}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1542551126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1542551124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8551aa5a18952446ad63ee462759767, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  prefabId: 1
+  damage: 5
+  count: 2
+  speed: 0
 --- !u!1 &1629212477
 GameObject:
   m_ObjectHideFlags: 0
