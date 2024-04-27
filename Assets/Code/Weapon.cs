@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Weapon : MonoBehaviour
@@ -8,68 +9,127 @@ public class Weapon : MonoBehaviour
     public int prefabId;
     public float damage;
     public int count;
+    public int penetration;
     public float speed;
-    void Start()
+
+    float timer;
+    Player player;
+
+    void Awake()
     {
-        Init();
+        player = GameManager.instance.player;
     }
     void Update()
     {
+        if (!GameManager.instance.isLive)
+            return;
         switch (id)
         {
             case 0:
-                transform.Rotate(Vector3.back * speed * Time.deltaTime); //Làm cho vũ khí xoay theo chiều kim đồng hồ
+                transform.Rotate(Vector3.back * speed * Time.deltaTime); // Cho vũ khí xoay ngược chiều kim đồng hồ
+                break;
+            case 1:
+                timer += Time.deltaTime;
+                if (timer > speed)
+                {
+                    timer = 0f;
+                    StartCoroutine(FireCoroutine()); // Bắt đầu bắn
+                }
                 break;
             default:
                 break;
-             
+
         }
         if (Input.GetButtonDown("Jump"))
         {
-            LevelUp(10, 2);
+            LevelUp(10, 1,1);
         }
     }
-    public void Init()
+    public void Init(ItemData data)
     {
-        switch(id)
+        //Basic Set
+        name = "Weapon " + data.itemId;
+        transform.parent = player.transform;
+        transform.localPosition = Vector3.zero;
+        //Property Set
+        id = data.itemId;
+        damage = data.baseDamage * Character.Damage;
+        count = data.baseCount + Character.Count;
+        penetration = data.basePenetration;
+
+        for(int i=0; i<GameManager.instance.pool.prefabs.Length;i++)
+        {
+            if(data.projectiles == GameManager.instance.pool.prefabs[i])
+            {
+                prefabId = i;
+                break;
+            }
+        }
+        switch (id)
         {
             case 0:
-                speed = 150;
+                speed = 150 *Character.WeaponSpeed;
                 Batch();
+                break;
+            case 1:
+                speed = 2f * Character.WeaponRate;
                 break;
             default:
                 break;
         }
+        Hand hand = player.hands[(int)data.itemType];
+        hand.spriter.sprite = data.hand;
+        hand.gameObject.SetActive(true);
+        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
     }
-    public void LevelUp(float damage, int count)
+    public void LevelUp(float damage, int count,int penetration)
     {
-        this.damage = damage;
+        this.damage = damage * Character.Damage;
         this.count += count;
+        this.penetration += penetration;
         if (id == 0)
             Batch();
+        player.BroadcastMessage("ApplyGear",SendMessageOptions.DontRequireReceiver);
     }
     void Batch()
     {
-        for(int i = 0; i < count; i++) //Count số lượng projectiles count ở đây là lương projectiles
+        for (int i = 0; i < count; i++)
         {
             Transform bullet;
-            if(i < transform.childCount)
+            if (i < transform.childCount)
             {
-                bullet = transform.GetChild(i); 
+                bullet = transform.GetChild(i);
             }
             else
             {
                 bullet = GameManager.instance.pool.Get(prefabId).transform;
                 bullet.parent = transform;
             }
-            bullet.localPosition = Vector3.zero;  // Đặt vị trí cục bộ của viên đạn về (0, 0, 0)
-            bullet.localRotation = Quaternion.identity; // Đặt quay cục bộ của viên đạn về không quay
-            Vector3 rotVec = Vector3.forward * 360 * i / count; // (0,0,1) * 360 * i/count
+            bullet.localPosition = Vector3.zero;
+            bullet.localRotation = Quaternion.identity;
+            Vector3 rotVec = Vector3.forward * 360 * i / count;
             bullet.Rotate(rotVec);
-            bullet.Translate(bullet.up * 1.5f, Space.World); //đẩy lên 1.5f dựa theo world
-            bullet.GetComponent<Bullet>().Init(damage, -1); //-1 là infinity per để khi chạm vào quái nếu còn trong người quái thì sẽ ko gây dame liên tục đc
+            bullet.Translate(bullet.up * 1.5f, Space.World);
+            bullet.GetComponent<Bullet>().Init(damage, penetration, Vector3.zero,i);
+        }
+    }
 
+    IEnumerator FireCoroutine()
+    {
+        for (int i = 0; i < count; i++)
+        {
+            if (!player.scanner.nearestTarget)
+                yield break;
+            Vector3 targetPos = player.scanner.nearestTarget.position;
+            Vector3 dir = targetPos - transform.position;
+            dir = dir.normalized;
 
+            Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
+            bullet.position = transform.position;
+            bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+            bullet.GetComponent<Bullet>().Init(damage,penetration, dir, i);
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
+            yield return new WaitForSeconds(0.1f); // Delay viên đạn để ko stack lên nhau
         }
     }
 }

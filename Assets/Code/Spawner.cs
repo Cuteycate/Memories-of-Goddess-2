@@ -16,6 +16,8 @@ public class Spawner : MonoBehaviour
     }
     void Update()
     {
+        if (!GameManager.instance.isLive)
+            return;
         timer += Time.deltaTime; //Timer tính giờ
         level =Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 10f),spawnData.Length -1); //Mỗi 10s sẽ tăng 1 level 
         if (timer > spawnData[level].spawnTime)  //Khi timer > level thì qua cái khác (vd element 0 chạy đc 10s spawntime 0.7 -> element 1 chạy 10s tiếp theo spawntime 0.2
@@ -38,5 +40,6 @@ public class Spawner : MonoBehaviour
         public int spriteType; // sprite của nhân vật được truyền trong enemy (kiểm tra prefab của enemy coi phần anim controller)
         public int health; // Máu của quái
         public float speed; //tốc độ quái
+        public int expOnDefeat;
     }
 }

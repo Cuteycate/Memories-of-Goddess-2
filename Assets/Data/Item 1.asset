@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30d133a4550afe141b6536940e9e8c46, type: 3}
+  m_Name: Item 1
+  m_EditorClassIdentifier: 
+  itemType: 1
+  itemId: 1
+  itemName: Gun
+  itemDesc:
+  - "Increase Damage By {0}%\nFires {1} more projectile\nPasses through {2} more
+    \nEnemy"
+  - 'Increase Damage By {0}%
+
+    Fires {1} more projectile'
+  - 'Increase Damage By {0}%
+
+    Fires {1} more projectile'
+  - "Increase Damage By {0}%\nPasses through {2} more \nEnemy"
+  - "Increase Damage By {0}%\nFires {1} more projectile\nPasses through {2} more
+    \nEnemy"
+  itemIcon: {fileID: 563336626, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  baseDamage: 3
+  baseCount: 2
+  basePenetration: 1
+  damages:
+  - 0.5
+  - 0.5
+  - 1
+  - 1
+  - 1.5
+  counts: 0100000001000000010000000000000002000000
+  penetrations: 0100000000000000000000000100000001000000
+  projectiles: {fileID: 4496611369239243523, guid: 9052ff40534341142bba43b38856f788, type: 3}
+  hand: {fileID: -144335857, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}

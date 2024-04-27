@@ -8,8 +8,10 @@ public class Enemy : MonoBehaviour
     public float speed;
     public float health;
     public float maxHealth;
+    public int expOnDefeat;
     public RuntimeAnimatorController[] animController; //Dùng đề đưa animation enemies vào vd animation 1 zombie animation 2 skeleton
     public Rigidbody2D target;
+    public GameObject floatingtextPrefab;
 
     bool isLive;
 
@@ -29,7 +31,9 @@ public class Enemy : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if(!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
+        if (!GameManager.instance.isLive)
+            return;
+        if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
         {
             return;
         }
@@ -42,7 +46,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if(!isLive)
+        if (!GameManager.instance.isLive)
+            return;
+        if (!isLive)
         {
             return;
         }
@@ -65,17 +71,20 @@ public class Enemy : MonoBehaviour
         speed = Data.speed;
         maxHealth = Data.health;
         health = Data.health;
+        expOnDefeat = Data.expOnDefeat;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Bullet"))
+        if (!collision.CompareTag("Bullet") || !isLive)
             return;
         health -= collision.GetComponent<Bullet>().damage;
         StartCoroutine(KnockBack());
+        ShowDamage(collision.GetComponent<Bullet>().damage.ToString());
         if (health > 0)
         {
             anim.SetTrigger("Hit");
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
             //.. sống,bị trúng
         }
         else
@@ -86,6 +95,10 @@ public class Enemy : MonoBehaviour
             rigid.simulated = false;
             spriter.sortingOrder = 1;
             anim.SetBool("Dead",true);
+            GameManager.instance.kill++;
+            GameManager.instance.GetExp(this);
+            if(GameManager.instance.isLive)
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead);
         }
     }
     IEnumerator KnockBack()
@@ -100,5 +113,10 @@ public class Enemy : MonoBehaviour
     void Dead()
     {
         gameObject.SetActive(false);
+    }
+    void ShowDamage(string text)
+    {
+        GameObject prefab = Instantiate(floatingtextPrefab, transform.position, Quaternion.identity);
+        prefab.GetComponentInChildren<TextMesh>().text = text;
     }
 }
