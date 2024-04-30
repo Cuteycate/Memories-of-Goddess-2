@@ -33,6 +33,18 @@ public class Gear : MonoBehaviour
             case ItemData.ItemType.Shoe:
                 SpeedUp();
                 break;
+            case ItemData.ItemType.EmptyHeart:
+                MaxHealthUp();
+                break;
+            case ItemData.ItemType.ExtraProjectile:
+                ProjectileUp();
+                break;
+            case ItemData.ItemType.Bandage:
+                RecoverHp();
+                break;
+            case ItemData.ItemType.XpCrown:
+                IncreaseXp();
+                break;
         }
     }
     void RateUp()
@@ -45,6 +57,8 @@ public class Gear : MonoBehaviour
                 case 0:
                     float speed = 150 * Character.WeaponSpeed;
                     weapon.speed = speed + (speed * rate);
+                    float firerate = 3f * Character.WeaponRate;
+                    weapon.MeleeCoolDown = firerate * (1f - rate);
                     break;
                 case 1:
                     speed = 2f * Character.WeaponRate;
@@ -59,5 +73,37 @@ public class Gear : MonoBehaviour
     {
         float speed = 3 * Character.Speed;
         GameManager.instance.player.speed = speed + speed * rate;
+    }
+    void MaxHealthUp()
+    {
+        float maxhealth = 100;
+        GameManager.instance.MaxHealth = maxhealth + maxhealth*rate;
+    }
+    void ProjectileUp()
+    {
+        Weapon[] weapons = transform.parent.GetComponentsInChildren<Weapon>();
+        foreach (Weapon weapon in weapons)
+        {
+            switch (weapon.id)
+            {
+                case 0:
+                    weapon.ExtraCount = Mathf.Min((int)rate, 2);
+                    weapon.BroadcastMessage("Batch", SendMessageOptions.DontRequireReceiver);
+                    break;
+                case 1:
+                    weapon.ExtraCount = Mathf.Min((int)rate, 2);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+    void RecoverHp()
+    {
+        GameManager.instance.player.StartHealthRecovery(0.2f * rate);
+    }
+    void IncreaseXp()
+    {
+        GameManager.instance.ExtraRateExp = rate;
     }
 }

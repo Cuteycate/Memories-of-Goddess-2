@@ -17,8 +17,9 @@ public class GameManager : MonoBehaviour
     public float MaxHealth = 100;
     public int level;
     public int kill;
-    public int exp;
-    public int[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 };
+    public float exp;
+    public float[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 };
+    public float ExtraRateExp=0;
     [Header("# Game Object")]
     public PoolManager pool;
     public Player player;
@@ -92,8 +93,10 @@ public class GameManager : MonoBehaviour
     {
         if (!isLive)
             return;
-        exp += enemy.expOnDefeat;
-        if (exp >= nextExp[Mathf.Min(level,nextExp.Length-1)])
+        Debug.Log("Base expOnDefeat: " + enemy.expOnDefeat);
+        Debug.Log("ExtraRateExp: " + ExtraRateExp);
+        exp += enemy.expOnDefeat + (enemy.expOnDefeat * ExtraRateExp);
+        if (exp >= nextExp[Mathf.Min(level, nextExp.Length - 1)])
         {
             level++;
             exp = 0;

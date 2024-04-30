@@ -36,7 +36,13 @@ public class Item : MonoBehaviour
                 break;
             case ItemData.ItemType.Glove:
             case ItemData.ItemType.Shoe:
+            case ItemData.ItemType.EmptyHeart:
+            case ItemData.ItemType.XpCrown:
                 textDesc.text = string.Format(data.itemDesc[level], data.damages[level]*100);
+                break;
+            case ItemData.ItemType.ExtraProjectile:
+            case ItemData.ItemType.Bandage:
+                textDesc.text = string.Format(data.itemDesc[level], data.damages[level]);
                 break;
             default:
                 textDesc.text = string.Format(data.itemDesc[level]);
@@ -69,7 +75,11 @@ public class Item : MonoBehaviour
                 break;
             case ItemData.ItemType.Glove:
             case ItemData.ItemType.Shoe:
-                if(level == 0)
+            case ItemData.ItemType.EmptyHeart:
+            case ItemData.ItemType.ExtraProjectile:
+            case ItemData.ItemType.Bandage:
+            case ItemData.ItemType.XpCrown:
+                if (level == 0)
                 {
                     GameObject newGear = new GameObject();
                     gear = newGear.AddComponent<Gear>();

@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     public float speed;
     public float health;
     public float maxHealth;
-    public int expOnDefeat;
+    public float expOnDefeat;
     public RuntimeAnimatorController[] animController; //Dùng đề đưa animation enemies vào vd animation 1 zombie animation 2 skeleton
     public Rigidbody2D target;
     public GameObject floatingtextPrefab;

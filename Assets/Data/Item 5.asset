@@ -10,28 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30d133a4550afe141b6536940e9e8c46, type: 3}
-  m_Name: Item 4
+  m_Name: Item 5
   m_EditorClassIdentifier: 
-  itemType: 4
-  itemId: 4
-  itemName: Empty Heart
+  itemType: 5
+  itemId: 5
+  itemName: Duplicator
   itemDesc:
-  - "Increase MaxHealth \nBy {0}%"
-  - "Increase MaxHealth \nBy {0}%"
-  - "Increase MaxHealth \nBy {0}%"
-  - "Increase MaxHealth \nBy {0}%"
-  - "Increase MaxHealth \nBy {0}%"
-  itemIcon: {fileID: -335569666, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  - "Weapon fire \n1 more Projectile"
+  - "Weapon fire 1 \nextra projectile"
+  itemIcon: {fileID: -1002307068, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseDamage: 0
   baseCount: 0
   basePenetration: 0
   damages:
-  - 0.1
-  - 0.2
-  - 0.3
-  - 0.4
-  - 0.5
-  counts: 0000000000000000000000000000000000000000
-  penetrations: 0000000000000000000000000000000000000000
+  - 1
+  - 2
+  counts: 0000000000000000
+  penetrations: 0000000000000000
   projectiles: {fileID: 0}
   hand: {fileID: 0}

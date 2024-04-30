@@ -16,21 +16,21 @@ MonoBehaviour:
   itemId: 2
   itemName: Gloves
   itemDesc:
-  - Increase AtkSpeed by {0}%
-  - Increase AtkSpeed by {0}%
-  - Increase AtkSpeed by {0}%
-  - Increase AtkSpeed by {0}%
-  - Increase AtkSpeed by {0}%
+  - "Increase Weapon  Speed \nand Fire Rate\nof your weapon"
+  - "Increase Weapon  \nSpeed and\nFire Rate by {0}%"
+  - "Increase Weapon \nSpeed and\nFire Rate by {0}%"
+  - "Increase Weapon  \nSpeed and\nFire Rate by {0}%"
+  - "Increase Weapon  \nSpeed and\nFire Rate by {0}%"
   itemIcon: {fileID: -201829820, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseDamage: 0
   baseCount: 0
   basePenetration: 0
   damages:
-  - 0.1
-  - 0.2
-  - 0.2
-  - 0.2
-  - 0.5
+  - 0.08
+  - 0.16
+  - 0.24
+  - 0.32
+  - 0.4
   counts: 0000000000000000000000000000000000000000
   penetrations: 0000000000000000000000000000000000000000
   projectiles: {fileID: 0}

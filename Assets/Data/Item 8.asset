@@ -10,27 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30d133a4550afe141b6536940e9e8c46, type: 3}
-  m_Name: Item 4
+  m_Name: Item 8
   m_EditorClassIdentifier: 
-  itemType: 4
-  itemId: 4
-  itemName: Empty Heart
+  itemType: 8
+  itemId: 8
+  itemName: Health Kit
   itemDesc:
-  - "Increase MaxHealth \nBy {0}%"
-  - "Increase MaxHealth \nBy {0}%"
-  - "Increase MaxHealth \nBy {0}%"
-  - "Increase MaxHealth \nBy {0}%"
-  - "Increase MaxHealth \nBy {0}%"
-  itemIcon: {fileID: -335569666, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  - Fully Heals
+  itemIcon: {fileID: 927338625, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseDamage: 0
   baseCount: 0
   basePenetration: 0
   damages:
-  - 0.1
-  - 0.2
-  - 0.3
-  - 0.4
-  - 0.5
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
   counts: 0000000000000000000000000000000000000000
   penetrations: 0000000000000000000000000000000000000000
   projectiles: {fileID: 0}

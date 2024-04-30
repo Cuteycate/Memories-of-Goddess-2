@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     public Vector2 inputVec;
     public float speed;
+    private Coroutine healthRecoveryCoroutine;
     public Scanner scanner;
     public Hand[] hands;
     public RuntimeAnimatorController[] animCon;
@@ -74,6 +75,34 @@ public class Player : MonoBehaviour
             }
             anim.SetTrigger("Dead");
             GameManager.instance.GameOver();
+        }
+    }
+    public void StartHealthRecovery(float recoveryRate)
+    {
+        if (healthRecoveryCoroutine != null)
+        {
+            StopCoroutine(healthRecoveryCoroutine);
+        }
+        healthRecoveryCoroutine = StartCoroutine(HealthRecoveryCoroutine(recoveryRate));
+    }
+    public void StopHealthRecovery()
+    {
+        if (healthRecoveryCoroutine != null)
+        {
+            StopCoroutine(healthRecoveryCoroutine);
+            healthRecoveryCoroutine = null;
+        }
+    }
+    private IEnumerator HealthRecoveryCoroutine(float recoveryRate)
+    {
+        while (true)
+        {
+            GameManager gameManager = GameManager.instance;
+            if (gameManager != null && gameManager.Health < gameManager.MaxHealth)
+            {
+                gameManager.Health = Mathf.Min(gameManager.Health + recoveryRate, gameManager.MaxHealth);
+            }
+            yield return new WaitForSeconds(1f);
         }
     }
 }

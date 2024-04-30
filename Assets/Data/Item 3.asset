@@ -16,11 +16,11 @@ MonoBehaviour:
   itemId: 3
   itemName: Shoes
   itemDesc:
-  - Character moves {0}% faster
-  - Character moves {0}% faster
-  - Character moves {0}% faster
-  - Character moves {0}% faster
-  - Character moves {0}% faster
+  - "Character moves {0}% \nfaster"
+  - "Character moves {0}% \nfaster"
+  - "Character moves {0}% \nfaster"
+  - "Character moves {0}% \nfaster"
+  - "Character moves {0}% \nfaster"
   itemIcon: {fileID: -966295699, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseDamage: 0
   baseCount: 0

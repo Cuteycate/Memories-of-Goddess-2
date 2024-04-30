@@ -16,8 +16,9 @@ MonoBehaviour:
   itemId: 1
   itemName: Gun
   itemDesc:
-  - "Increase Damage By {0}%\nFires {1} more projectile\nPasses through {2} more
-    \nEnemy"
+  - 'Shoot at the
+
+    Nearest Enemy'
   - 'Increase Damage By {0}%
 
     Fires {1} more projectile'
