@@ -8,6 +8,8 @@ TagManager:
   - Area
   - Enemy
   - Bullet
+  - Prop
+  - Player
   layers:
   - Default
   - TransparentFX

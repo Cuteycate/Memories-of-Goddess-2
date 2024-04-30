@@ -16,8 +16,8 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-       rigid = GetComponent<Rigidbody2D>();
-       spriter = GetComponent<SpriteRenderer>();
+        rigid = GetComponent<Rigidbody2D>();
+        spriter = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         scanner = GetComponent<Scanner>();
         hands = GetComponentsInChildren<Hand>(true);
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
         if (!GameManager.instance.isLive)
             return;
         anim.SetFloat("Speed", inputVec.magnitude);
-        if(inputVec.x != 0)
+        if (inputVec.x != 0)
         {
             spriter.flipX = inputVec.x < 0;
         }
@@ -66,9 +66,9 @@ public class Player : MonoBehaviour
             return;
         GameManager.instance.Health -= Time.deltaTime * 10;
 
-        if(GameManager.instance.Health < 0)
+        if (GameManager.instance.Health < 0)
         {
-            for(int i =2;i<transform.childCount;i++)
+            for (int i = 2; i < transform.childCount; i++)
             {
                 transform.GetChild(i).gameObject.SetActive(false);
             }

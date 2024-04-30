@@ -28,7 +28,7 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Enemy") || per == -1)
+        if (!collision.CompareTag("Enemy")|| !collision.CompareTag("Prop") || per == -1)
             return;
         per--;
 

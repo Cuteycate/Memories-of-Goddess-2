@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 public class RePosition : MonoBehaviour
 {
+    public UnityEvent OnTilemapMove;
     Collider2D coll;
+
     void Awake()
     {
         coll = GetComponent<Collider2D>();
@@ -43,5 +46,6 @@ public class RePosition : MonoBehaviour
                 }
                 break;
         }
+        OnTilemapMove.Invoke();
     }
 }
