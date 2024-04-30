@@ -208,6 +208,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b7092f7d1387a48b9ae0e10a1aca73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnTilemapMove:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2460273449472646993
 GameObject:
   m_ObjectHideFlags: 0

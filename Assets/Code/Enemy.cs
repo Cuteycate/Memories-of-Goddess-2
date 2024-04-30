@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Spawner;
@@ -20,6 +21,9 @@ public class Enemy : MonoBehaviour
     Collider2D coll;
     Animator anim;
     WaitForFixedUpdate wait;
+
+
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -118,5 +122,24 @@ public class Enemy : MonoBehaviour
     {
         GameObject prefab = Instantiate(floatingtextPrefab, transform.position, Quaternion.identity);
         prefab.GetComponentInChildren<TextMesh>().text = text;
+    }
+    public void TakeDamage(float damage)
+    {
+        // Subtract damage from health
+        health -= damage;
+        ShowDamage(damage.ToString());
+        // Check if the enemy is dead
+        if (health <= 0)
+        {
+            isLive = false;
+            coll.enabled = false;
+            rigid.simulated = false;
+            spriter.sortingOrder = 1;
+            anim.SetBool("Dead", true);
+            GameManager.instance.kill++;
+            GameManager.instance.GetExp(this);
+            if (GameManager.instance.isLive)
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead);
+        }
     }
 }

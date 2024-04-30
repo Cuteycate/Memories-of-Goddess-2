@@ -103,6 +103,18 @@ public class GameManager : MonoBehaviour
             uiLevelUp.Show();
         }
     }
+    public void ResHealth(float amount)
+    {
+        if(Health < MaxHealth)
+        {
+            Health += amount;
+            if(Health >= MaxHealth)
+            {
+                Health = MaxHealth;
+            }
+        }
+      
+    }
     public void Stop()
     {
         isLive = false;
