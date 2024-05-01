@@ -59,9 +59,11 @@ public class Gear : MonoBehaviour
                     weapon.speed = speed + (speed * rate);
                     float firerate = 3f * Character.WeaponRate;
                     weapon.MeleeCoolDown = firerate * (1f - rate);
+                    weapon.BroadcastMessage("Batch", SendMessageOptions.DontRequireReceiver);
                     break;
                 case 1:
-                    speed = 2f * Character.WeaponRate;
+                case 8:
+                    speed = 3f * Character.WeaponRate;
                     weapon.speed = speed * (1f - rate);
                     break;
                 default:
@@ -88,9 +90,11 @@ public class Gear : MonoBehaviour
             {
                 case 0:
                     weapon.ExtraCount = Mathf.Min((int)rate, 2);
+                    weapon.BroadcastMessage("EnableBatch", SendMessageOptions.DontRequireReceiver);
                     weapon.BroadcastMessage("Batch", SendMessageOptions.DontRequireReceiver);
                     break;
                 case 1:
+                case 8:
                     weapon.ExtraCount = Mathf.Min((int)rate, 2);
                     break;
                 default:

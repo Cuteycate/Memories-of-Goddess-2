@@ -34,6 +34,9 @@ public class Item : MonoBehaviour
             case ItemData.ItemType.Gun:
                 textDesc.text = string.Format(data.itemDesc[level], data.damages[level]*100, data.counts[level], data.penetrations[level]);
                 break;
+            case ItemData.ItemType.Shotgun:
+                textDesc.text = string.Format(data.itemDesc[level], data.damages[level] * 100, data.counts[level], data.penetrations[level]);
+                break;
             case ItemData.ItemType.Glove:
             case ItemData.ItemType.Shoe:
             case ItemData.ItemType.EmptyHeart:
@@ -55,7 +58,8 @@ public class Item : MonoBehaviour
         {
             case ItemData.ItemType.Shovel:
             case ItemData.ItemType.Gun:
-                if(level == 0)
+            case ItemData.ItemType.Shotgun:
+                if (level == 0)
                 {
                     GameObject newWeapon = new GameObject();
                     weapon = newWeapon.AddComponent<Weapon>();

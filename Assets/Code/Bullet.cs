@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
 
         if (per > -1)
         {
-            rigid.velocity = dir * 15f;
+            rigid.velocity = dir * 15f; // Tốc độ viên đạn
         }
     }
 

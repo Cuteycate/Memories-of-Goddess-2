@@ -36,16 +36,20 @@
                     if (timer > speed)
                     {
                         timer = 0f;
-                        StartCoroutine(FireCoroutine()); // Bắt đầu bắn
+                    StartCoroutine(FireCoroutine()); // Bắt đầu bắn
                     }
                     break;
-                default:
+                    case 8:
+                        timer += Time.deltaTime;
+                        if (timer > speed)
+                        {
+                            timer = 0f;  // Bắt đầu bắn
+                            FireShotgun();
+                        }
+                    break;
+            default:
                     break;
 
-            }
-            if (Input.GetButtonDown("Jump"))
-            {
-                LevelUp(10, 1,1);
             }
         }
         public void Init(ItemData data)
@@ -76,24 +80,28 @@
                     batchCoroutine = StartCoroutine(ToggleBatchCoroutine());
                 break;
                 case 1:
-                    speed = 2f * Character.WeaponRate;
+                case 8:
+                    speed = 3f * Character.WeaponRate;
                     break;
                 default:
                     break;
             }
+        if ((int)data.itemType == 0 || (int)data.itemType == 1)
+        {
             Hand hand = player.hands[(int)data.itemType];
             hand.spriter.sprite = data.hand;
             hand.gameObject.SetActive(true);
-            player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
+        }
+        player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
         }
         public void LevelUp(float damage, int count,int penetration)
         {
             this.damage = damage * Character.Damage;
             this.count += count;
             this.penetration += penetration;
+             player.BroadcastMessage("ApplyGear", SendMessageOptions.DontRequireReceiver);
             if (id == 0)
-                Batch();
-            player.BroadcastMessage("ApplyGear",SendMessageOptions.DontRequireReceiver);
+                    Batch();
         }
     IEnumerator ToggleBatchCoroutine()
     {
@@ -152,7 +160,7 @@
                 bullet.localRotation = Quaternion.identity;
                 Vector3 rotVec = Vector3.forward * 360 * i / count;
                 bullet.Rotate(rotVec);
-                bullet.Translate(bullet.up * 1.5f, Space.World);
+                bullet.Translate(bullet.up * 3f, Space.World);
                 bullet.GetComponent<Bullet>().Init(damage, penetration, Vector3.zero,count);
             }
             count = count - ExtraCount;
@@ -164,19 +172,47 @@
             count = count + initialCount;
             for (int i = 0; i < count; i++)
             {
-                if (!player.scanner.nearestTarget)
-                    yield break;
+            if (!player.scanner.nearestTarget)
+            {
+                count = count - initialCount;
+                yield break;
+            }
                 Vector3 targetPos = player.scanner.nearestTarget.position;
                 Vector3 dir = targetPos - transform.position;
                 dir = dir.normalized;
-
                 Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
                 bullet.position = transform.position;
                 bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
                 bullet.GetComponent<Bullet>().Init(damage,penetration, dir, i);
                 AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
-                yield return new WaitForSeconds(0.1f); // Delay viên đạn để ko stack lên nhau
+                yield return new WaitForSeconds(0.1f);
             }
         count = count - initialCount;
+         }
+    void FireShotgun()
+    {
+        if (!player.scanner.nearestTarget)
+        {
+            return;
+        }
+        int initialCount = ExtraCount;
+        count = count + initialCount;
+        Vector3 targetPos = player.scanner.nearestTarget.position;
+        Vector3 dirToTarget = (targetPos - transform.position).normalized;
+        for (int i = 0; i < count; i++)
+        {
+            Vector3 perpendicularDir = Vector3.Cross(dirToTarget, Vector3.up).normalized;
+            Vector3 spreadDir = dirToTarget + perpendicularDir * Random.Range(-0.4f,0.4f);
+
+            spreadDir = Quaternion.Euler(0, -45f, 0) * spreadDir;
+
+            Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
+            bullet.position = transform.position;
+            bullet.rotation = Quaternion.FromToRotation(Vector3.up, dirToTarget);
+            bullet.GetComponent<Bullet>().Init(damage, penetration, spreadDir, i);
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
+        }
+        count = count - initialCount;
     }
-    }
+
+}
