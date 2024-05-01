@@ -36,7 +36,7 @@
                     if (timer > speed)
                     {
                         timer = 0f;
-                    StartCoroutine(FireCoroutine()); // Bắt đầu bắn
+                        StartCoroutine(FireCoroutine()); // Bắt đầu bắn
                     }
                     break;
                     case 8:

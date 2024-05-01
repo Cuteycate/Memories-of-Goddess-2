@@ -11,13 +11,10 @@ public class PropRandom : MonoBehaviour
     public Tilemap[] groundTilemaps;
     public float nextSpawnTime = 10; //Khoang cach thoi gian spawn prop
     public float spawnRate = 1f;
-<<<<<<< Updated upstream
+
     public float spawnRangeX = 20f; // Khoang cach spawn Prop tren truc X
     public float spawnRangeY = 20f; // Khoang cach spawn Prop tren truc Y
-=======
-    public float spawnRangeX = 30f; // Khoang cach spawn Prop tren truc X
-    public float spawnRangeY = 30f; // Khoang cach spawn Prop tren truc Y
->>>>>>> Stashed changes
+
     public float minDistanceBetweenProps = 5f; // Khoang cach toi thieu giua cac prop
     public float minDistanceToPlayer = 10f; // Khoang cach toi thieu voi player
     private int totalProps = 0; // Tong so prop da tao

@@ -11946,6 +11946,7 @@ MonoBehaviour:
     health: 25
     speed: 1
     expOnDefeat: 20
+  level: 0
 --- !u!1 &354831575
 GameObject:
   m_ObjectHideFlags: 0
@@ -21538,9 +21539,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgmClip: {fileID: 8300000, guid: 36a32edc978ab784abf2c95c51a57a15, type: 3}
-  bgmVolume: 0.2
+  bgmVolume: 0
   openingClip: {fileID: 8300000, guid: 57054a47044a50f43a9b69b6f08d97f0, type: 3}
-  openingVolume: 0.2
+  openingVolume: 0
   sfxClips:
   - {fileID: 8300000, guid: 291608b8d286e2a4580ff36324455ce2, type: 3}
   - {fileID: 8300000, guid: 0bddcb411d826e14bb26d40ae45d8e22, type: 3}
@@ -22920,6 +22921,7 @@ MonoBehaviour:
   - {fileID: 4496611369239243523, guid: 9052ff40534341142bba43b38856f788, type: 3}
   - {fileID: 4496611369239243523, guid: b442b16d0d6b10b48b3dad85198309ec, type: 3}
   - {fileID: 4496611369239243523, guid: 5ac52e23435c73e46b4f3f1b1d5a4470, type: 3}
+  - {fileID: 4574723481325531611, guid: 8a3ea468298b24943b9431cf02e01f07, type: 3}
 --- !u!1 &603202260
 GameObject:
   m_ObjectHideFlags: 0

@@ -200,7 +200,7 @@ public class Enemy : MonoBehaviour
             Vector3 dir = targetPos - transform.position;
             dir = dir.normalized;
 
-            Transform bullet = GameManager.instance.pool.Get(4).transform;
+            Transform bullet = GameManager.instance.pool.Get(5).transform;
             bullet.position = transform.position;
             bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
             bullet.GetComponent<BulletEnemy>().Init( 0, dir);
