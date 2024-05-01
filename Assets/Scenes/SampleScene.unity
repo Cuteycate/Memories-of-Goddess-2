@@ -1175,17 +1175,18 @@ MonoBehaviour:
   - 80
   - 100
   - 110
-  - 110
-  - 110
-  - 110
-  - 110
-  - 110
-  - 110
-  - 110
-  - 110
-  - 110
-  - 110
-  - 110
+  - 150
+  - 200
+  - 250
+  - 400
+  - 550
+  - 700
+  - 800
+  - 1000
+  - 1300
+  - 1600
+  - 2000
+  ExtraRateExp: 0
   pool: {fileID: 578147826}
   player: {fileID: 936314354}
   uiLevelUp: {fileID: 1249894249}
@@ -1382,6 +1383,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b7092f7d1387a48b9ae0e10a1aca73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnTilemapMove:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!66 &185645602
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -11842,26 +11846,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: []
   spawnData:
-  - spawnTime: 0.7
+  - spawnTime: 1
     spriteType: 0
     health: 10
     speed: 1
     expOnDefeat: 5
-  - spawnTime: 0.1
+  - spawnTime: 0.8
     spriteType: 1
     health: 15
     speed: 1
     expOnDefeat: 10
-  - spawnTime: 0.1
+  - spawnTime: 0.6
     spriteType: 2
     health: 20
     speed: 1
     expOnDefeat: 15
-  - spawnTime: 0.1
+  - spawnTime: 0.5
     spriteType: 3
     health: 25
     speed: 1
     expOnDefeat: 20
+  - spawnTime: 0.4
+    spriteType: 4
+    health: 25
+    speed: 1
+    expOnDefeat: 20
+  - spawnTime: 0.3
+    spriteType: 5
+    health: 25
+    speed: 1
+    expOnDefeat: 20
+  - spawnTime: 0.2
+    spriteType: 6
+    health: 25
+    speed: 1
+    expOnDefeat: 20
+  - spawnTime: 0.1
+    spriteType: 7
+    health: 25
+    speed: 1
+    expOnDefeat: 20
+  level: 0
 --- !u!1 &354831575
 GameObject:
   m_ObjectHideFlags: 0
@@ -12017,6 +12042,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b7092f7d1387a48b9ae0e10a1aca73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnTilemapMove:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!66 &389274305
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -22752,6 +22780,8 @@ MonoBehaviour:
   - {fileID: 424285339462184896, guid: 1df858efe85e2a840ab69198b698cbfa, type: 3}
   - {fileID: 2514192426124917062, guid: 3403651a35757104da2d4bdfb1264e83, type: 3}
   - {fileID: 4496611369239243523, guid: 9052ff40534341142bba43b38856f788, type: 3}
+  - {fileID: 9145928225009907262, guid: 5886b45ac19d9894389e7f065c5a7843, type: 3}
+  - {fileID: 4574723481325531611, guid: 8a3ea468298b24943b9431cf02e01f07, type: 3}
 --- !u!1 &603202260
 GameObject:
   m_ObjectHideFlags: 0
@@ -25652,6 +25682,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b7092f7d1387a48b9ae0e10a1aca73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnTilemapMove:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!66 &1118070023
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -25800,7 +25833,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 034e25c1fbd744742a76ca420005c10c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -34950,6 +34983,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67b7092f7d1387a48b9ae0e10a1aca73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnTilemapMove:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!66 &1130927196
 CompositeCollider2D:
   m_ObjectHideFlags: 0

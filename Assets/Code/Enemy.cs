@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Spawner;
 
@@ -10,6 +11,13 @@ public class Enemy : MonoBehaviour
     public float health;
     public float maxHealth;
     public float expOnDefeat;
+
+    public bool CanFire = false;
+    public bool isFiring = false;
+    int distance = 10;
+    float approachSpeed = 0;
+
+
     public RuntimeAnimatorController[] animController; //Dùng đề đưa animation enemies vào vd animation 1 zombie animation 2 skeleton
     public Rigidbody2D target;
     public GameObject floatingtextPrefab;
@@ -21,7 +29,7 @@ public class Enemy : MonoBehaviour
     Collider2D coll;
     Animator anim;
     WaitForFixedUpdate wait;
-
+   
 
 
     // Start is called before the first frame update
@@ -42,10 +50,36 @@ public class Enemy : MonoBehaviour
             return;
         }
         Vector2 dirVec = target.position - rigid.position;
-        Vector2 nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
-        rigid.MovePosition(rigid.position+nextVec);
+        Vector2 nextVec;
+
+        float distanceToPlayer = dirVec.magnitude; 
+
+        if (CanFire && distanceToPlayer <= distance) 
+        {
+           
+            float radius = distanceToPlayer; 
+            speed = 10;
+            float angularSpeed = speed / radius; // Tốc độ góc
+            Vector2 perpendicular = new Vector2(- dirVec.y, dirVec.x).normalized; 
+            nextVec = perpendicular * angularSpeed * Time.fixedDeltaTime;
+        }     
+        else
+        {
+            speed = approachSpeed;
+         
+            nextVec = dirVec.normalized * speed * Time.fixedDeltaTime;
+        }
+
+        rigid.MovePosition(rigid.position + nextVec);
         rigid.velocity = Vector2.zero;
+
+        if (CanFire && !isFiring)
+        {
+            StartCoroutine(FireCoroutine());
+        }
     }
+
+
 
     // Update is called once per frame
     void LateUpdate()
@@ -69,13 +103,27 @@ public class Enemy : MonoBehaviour
         anim.SetBool("Dead", false);
         health = maxHealth;
     }
-    public void Init(SpawnData Data)
+    public void Init(SpawnData Data, bool CanfireRight)
     {
         anim.runtimeAnimatorController = animController[Data.spriteType];
         speed = Data.speed;
+        approachSpeed = Data.speed;
         maxHealth = Data.health;
         health = Data.health;
         expOnDefeat = Data.expOnDefeat;
+        CanFire = CanfireRight;
+
+        if (Data.spriteType == 0 || Data.spriteType == 1 || Data.spriteType == 4 || Data.spriteType == 7)
+        {
+            if (UnityEngine.Random.value < 0.25f) 
+            {
+                CanFire = true;
+            }
+            else
+            {
+                CanFire = false;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -142,4 +190,24 @@ public class Enemy : MonoBehaviour
                 AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead);
         }
     }
+
+    IEnumerator FireCoroutine()
+    {
+  
+       
+            isFiring = true;
+            Vector3 targetPos = target.position;
+            Vector3 dir = targetPos - transform.position;
+            dir = dir.normalized;
+
+            Transform bullet = GameManager.instance.pool.Get(4).transform;
+            bullet.position = transform.position;
+            bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+            bullet.GetComponent<BulletEnemy>().Init( 0, dir);
+            //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
+            yield return new WaitForSeconds(5f); // Delay viên đạn để ko stack lên nhau
+            isFiring = false;
+      
+    }
+
 }
