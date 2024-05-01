@@ -77,6 +77,28 @@ public class Player : MonoBehaviour
             GameManager.instance.GameOver();
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!GameManager.instance.isLive)
+            return;
+        if (collision.CompareTag("BulletE"))
+        {
+            GameManager.instance.Health -= Time.deltaTime * 10;
+        }
+        if (GameManager.instance.Health < 0)
+        {
+            for (int i = 2; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
+            anim.SetTrigger("Dead");
+            GameManager.instance.GameOver();
+        }
+    }
+
+
+
     public void StartHealthRecovery(float recoveryRate)
     {
         if (healthRecoveryCoroutine != null)
