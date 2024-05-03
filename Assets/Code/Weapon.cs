@@ -47,6 +47,14 @@
                             FireShotgun();
                         }
                     break;
+            case 9:
+                timer += Time.deltaTime;
+                if (timer > speed)
+                {
+                    timer = 0f;  // Bắt đầu bắn
+                    StartCoroutine(SniperFireCoroutine());
+                }
+                break;
             default:
                     break;
 
@@ -82,6 +90,9 @@
                 case 1:
                 case 8:
                     speed = 3f * Character.WeaponRate;
+                    break;
+               case 9:
+                    speed = 7f * Character.WeaponRate;
                     break;
                 default:
                     break;
@@ -143,6 +154,10 @@
         }
     void Batch()
         {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                transform.GetChild(i).gameObject.SetActive(true);
+            }
             count = count + ExtraCount;
             for (int i = 0; i < count; i++)
             {
@@ -214,5 +229,27 @@
         }
         count = count - initialCount;
     }
-
+    IEnumerator SniperFireCoroutine()
+    {
+        int initialCount = ExtraCount;
+        count = count + initialCount;
+        for (int i = 0; i < count; i++)
+        {
+            if (!player.scanner.farthestTarget)
+            {
+                count = count - initialCount;
+                yield break;
+            }
+            Vector3 targetPos = player.scanner.farthestTarget.position;
+            Vector3 dir = targetPos - transform.position;
+            dir = dir.normalized;
+            Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
+            bullet.position = transform.position;
+            bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+            bullet.GetComponent<Bullet>().Init(damage, penetration, dir, i);
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
+            yield return new WaitForSeconds(0.5f);
+        }
+        count = count - initialCount;
+    }
 }

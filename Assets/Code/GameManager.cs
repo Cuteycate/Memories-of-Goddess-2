@@ -24,8 +24,10 @@ public class GameManager : MonoBehaviour
     public PoolManager pool;
     public Player player;
     public LevelUp uiLevelUp;
+    public TreasureChest treasureChest;
     public Result uiResult;
     public GameObject enemyCleaner;
+
     void Awake()
     {
         instance = this;

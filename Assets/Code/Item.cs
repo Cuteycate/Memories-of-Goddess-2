@@ -20,36 +20,47 @@ public class Item : MonoBehaviour
         Text[] texts = GetComponentsInChildren<Text>();
         textLevel = texts[0];
         textName = texts[1];
-        textDesc = texts[2];
+        textDesc = texts.Length > 2 ? texts[2] : null;
         textName.text = data.itemName;
+        if (!allItemData.Contains(data))
+        {
+            allItemData.Add(data);
+        }
     }
+    public static List<ItemData> allItemData = new List<ItemData>();
     void OnEnable()
     {
         textLevel.text = "Lv." + (level + 1);
-        switch (data.itemType)
+        if (textDesc != null)
         {
-            case ItemData.ItemType.Shovel:
-                textDesc.text = string.Format(data.itemDesc[level], data.damages[level]*100, data.counts[level]);
-                break;
-            case ItemData.ItemType.Gun:
-                textDesc.text = string.Format(data.itemDesc[level], data.damages[level]*100, data.counts[level], data.penetrations[level]);
-                break;
-            case ItemData.ItemType.Shotgun:
-                textDesc.text = string.Format(data.itemDesc[level], data.damages[level] * 100, data.counts[level], data.penetrations[level]);
-                break;
-            case ItemData.ItemType.Glove:
-            case ItemData.ItemType.Shoe:
-            case ItemData.ItemType.EmptyHeart:
-            case ItemData.ItemType.XpCrown:
-                textDesc.text = string.Format(data.itemDesc[level], data.damages[level]*100);
-                break;
-            case ItemData.ItemType.ExtraProjectile:
-            case ItemData.ItemType.Bandage:
-                textDesc.text = string.Format(data.itemDesc[level], data.damages[level]);
-                break;
-            default:
-                textDesc.text = string.Format(data.itemDesc[level]);
-                break;
+            switch (data.itemType)
+            {
+                case ItemData.ItemType.Shovel:
+                    textDesc.text = string.Format(data.itemDesc[level], data.damages[level] * 100, data.counts[level]);
+                    break;
+                case ItemData.ItemType.Gun:
+                    textDesc.text = string.Format(data.itemDesc[level], data.damages[level] * 100, data.counts[level], data.penetrations[level]);
+                    break;
+                case ItemData.ItemType.Shotgun:
+                    textDesc.text = string.Format(data.itemDesc[level], data.damages[level] * 100, data.counts[level], data.penetrations[level]);
+                    break;
+                case ItemData.ItemType.SniperRifle:
+                    textDesc.text = string.Format(data.itemDesc[level], data.damages[level] * 100, data.counts[level], data.penetrations[level]);
+                    break;
+                case ItemData.ItemType.Glove:
+                case ItemData.ItemType.Shoe:
+                case ItemData.ItemType.EmptyHeart:
+                case ItemData.ItemType.XpCrown:
+                    textDesc.text = string.Format(data.itemDesc[level], data.damages[level] * 100);
+                    break;
+                case ItemData.ItemType.ExtraProjectile:
+                case ItemData.ItemType.Bandage:
+                    textDesc.text = string.Format(data.itemDesc[level], data.damages[level]);
+                    break;
+                default:
+                    textDesc.text = string.Format(data.itemDesc[level]);
+                    break;
+            }
         }
     }
     public void OnClick()
@@ -59,6 +70,7 @@ public class Item : MonoBehaviour
             case ItemData.ItemType.Shovel:
             case ItemData.ItemType.Gun:
             case ItemData.ItemType.Shotgun:
+            case ItemData.ItemType.SniperRifle:
                 if (level == 0)
                 {
                     GameObject newWeapon = new GameObject();
@@ -75,7 +87,7 @@ public class Item : MonoBehaviour
                     nextPenetration += data.penetrations[level];
                     weapon.LevelUp(nextDamage, nextCount,nextPenetration);
                 }
-                level++;
+                LevelCount();
                 break;
             case ItemData.ItemType.Glove:
             case ItemData.ItemType.Shoe:
@@ -94,7 +106,7 @@ public class Item : MonoBehaviour
                     float nextRate = data.damages[level];
                     gear.LevelUp(nextRate);
                 }
-                level++;
+                LevelCount();
                 break;
             case ItemData.ItemType.Heal:
                 GameManager.instance.Health = GameManager.instance.MaxHealth;
@@ -102,7 +114,34 @@ public class Item : MonoBehaviour
         }
         if(level == data.damages.Length)
         {
+            allItemData.Remove(data);
             GetComponent<Button>().interactable = false;
         }
     }
+    public void LevelCount()
+    {
+        switch (data.itemType)
+        {
+            case ItemData.ItemType.Shovel:
+            case ItemData.ItemType.Gun:
+            case ItemData.ItemType.Shotgun:
+            case ItemData.ItemType.SniperRifle:
+            case ItemData.ItemType.Glove:
+            case ItemData.ItemType.Shoe:
+            case ItemData.ItemType.EmptyHeart:
+            case ItemData.ItemType.ExtraProjectile:
+            case ItemData.ItemType.Bandage:
+            case ItemData.ItemType.XpCrown:
+                level++;
+                break;
+            case ItemData.ItemType.Heal:
+                GameManager.instance.Health = GameManager.instance.MaxHealth;
+                break;
+        }
+        if (level == data.damages.Length)
+        {
+            GetComponent<Button>().interactable = false;
+        }
+    }
+
 }

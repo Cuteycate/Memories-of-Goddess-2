@@ -14,20 +14,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 9
   itemId: 9
-  itemName: Health Kit
+  itemName: Sniper
   itemDesc:
-  - Fully Heals
-  itemIcon: {fileID: 927338625, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  baseDamage: 0
-  baseCount: 0
-  basePenetration: 0
+  - "Shoot a big fast and \nlong range weapon\nat the farthest enemy"
+  - 'Increase Damage By {0}%
+
+'
+  - 'Increase Damage By {0}%
+
+
+'
+  - Increase Damage By {0}%
+  - Increase Damage By {0}%
+  itemIcon: {fileID: -205726582, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  baseDamage: 20
+  baseCount: 1
+  basePenetration: -2
   damages:
   - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  counts: 0000000000000000000000000000000000000000
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  counts: 0000000000000000000000000000000001000000
   penetrations: 0000000000000000000000000000000000000000
-  projectiles: {fileID: 0}
-  hand: {fileID: 0}
+  projectiles: {fileID: 4496611369239243523, guid: 05bf7e3c00656734893f6bdb77d83dbb, type: 3}
+  hand: {fileID: 1772703093, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}

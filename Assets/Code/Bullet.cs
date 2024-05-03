@@ -24,11 +24,15 @@ public class Bullet : MonoBehaviour
         {
             rigid.velocity = dir * 15f; // Tốc độ viên đạn
         }
+        if (per == -2)
+        {
+            rigid.velocity = dir * 30f; // Tốc độ viên đạn
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Enemy")|| !collision.CompareTag("Prop") || per == -1)
+        if (!collision.CompareTag("Enemy")|| per == -1 || per == -2)
             return;
         per--;
 

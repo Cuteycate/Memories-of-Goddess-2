@@ -66,6 +66,10 @@ public class Gear : MonoBehaviour
                     speed = 3f * Character.WeaponRate;
                     weapon.speed = speed * (1f - rate);
                     break;
+                case 9:
+                    speed = 7f * Character.WeaponRate;
+                    weapon.speed = speed * (1f - rate);
+                    break;
                 default:
                     break;
             }
@@ -90,11 +94,13 @@ public class Gear : MonoBehaviour
             {
                 case 0:
                     weapon.ExtraCount = Mathf.Min((int)rate, 2);
-                    weapon.BroadcastMessage("EnableBatch", SendMessageOptions.DontRequireReceiver);
                     weapon.BroadcastMessage("Batch", SendMessageOptions.DontRequireReceiver);
                     break;
                 case 1:
                 case 8:
+                    weapon.ExtraCount = Mathf.Min((int)rate, 2);
+                    break;
+                case 9:
                     weapon.ExtraCount = Mathf.Min((int)rate, 2);
                     break;
                 default:

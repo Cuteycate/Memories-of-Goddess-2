@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor.Search;
 using UnityEngine;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class LevelUp : MonoBehaviour
 {
@@ -82,7 +83,7 @@ public class LevelUp : MonoBehaviour
         else
         {
             // If there are no upgradable items, activate items[4]
-            items[9].gameObject.SetActive(true);
+            items[10].gameObject.SetActive(true);
         }
     }
 }
