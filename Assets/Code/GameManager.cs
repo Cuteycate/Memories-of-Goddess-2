@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     public LevelUp uiLevelUp;
     public Result uiResult;
     public GameObject enemyCleaner;
+
+    private int Count = 0;
     void Awake()
     {
         instance = this;
@@ -82,6 +84,18 @@ public class GameManager : MonoBehaviour
         if (!isLive)
             return;
 
+        if (exp >= nextExp[Mathf.Min(level, nextExp.Length - 1)])
+        {
+            level++;
+            exp -= nextExp[Mathf.Min(level, nextExp.Length - 1)];
+            Count++;
+        }
+        while (Count > 0)
+        {
+            uiLevelUp.Show();
+            Count--;
+        }
+
         gameTime += Time.deltaTime;
         if (gameTime > maxgameTime)
         {
@@ -96,12 +110,6 @@ public class GameManager : MonoBehaviour
         Debug.Log("Base expOnDefeat: " + enemy.expOnDefeat);
         Debug.Log("ExtraRateExp: " + ExtraRateExp);
         exp += enemy.expOnDefeat + (enemy.expOnDefeat * ExtraRateExp);
-        if (exp >= nextExp[Mathf.Min(level, nextExp.Length - 1)])
-        {
-            level++;
-            exp = 0;
-            uiLevelUp.Show();
-        }
     }
     public void ResHealth(float amount)
     {

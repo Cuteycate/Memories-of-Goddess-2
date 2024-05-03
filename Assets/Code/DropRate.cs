@@ -15,16 +15,29 @@ public class DropRate : MonoBehaviour
 
     public List<PropDrop> propDrops;
 
+    private bool gameStopped = false;
+
+    // Set gameStopped to true when the game is stopped or destroyed
+    private void OnApplicationQuit()
+    {
+        gameStopped = true;
+    }
     private void OnDestroy()
     {
-        float RandomNumber = UnityEngine.Random.Range(0f, 100f);
-        foreach(var drop in propDrops)
+        if (!gameStopped)
         {
-            if(RandomNumber <= drop.dropRate)
+            float RandomNumber = UnityEngine.Random.Range(0f, 100f);
+
+            foreach (var drop in propDrops)
             {
-                Instantiate(drop.ItemPrefab,transform.position, Quaternion.identity);
+                if (RandomNumber <= drop.dropRate)
+                {
+                    Instantiate(drop.ItemPrefab, transform.position, Quaternion.identity);
+                    break;
+                }
             }
         }
     }
+
 
 }
