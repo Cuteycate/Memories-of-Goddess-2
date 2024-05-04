@@ -14,6 +14,12 @@ public class Player : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer spriter;
     Animator anim;
+    //weapon Scythe test
+    [HideInInspector]
+    public float lastHorizontalVector;
+    [HideInInspector]
+    public float lastVerticalVector;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -35,6 +41,15 @@ public class Player : MonoBehaviour
 
         inputVec.x = Input.GetAxisRaw("Horizontal");
         inputVec.y = Input.GetAxisRaw("Vertical");
+
+        if (inputVec.x != 0)
+        {
+            lastHorizontalVector = inputVec.x;
+        }
+        if (inputVec.y != 0)
+        {
+            lastVerticalVector = inputVec.y;
+        }
     }
 
     void FixedUpdate()
