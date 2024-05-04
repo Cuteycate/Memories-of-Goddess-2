@@ -14,30 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 11
   itemId: 11
-  itemName: Scythe
+  itemName: Health Kit
   itemDesc:
-  - 'Slash the enemy '
-  - 'Increase Radius {1}%
-
-    Increase {0} Damage '
-  - 'Increase {0} Damage '
-  - 'Increase Radius {1}%
-
-    Increase {0} Damage'
-  - 'Increase Radius {1}%
-
-    Increase {0} Damage '
-  itemIcon: {fileID: -344242777, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  baseDamage: 5
+  - Fully Heals
+  itemIcon: {fileID: 927338625, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  baseDamage: 0
   baseCount: 0
-  basePenetration: 999
+  basePenetration: 0
   damages:
-  - 2
-  - 2
-  - 2
-  - 2
-  - 2
-  counts: 0000000001000000000000000100000001000000
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  counts: 0000000000000000000000000000000000000000
   penetrations: 0000000000000000000000000000000000000000
-  projectiles: {fileID: 5988079196804604719, guid: fa12fb69aa9560949ac7cdb7fa8ba7ac, type: 3}
-  hand: {fileID: 1349035616, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}
+  projectiles: {fileID: 0}
+  hand: {fileID: 0}

@@ -55,6 +55,14 @@
                     StartCoroutine(SniperFireCoroutine());
                 }
                 break;
+            case 10:
+                timer += Time.deltaTime;
+                if (timer > speed)
+                {
+                    timer = 0f;
+                    MeleeAttack();
+                }
+                break;
             default:
                     break;
 
@@ -89,11 +97,13 @@
                 break;
                 case 1:
                 case 8:
+                case 10:
                     speed = 3f * Character.WeaponRate;
                     break;
                case 9:
                     speed = 7f * Character.WeaponRate;
                     break;
+
                 default:
                     break;
             }
@@ -251,5 +261,33 @@
             yield return new WaitForSeconds(0.5f);
         }
         count = count - initialCount;
+    }
+    void MeleeAttack()
+    {
+        float temp = 1f + (float)count * 0.2f;
+        if (!player.scanner.nearestTarget)
+            return;
+        Vector3 targetPos = player.scanner.nearestTarget.position;
+        Vector3 dir = targetPos - transform.position;
+        dir = dir.normalized;
+        Quaternion rotation;
+
+        Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
+        bullet.position = transform.position;
+
+        if (player.lastHorizontalVector > 0)
+        {
+            rotation = Quaternion.Euler(0f, 0f, 0);
+        }
+        else
+        {
+            rotation = Quaternion.Euler(0f, 0f, 180f);
+        }
+        bullet.localScale = new Vector3(temp, temp, 1f); //tang Scale Cua SLash
+        bullet.rotation = rotation; //Xoay Slash
+        bullet.Translate(bullet.right * 3f, Space.World); //Khaong Cach Slash so voi nguoi choi
+        bullet.GetComponent<Bullet>().Init(damage, penetration, dir, 1); // Tao Slash
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
+
     }
 }
