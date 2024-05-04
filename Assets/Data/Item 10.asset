@@ -30,7 +30,7 @@ MonoBehaviour:
   itemIcon: {fileID: -344242777, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseDamage: 5
   baseCount: 0
-  basePenetration: 999
+  basePenetration: -1
   damages:
   - 2
   - 2
