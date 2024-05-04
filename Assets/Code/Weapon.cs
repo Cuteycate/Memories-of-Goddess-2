@@ -16,7 +16,7 @@
         private bool isBatchEnabled = false;
         public float MeleeCoolDown = 3f;
         private Coroutine batchCoroutine;
-    Player player;
+        Player player;
    
     void Awake()
         {
@@ -187,7 +187,7 @@
                 AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
                 yield return new WaitForSeconds(0.1f);
             }
-        count = count - initialCount;
+            count = count - initialCount;
          }
     void FireShotgun()
     {

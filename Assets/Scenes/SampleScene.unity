@@ -1175,18 +1175,18 @@ MonoBehaviour:
   - 60
   - 80
   - 100
-  - 110
-  - 110
-  - 110
-  - 110
-  - 110
-  - 110
-  - 110
-  - 110
-  - 110
-  - 110
-  - 110
-  - 110
+  - 150
+  - 200
+  - 250
+  - 300
+  - 400
+  - 600
+  - 800
+  - 1000
+  - 1300
+  - 1600
+  - 1900
+  - 2200
   ExtraRateExp: 0
   pool: {fileID: 578147826}
   player: {fileID: 936314354}
@@ -11926,23 +11926,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: []
   spawnData:
-  - spawnTime: 0.7
+  - spawnTime: 1
     spriteType: 0
     health: 10
     speed: 1
     expOnDefeat: 5
-  - spawnTime: 0.1
+  - spawnTime: 0.8
     spriteType: 1
     health: 15
     speed: 1
     expOnDefeat: 10
-  - spawnTime: 0.1
+  - spawnTime: 0.7
     spriteType: 2
     health: 20
     speed: 1
     expOnDefeat: 15
-  - spawnTime: 0.1
+  - spawnTime: 0.6
     spriteType: 3
+    health: 25
+    speed: 1
+    expOnDefeat: 20
+  - spawnTime: 0.45
+    spriteType: 4
+    health: 25
+    speed: 1
+    expOnDefeat: 20
+  - spawnTime: 0.3
+    spriteType: 5
+    health: 25
+    speed: 1
+    expOnDefeat: 20
+  - spawnTime: 0.1
+    spriteType: 6
+    health: 25
+    speed: 1
+    expOnDefeat: 20
+  - spawnTime: 0.1
+    spriteType: 7
     health: 25
     speed: 1
     expOnDefeat: 20
@@ -21539,9 +21559,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bgmClip: {fileID: 8300000, guid: 36a32edc978ab784abf2c95c51a57a15, type: 3}
-  bgmVolume: 0
+  bgmVolume: 0.2
   openingClip: {fileID: 8300000, guid: 57054a47044a50f43a9b69b6f08d97f0, type: 3}
-  openingVolume: 0
+  openingVolume: 0.2
   sfxClips:
   - {fileID: 8300000, guid: 291608b8d286e2a4580ff36324455ce2, type: 3}
   - {fileID: 8300000, guid: 0bddcb411d826e14bb26d40ae45d8e22, type: 3}
@@ -21553,7 +21573,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6f0c572d865b4664db7a460972bc4768, type: 3}
   - {fileID: 8300000, guid: 4b294d59d2399014daa718b35c9de73b, type: 3}
   - {fileID: 8300000, guid: 2c4bc183a5df5aa4baf7c4fcf236a2de, type: 3}
-  sfxVolume: 0.3
+  sfxVolume: 0.2
   channels: 16
 --- !u!4 &421026719
 Transform:

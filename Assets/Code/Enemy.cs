@@ -53,8 +53,8 @@ public class Enemy : MonoBehaviour
         Vector2 nextVec;
 
         float distanceToPlayer = dirVec.magnitude; 
-
-        if (CanFire && distanceToPlayer <= distance) 
+        
+        if (CanFire && distanceToPlayer <= distance && distanceToPlayer > 5) 
         {
            
             float radius = distanceToPlayer; 
@@ -102,6 +102,7 @@ public class Enemy : MonoBehaviour
         spriter.sortingOrder = 2;
         anim.SetBool("Dead", false);
         health = maxHealth;
+        
     }
     public void Init(SpawnData Data, bool CanfireRight)
     {
@@ -133,6 +134,7 @@ public class Enemy : MonoBehaviour
         health -= collision.GetComponent<Bullet>().damage;
         StartCoroutine(KnockBack());
         ShowDamage(collision.GetComponent<Bullet>().damage.ToString());
+      
         if (health > 0)
         {
             anim.SetTrigger("Hit");

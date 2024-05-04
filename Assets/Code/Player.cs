@@ -65,6 +65,11 @@ public class Player : MonoBehaviour
     {
         if (!GameManager.instance.isLive)
             return;
+
+        if (collision.gameObject.CompareTag("Turet"))
+        {
+            return;
+        }
         GameManager.instance.Health -= Time.deltaTime * 10;
 
         if (GameManager.instance.Health < 0)

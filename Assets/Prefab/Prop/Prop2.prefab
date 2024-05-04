@@ -130,10 +130,13 @@ MonoBehaviour:
   propDrops:
   - name: Health
     ItemPrefab: {fileID: 7686707184283945390, guid: 07aa649c575180446b90eded3bfcfdd3, type: 3}
-    dropRate: 10
+    dropRate: 25
   - name: Health
     ItemPrefab: {fileID: 8398588510668082214, guid: fea773a20ad386941a8a3c5c1637b943, type: 3}
-    dropRate: 100
+    dropRate: 25
+  - name: Health
+    ItemPrefab: {fileID: 2129692238775210415, guid: a4a1790a424533245a0543c5bd458116, type: 3}
+    dropRate: 25
 --- !u!114 &-5466678652641225859
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,6 +10,10 @@ TagManager:
   - Bullet
   - Prop
   - Player
+  - BulletE
+  - Turet
+  - AreaTuret
+  - BulletTur
   layers:
   - Default
   - TransparentFX
