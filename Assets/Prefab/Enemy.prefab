@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1276480543206297943}
   - component: {fileID: 4322003528986749501}
   - component: {fileID: 2409327088588379051}
+  - component: {fileID: -6050896465068872008}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
@@ -217,6 +218,21 @@ MonoBehaviour:
   OnTilemapMove:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &-6050896465068872008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424285339462184896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfabb0440166ab443bba8876756fdfa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EffectColor: {r: 0.9622642, g: 0.05900679, b: 0.05900679, a: 0.5}
+  m_EffectDistance: {x: 1, y: -1}
+  m_UseGraphicAlpha: 1
 --- !u!1 &2460273449472646993
 GameObject:
   m_ObjectHideFlags: 0

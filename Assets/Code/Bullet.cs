@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Enemy")|| per == -1 || per == -2)
+        if (collision == null || !collision.CompareTag("Enemy") || per == -1 || per == -2)
             return;
         per--;
 
@@ -44,6 +44,8 @@ public class Bullet : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D other)
     {
+        if (other == null || !other.CompareTag("Area"))
+            return;
         if (other.CompareTag("Area"))
         {
             rigid.velocity = Vector2.zero;

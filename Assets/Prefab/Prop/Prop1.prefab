@@ -120,7 +120,7 @@ MonoBehaviour:
     dropRate: 5
   - name: Health
     ItemPrefab: {fileID: 7686707184283945390, guid: 07aa649c575180446b90eded3bfcfdd3, type: 3}
-    dropRate: 10
+    dropRate: 30
 --- !u!70 &-6560651658516076084
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
