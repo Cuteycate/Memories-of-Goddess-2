@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
         AudioManager.instance.PlayBgm(true);
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Select);
     }
+
     public void GameOver()
     {
         StartCoroutine(GameOverRoutine());
@@ -78,6 +79,10 @@ public class GameManager : MonoBehaviour
         AudioManager.instance.PlayOpening(true);
         SceneManager.LoadScene(0);
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Select);
+    }
+    public void Quit()
+    {
+        Application.Quit();
     }
     void Update()
     {
@@ -126,5 +131,9 @@ public class GameManager : MonoBehaviour
     {
         isLive = true;
         Time.timeScale = 1;
+    }
+    public void PlaySelect()
+    {
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Select);
     }
 }

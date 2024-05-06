@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class DropRate : MonoBehaviour
 {
+    public static GameManager instance;
     [Serializable]
     public class PropDrop
     {
@@ -14,20 +15,11 @@ public class DropRate : MonoBehaviour
     }
 
     public List<PropDrop> propDrops;
-
-    private bool gameStopped = false;
-
-    // Set gameStopped to true when the game is stopped or destroyed
-    private void OnApplicationQuit()
-    {
-        gameStopped = true;
-    }
     private void OnDestroy()
     {
-        if (!gameStopped)
-        {
+        if (!GameManager.instance.isLive)
+            return;
             float RandomNumber = UnityEngine.Random.Range(0f, 100f);
-
             foreach (var drop in propDrops)
             {
                 if (RandomNumber <= drop.dropRate)
@@ -38,6 +30,3 @@ public class DropRate : MonoBehaviour
             }
         }
     }
-
-
-}

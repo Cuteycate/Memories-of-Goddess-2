@@ -34,6 +34,8 @@ public class PropRandom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!GameManager.instance.isLive)
+            return;
         if (Time.time >= nextSpawnTime && totalProps < maxProps)
         {
             // Calculate the position for the prop

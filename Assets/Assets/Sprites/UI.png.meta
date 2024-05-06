@@ -681,6 +681,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Tank Ui
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 73
+        width: 22
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff0eb4bfe76625e4e84fab06c0f23e6a
+      internalID: 160438519
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -715,6 +736,7 @@ TextureImporter:
       Select 7: -966295699
       Select 8: 927338625
       Select 9: -1002307068
+      Tank Ui: 160438519
       Title 0: 1315674547
       Title 1: -1799623379
       Title 2: -77559378

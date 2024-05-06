@@ -288,6 +288,5 @@
         bullet.Translate(bullet.right * 3f, Space.World); //Khaong Cach Slash so voi nguoi choi
         bullet.GetComponent<Bullet>().Init(damage, penetration, dir, 1); // Tao Slash
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
-
     }
 }
