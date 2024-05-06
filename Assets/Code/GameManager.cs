@@ -110,6 +110,20 @@ public class GameManager : MonoBehaviour
             uiLevelUp.Show();
         }
     }
+    public void GetExp(BossEnemy enemy)
+    {
+        if (!isLive)
+            return;
+        Debug.Log("Base expOnDefeat: " + enemy.expOnDefeat);
+        Debug.Log("ExtraRateExp: " + ExtraRateExp);
+        exp += enemy.expOnDefeat + (enemy.expOnDefeat * ExtraRateExp);
+        if (exp >= nextExp[Mathf.Min(level, nextExp.Length - 1)])
+        {
+            level++;
+            exp = 0;
+            uiLevelUp.Show();
+        }
+    }
     public void ResHealth(float amount)
     {
         if(Health < MaxHealth)
