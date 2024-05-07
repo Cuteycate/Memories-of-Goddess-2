@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
@@ -23,8 +24,8 @@ public class AudioManager : MonoBehaviour
     AudioSource[] sfxPlayers;
 
     [Header("#Volume Sliders")]
-    [SerializeField] Slider bgmSlider;
-    [SerializeField] Slider sfxSlider;
+    [SerializeField] List<Slider> bgmSliders = new List<Slider>();
+    [SerializeField] List<Slider> sfxSliders = new List<Slider>();
     int channelIndex;
 
     public enum Sfx { Dead, Hit, LevelUp = 3, Lose, Melee, Range = 7, Select, Win }
@@ -69,8 +70,17 @@ public class AudioManager : MonoBehaviour
         sfxVolume = PlayerPrefs.GetFloat("SfxVolume", sfxVolume);
 
         // Set initial volume slider values
-        bgmSlider.value = bgmVolume;
-        sfxSlider.value = sfxVolume;
+        foreach (var bgmSlider in bgmSliders)
+        {
+            bgmSlider.value = bgmVolume;
+            bgmSlider.onValueChanged.AddListener(delegate { ChangeBgmVolume(); });
+        }
+
+        foreach (var sfxSlider in sfxSliders)
+        {
+            sfxSlider.value = sfxVolume;
+            sfxSlider.onValueChanged.AddListener(delegate { ChangeSfxVolume(); });
+        }
 
         // Update volume settings
         ChangeBgmVolume();
@@ -129,7 +139,11 @@ public class AudioManager : MonoBehaviour
 
     public void ChangeBgmVolume()
     {
-        float volume = bgmSlider.value;
+        float volume = bgmSliders[0].value;
+        foreach (var slider in bgmSliders)
+        {
+            slider.value = volume;
+        }
         bgmPlayer.volume = volume;
         openingPlayer.volume = volume;
         PlayerPrefs.SetFloat("BgmVolume", volume);
@@ -137,13 +151,43 @@ public class AudioManager : MonoBehaviour
 
     public void ChangeSfxVolume()
     {
-        float volume = sfxSlider.value;
+        float volume = sfxSliders[0].value;
+        foreach (var slider in sfxSliders)
+        {
+            slider.value = volume;
+        }
 
         foreach (var player in sfxPlayers)
         {
             player.volume = volume;
         }
 
+        PlayerPrefs.SetFloat("SfxVolume", volume);
+    }
+    public void ChangeBgmVolume1()
+    {
+        float volume = bgmSliders[1].value;
+        foreach (var slider in bgmSliders)
+        {
+            slider.value = volume;
+        }
+        bgmPlayer.volume = volume;
+        openingPlayer.volume = volume;
+        PlayerPrefs.SetFloat("BgmVolume", volume);
+    }
+
+    public void ChangeSfxVolume1()
+    {
+        float volume = sfxSliders[1].value;
+        foreach (var slider in sfxSliders)
+        {
+            slider.value = volume;
+        }
+
+        foreach (var player in sfxPlayers)
+        {
+            player.volume = volume;
+        }
         PlayerPrefs.SetFloat("SfxVolume", volume);
     }
 }

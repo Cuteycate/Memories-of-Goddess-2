@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="GameManager" Collapsed="true">
+    <Position X="3.75" Y="1.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>gAQgiECABBECCAhAAAABCBCAgAFAAAABIAgIAAgAA8A=</HashCode>
+      <FileName>Assets\Code\GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AchiveManager" Collapsed="true">
+    <Position X="1.5" Y="3.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="AchiveManager.Achive" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Code\Achive Manager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>CAQAAABAACAAAAgAAEAAAABAAAAAABAEAAACAAAAAEI=</HashCode>
+      <FileName>Assets\Code\Achive Manager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

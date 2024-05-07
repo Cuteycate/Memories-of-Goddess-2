@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     [Header("# Game Control")]
     public bool isLive;
     public float gameTime;
-    public float maxgameTime = 20f;
+    public float maxgameTime = 30f;
     [Header("# Player Info")]
     public int PlayerId;
     public float Health;
@@ -88,7 +88,6 @@ public class GameManager : MonoBehaviour
     {
         if (!isLive)
             return;
-
         gameTime += Time.deltaTime;
         if (gameTime > maxgameTime)
         {
@@ -97,6 +96,20 @@ public class GameManager : MonoBehaviour
         }
     }
     public void GetExp(Enemy enemy)
+    {
+        if (!isLive)
+            return;
+        Debug.Log("Base expOnDefeat: " + enemy.expOnDefeat);
+        Debug.Log("ExtraRateExp: " + ExtraRateExp);
+        exp += enemy.expOnDefeat + (enemy.expOnDefeat * ExtraRateExp);
+        if (exp >= nextExp[Mathf.Min(level, nextExp.Length - 1)])
+        {
+            level++;
+            exp = 0;
+            uiLevelUp.Show();
+        }
+    }
+    public void GetExp(BossEnemy enemy)
     {
         if (!isLive)
             return;

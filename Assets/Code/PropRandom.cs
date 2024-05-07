@@ -66,10 +66,13 @@ public class PropRandom : MonoBehaviour
                     break;
                 }
             }
-
-            if (!insideBounds)
+            if (insideBounds)
             {
-                Destroy(prop);
+                prop.SetActive(true);
+            }
+            else
+            {
+                prop.SetActive(false);
             }
         }
     }
@@ -134,9 +137,6 @@ public class PropRandom : MonoBehaviour
 
         return Vector3.zero; // Failed to find a valid spawn position
     }
-
-
-
     public void UpdateGroundTilemaps(Tilemap[] newTilemaps)
     {
         groundTilemaps = newTilemaps;
@@ -144,7 +144,6 @@ public class PropRandom : MonoBehaviour
 
     void OnTilemapMoveHandler()
     {
-        // Update the positions of the props
         foreach (GameObject prop in GameObject.FindGameObjectsWithTag("Prop"))
         {
             bool insideBounds = false;
@@ -157,10 +156,13 @@ public class PropRandom : MonoBehaviour
                     break;
                 }
             }
-
-            if (!insideBounds)
+            if (insideBounds)
             {
-                Destroy(prop);
+                prop.SetActive(true);
+            }
+            else
+            {
+                prop.SetActive(false);
             }
         }
     }

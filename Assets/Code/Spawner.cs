@@ -19,7 +19,7 @@ public class Spawner : MonoBehaviour
         if (!GameManager.instance.isLive)
             return;
         timer += Time.deltaTime; //Timer tính giờ
-        level =Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 20f),spawnData.Length -1); //Mỗi 10s sẽ tăng 1 level 
+        level =Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 30f),spawnData.Length -1); //Mỗi 10s sẽ tăng 1 level 
         if (timer > spawnData[level].spawnTime)  //Khi timer > level thì qua cái khác (vd element 0 chạy đc 10s spawntime 0.7 -> element 1 chạy 10s tiếp theo spawntime 0.2
         {
             timer = 0;
