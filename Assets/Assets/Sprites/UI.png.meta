@@ -682,12 +682,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tank Ui
+      name: Turret_Item
       rect:
         serializedVersion: 2
-        x: 126
+        x: 125
         y: 73
-        width: 22
+        width: 24
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -696,8 +696,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ff0eb4bfe76625e4e84fab06c0f23e6a
-      internalID: 160438519
+      spriteID: 28f0296d3ee748945a5b121f8f0783eb
+      internalID: -1515716360
       vertices: []
       indices: 
       edges: []
@@ -736,10 +736,10 @@ TextureImporter:
       Select 7: -966295699
       Select 8: 927338625
       Select 9: -1002307068
-      Tank Ui: 160438519
       Title 0: 1315674547
       Title 1: -1799623379
       Title 2: -77559378
+      Turret_Item: -1515716360
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
