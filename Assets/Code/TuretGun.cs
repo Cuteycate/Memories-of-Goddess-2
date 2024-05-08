@@ -46,7 +46,7 @@ public class TuretGun : MonoBehaviour
             canfire = false;
         }
 
-        if (scanner.nearestTarget)
+        if (scanner.nearestTarget && isFiring)
         {
             spriter.flipX = scanner.nearestTarget.position.x < rigid.position.x;
         }

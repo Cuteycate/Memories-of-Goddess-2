@@ -35,6 +35,13 @@ public class Bomb : MonoBehaviour
                 // Show hit effect at the position of the monster
                 //Instantiate(hitEffect, enemy.transform.position, Quaternion.identity);
             }
+
+            EnemyEvent enemyEvent = collider.GetComponent<EnemyEvent>();
+            if (enemyEvent != null)
+            {
+                enemyEvent.TakeDamage(damage);
+            }
+
         }
 
         // Destroy the item after the area attack
