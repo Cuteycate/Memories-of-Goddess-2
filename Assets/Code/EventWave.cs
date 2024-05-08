@@ -49,8 +49,6 @@ public class EventWave : MonoBehaviour
         objectPos = transform.position;
         Timer = 0;
         check = true;
-        
-
     }
 
     private void Update()
@@ -88,8 +86,6 @@ public class EventWave : MonoBehaviour
             }
             check = false;
         }
-        
-
     }
 
 

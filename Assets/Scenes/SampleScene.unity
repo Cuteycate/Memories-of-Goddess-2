@@ -13959,41 +13959,57 @@ MonoBehaviour:
     health: 10
     speed: 1
     expOnDefeat: 2
+    EventWave: 0
+    CountEvent: 0
   - spawnTime: 0.1
     spriteType: 1
     health: 15
     speed: 1
     expOnDefeat: 2
+    EventWave: 1
+    CountEvent: 2
   - spawnTime: 0.1
     spriteType: 2
     health: 20
     speed: 1
     expOnDefeat: 2
+    EventWave: 1
+    CountEvent: 2
   - spawnTime: 0.1
     spriteType: 3
     health: 25
     speed: 1
     expOnDefeat: 3
+    EventWave: 1
+    CountEvent: 3
   - spawnTime: 0.1
     spriteType: 4
     health: 30
     speed: 1
     expOnDefeat: 4
+    EventWave: 0
+    CountEvent: 0
   - spawnTime: 0.1
     spriteType: 5
     health: 35
     speed: 1
     expOnDefeat: 5
+    EventWave: 0
+    CountEvent: 0
   - spawnTime: 0.1
     spriteType: 6
     health: 40
     speed: 1
     expOnDefeat: 6
+    EventWave: 0
+    CountEvent: 0
   - spawnTime: 0.1
     spriteType: 7
     health: 45
     speed: 1
     expOnDefeat: 7
+    EventWave: 0
+    CountEvent: 0
   level: 0
 --- !u!1 &354831575
 GameObject:
@@ -25116,7 +25132,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 10.666667
+  orthographic size: 8.185185
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -25766,6 +25782,8 @@ MonoBehaviour:
   - {fileID: 4574723481325531611, guid: 8a3ea468298b24943b9431cf02e01f07, type: 3}
   - {fileID: 5988079196804604719, guid: fa12fb69aa9560949ac7cdb7fa8ba7ac, type: 3}
   - {fileID: 424285339462184896, guid: ed13da81049daf948affdf9652e6d120, type: 3}
+  - {fileID: 4060760176621736446, guid: 5849d5a119724fa43aaf31de5d037a6f, type: 3}
+  - {fileID: 4415659618706800059, guid: f3d03883280b3934c8c2b8080cffb53d, type: 3}
 --- !u!1 &585482766
 GameObject:
   m_ObjectHideFlags: 0
