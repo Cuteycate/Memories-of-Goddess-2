@@ -47,39 +47,51 @@ public class Spawner : MonoBehaviour
         enemy.GetComponent<Enemy>().Init(spawnData[level], false); //Lấy dữ liệu đầu vào từ Enemy
     }
 
-    IEnumerator SpawnEvent( float time, int level )
+    IEnumerator SpawnEvent(float time, int level)
     {
         for (int i = 0; i < spawnData[level].CountEvent; i++)
         {
-    
+
             GameObject Wave = GameManager.instance.pool.Get(8);
             int ran = Random.Range(1, spawnPoint.Length);
             Wave.transform.position = spawnPoint[ran].position;
 
-            float distance = 0;
+            float distance = Mathf.Infinity;
             Transform BestSpawnPoint = null;
             foreach (Transform transform in spawnPoint)
             {
-                if(transform.position == spawnPoint[ran].position)
+                if (transform.position == spawnPoint[ran].position)
                 {
                     continue;
                 }
+
+                float PointToPoint = Vector2.Distance(Wave.transform.position, transform.position);
+
+                if (PointToPoint < 25)
+                {
+                    continue;
+                }
+
                 Vector2 ToSpawnPoint = transform.position - spawnPoint[ran].position;
-                float DistanceToPlayer = Vector2.Distance(GameManager.instance.player.transform.position, ToSpawnPoint);           
-                if (DistanceToPlayer > distance)
+                float DistanceToPlayer = Vector2.Distance(GameManager.instance.player.transform.position, transform.position); // Sửa đổi cách tính khoảng cách
+                if (DistanceToPlayer < distance)
                 {
                     distance = DistanceToPlayer;
                     BestSpawnPoint = transform;
+
+                    if (DistanceToPlayer >= 3)
+                    {
+                        break;
+                    }
+
                 }
 
             }
             Wave.GetComponent<EventWave>().Inti(BestSpawnPoint, spawnPoint[ran]);
             yield return new WaitForSeconds(2f);
-            
         }
         yield return new WaitForSeconds(2f);
     }
-
     private void OnEnable()
     {
         
