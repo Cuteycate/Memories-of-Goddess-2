@@ -681,27 +681,6 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: Turret_Item
-      rect:
-        serializedVersion: 2
-        x: 125
-        y: 73
-        width: 24
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 28f0296d3ee748945a5b121f8f0783eb
-      internalID: -1515716360
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -739,7 +718,6 @@ TextureImporter:
       Title 0: 1315674547
       Title 1: -1799623379
       Title 2: -77559378
-      Turret_Item: -1515716360
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

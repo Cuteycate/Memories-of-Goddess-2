@@ -10,7 +10,6 @@ public class PropRandom : MonoBehaviour
     public List<GameObject> PropPrefabs;
     public Tilemap[] groundTilemaps;
     public float nextSpawnTime = 10; //Khoang cach thoi gian spawn prop
-    public float spawnRate = 1f;
 
     public float spawnRangeX = 20f; // Khoang cach spawn Prop tren truc X
     public float spawnRangeY = 20f; // Khoang cach spawn Prop tren truc Y
@@ -19,7 +18,7 @@ public class PropRandom : MonoBehaviour
     public float minDistanceToPlayer = 10f; // Khoang cach toi thieu voi player
     private int totalProps = 0; // Tong so prop da tao
     private const int maxProps = 7; // So Prop toi da
-
+    private float timer; // Timer
     void Start()
     {
         foreach (Tilemap tilemap in groundTilemaps)
@@ -34,9 +33,10 @@ public class PropRandom : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
         if (!GameManager.instance.isLive)
             return;
-        if (Time.time >= nextSpawnTime && totalProps < maxProps)
+        if (timer > nextSpawnTime && totalProps < maxProps)
         {
             // Calculate the position for the prop
             Vector3 spawnPosition = FindValidSpawnPosition();
@@ -51,7 +51,7 @@ public class PropRandom : MonoBehaviour
             }
 
             // Calculate the next spawn time
-            nextSpawnTime = Time.time + 1f / spawnRate;
+            timer= 0;
         }
         totalProps = GameObject.FindGameObjectsWithTag("Prop").Length;
         foreach (GameObject prop in GameObject.FindGameObjectsWithTag("Prop"))
