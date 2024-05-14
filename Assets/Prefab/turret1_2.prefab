@@ -187,10 +187,10 @@ MonoBehaviour:
   isFiring: 0
   canfire: 0
   isLive: 0
-  damage: 5
+  damage: 10
   speed: 1
-  per: 1
-  count: 5
+  per: 3
+  count: 10
   cooldownTime: 21
   timer: -21
   disappear: 0

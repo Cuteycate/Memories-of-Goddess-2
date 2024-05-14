@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Rendering;
 using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
@@ -10,8 +12,9 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     public Transform[] spawnPoint;
     public SpawnData[] spawnData;
+    public GameObject PointWave;
 
-
+    float[] Rotation = { 0, 45, 90, 135, 180, 225, 270, 315, 160 };
 
     public int level;
     float timer;
@@ -34,7 +37,7 @@ public class Spawner : MonoBehaviour
             if (spawnData[level].EventWave)
             {
                
-                StartCoroutine(SpawnEvent(spawnData[level].spawnTime, level));            
+                StartCoroutine(SpawnEvent(spawnData[level].spawnTime, level, spawnData[level].TypeEvent ));            
                 spawnData[level].EventWave = false;
             }      
         }
@@ -47,54 +50,40 @@ public class Spawner : MonoBehaviour
         enemy.GetComponent<Enemy>().Init(spawnData[level], false); //Lấy dữ liệu đầu vào từ Enemy
     }
 
-    IEnumerator SpawnEvent(float time, int level)
+    IEnumerator SpawnEvent(float time, int level, int TypeEvent)
     {
-        for (int i = 0; i < spawnData[level].CountEvent; i++)
+       if ( TypeEvent == 1)
+        {
+            for (int i = 0; i < spawnData[level].CountEvent; i++)
+            {
+                int ran;
+                ran = Random.Range(0, Rotation.Length);
+                GameObject Wave = GameManager.instance.pool.Get(8);
+                GameObject PointWave = GameManager.instance.pool.Get(11);
+                PointWave.transform.position = GameManager.instance.player.transform.position;
+                PointWave.transform.Rotate(0, 0, Rotation[ran]);
+                Transform[] childTransforms = GetChildPositions(PointWave);
+                Wave.transform.position = childTransforms[1].position;             
+                Wave.GetComponent<EventWave>().Inti(childTransforms[2], childTransforms[1], TypeEvent);
+                yield return new WaitForSeconds(3f);
+            
+            }
+        }
+        else if (TypeEvent == 2)
         {
 
-            GameObject Wave = GameManager.instance.pool.Get(8);
-            int ran = Random.Range(1, spawnPoint.Length);
-            Wave.transform.position = spawnPoint[ran].position;
+            GameObject Wave = GameManager.instance.pool.Get(10);
+            Wave.transform.position = GameManager.instance.player.transform.position;
+            Wave.GetComponent<EventWave>().Inti(GameManager.instance.player.transform, null, TypeEvent);
 
-            float distance = Mathf.Infinity;
-            Transform BestSpawnPoint = null;
-            foreach (Transform transform in spawnPoint)
-            {
-                if (transform.position == spawnPoint[ran].position)
-                {
-                    continue;
-                }
-
-                float PointToPoint = Vector2.Distance(Wave.transform.position, transform.position);
-
-                if (PointToPoint < 25)
-                {
-                    continue;
-                }
-
-                Vector2 ToSpawnPoint = transform.position - spawnPoint[ran].position;
-                float DistanceToPlayer = Vector2.Distance(GameManager.instance.player.transform.position, transform.position); // Sửa đổi cách tính khoảng cách
-                if (DistanceToPlayer < distance)
-                {
-                    distance = DistanceToPlayer;
-                    BestSpawnPoint = transform;
-
-                    if (DistanceToPlayer >= 3)
-                    {
-                        break;
-                    }
-
-                }
-
-            }
-            Wave.GetComponent<EventWave>().Inti(BestSpawnPoint, spawnPoint[ran]);
-            yield return new WaitForSeconds(2f);
         }
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
     }
-    private void OnEnable()
+
+    Transform[] GetChildPositions(GameObject parentObject)
     {
-        
+        Transform[] childTransforms = parentObject.GetComponentsInChildren<Transform>();      
+        return childTransforms;
     }
 
     [System.Serializable]
@@ -107,5 +96,7 @@ public class Spawner : MonoBehaviour
         public int expOnDefeat;
         public bool EventWave;
         public int CountEvent;
+        public int TypeEvent;
+
     }
 }
