@@ -201,8 +201,10 @@ MonoBehaviour:
   - {fileID: 22100000, guid: 1ba79b1eccbc63347af1b35d2091b3e6, type: 2}
   - {fileID: 22100000, guid: 8c65e152c63208a4f8dd27f66bf9efa6, type: 2}
   - {fileID: 22100000, guid: 8a627b0e0c924db41b7dcc019288b715, type: 2}
+  - {fileID: 22100000, guid: 0eb863df0d4fc894fb7fb9f5b96659ab, type: 2}
   target: {fileID: 0}
   floatingtextPrefab: {fileID: 5099652313274479680, guid: abf381679dc758648915dad2a3b66fdb, type: 3}
+  isLive: 0
 --- !u!114 &2409327088588379051
 MonoBehaviour:
   m_ObjectHideFlags: 0

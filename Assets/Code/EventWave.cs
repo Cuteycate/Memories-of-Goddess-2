@@ -8,12 +8,14 @@ using static UnityEngine.UI.CanvasScaler;
 
 public class EventWave : MonoBehaviour
 {
-    public float speed = 2;
+    public float speed;
 
     Rigidbody2D rigid;
     public Transform[] spawnPoint;
     public Transform bestSpawnPoint = null;
     public Transform FirstSpawnPoint;
+    public int TypeEvent;
+   
 
     public float Timer;
     public float coolTime = 5;
@@ -23,7 +25,7 @@ public class EventWave : MonoBehaviour
     Vector2 objectPos;
     Vector2 oppositePos;
 
-
+   
     bool check = true;
     public Spawner spawner;
     
@@ -34,10 +36,11 @@ public class EventWave : MonoBehaviour
         spawnPoint = GetComponentsInChildren<Transform>();
     }
 
-    public void Inti(Transform BestSpawnPoint, Transform f)
+    public void Inti(Transform BestSpawnPoint, Transform f, int TypeEv)
     {
         bestSpawnPoint = BestSpawnPoint;
         FirstSpawnPoint = f;
+        TypeEvent = TypeEv;
     }
 
 
@@ -49,6 +52,7 @@ public class EventWave : MonoBehaviour
         objectPos = transform.position;
         Timer = 0;
         check = true;
+  
     }
 
     private void Update()
@@ -65,9 +69,6 @@ public class EventWave : MonoBehaviour
     {
         if (!GameManager.instance.isLive)
             return;
-
-      
-
     }
 
     void LateUpdate()
@@ -78,15 +79,33 @@ public class EventWave : MonoBehaviour
 
         if(check)
         {
-            foreach (Transform SpawnPoint in spawnPoint)
+            if ( TypeEvent == 1 )
             {
-                GameObject Wave = GameManager.instance.pool.Get(9);
-                Wave.transform.position = SpawnPoint.position;
-                Wave.GetComponent<EnemyEvent>().Init(bestSpawnPoint);
+                foreach (Transform SpawnPoint in spawnPoint)
+                {
+                    GameObject Wave = GameManager.instance.pool.Get(9);
+                    Wave.transform.position = SpawnPoint.position;
+                    Wave.GetComponent<EnemyEvent>().Init(bestSpawnPoint, 0);
+                }
+                check = false;
             }
-            check = false;
+ 
+            if( TypeEvent == 2 )
+            {
+                foreach (Transform SpawnPoint in spawnPoint)
+                {
+                    GameObject Wave = GameManager.instance.pool.Get(9);
+                    Wave.transform.position = SpawnPoint.position;
+                    Wave.GetComponent<EnemyEvent>().Init(bestSpawnPoint, 1);
+                    check = false;
+                }
+            }
+
+
         }
     }
+
+
 
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -96,6 +115,13 @@ public class EventWave : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
+
+
 
 
 

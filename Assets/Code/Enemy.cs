@@ -179,15 +179,8 @@ public class Enemy : MonoBehaviour
         health -= damage;
         ShowDamage(damage.ToString());
         // Check if the enemy is dead
-        if (health > 0)
+        if (health <= 0)
         {
-            anim.SetTrigger("Hit");
-            AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
-            //.. sống,bị trúng
-        }
-        else
-        {
-            //Chết
             isLive = false;
             coll.enabled = false;
             rigid.simulated = false;

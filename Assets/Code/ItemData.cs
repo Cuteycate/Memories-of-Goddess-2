@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Item",menuName = "Scriptable Object/ItemData")]
 public class ItemData : ScriptableObject
 {
-    public enum ItemType {Shovel,Gun,Glove,Shoe,EmptyHeart,ExtraProjectile,Bandage,XpCrown,Shotgun,SniperRifle,Scythe,Lightning,Heal}
+    public enum ItemType {Shovel,Gun,Glove,Shoe,EmptyHeart,ExtraProjectile,Bandage,XpCrown,Shotgun,SniperRifle,Scythe,Heal}
     [Header("# Main Info")]
     public ItemType itemType;
     public int itemId;
@@ -22,7 +22,6 @@ public class ItemData : ScriptableObject
     public int[] penetrations;
     [Header("# Weapon")]
     public GameObject projectiles;
-    public GameObject HitEffect;
     public Sprite hand;
 
 }

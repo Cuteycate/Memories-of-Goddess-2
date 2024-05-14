@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 7951797944775358980}
   - component: {fileID: 1286845035071418363}
   - component: {fileID: 3921433918581982686}
+  - component: {fileID: 5904747506186890696}
   m_Layer: 6
   m_Name: Dino
-  m_TagString: Enemy
+  m_TagString: BulletE
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -122,7 +123,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 2
+  m_Mass: 1.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -139,6 +140,67 @@ Rigidbody2D:
   m_Constraints: 4
 --- !u!70 &1286845035071418363
 CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4415659618706800059}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.029654354, y: 0}
+  m_Size: {x: 0.75930876, y: 0.9}
+  m_Direction: 0
+--- !u!114 &3921433918581982686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4415659618706800059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c510669508d487469d8d694aa3c48fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed:
+  - 7
+  - 0.5
+  health: 0
+  maxHealth: 10
+  expOnDefeat: 1
+  animController:
+  - {fileID: 22100000, guid: 0eb863df0d4fc894fb7fb9f5b96659ab, type: 2}
+  - {fileID: 22100000, guid: 1aed28caf324d85449a35dca90e34511, type: 2}
+  floatingtextPrefab: {fileID: 5099652313274479680, guid: abf381679dc758648915dad2a3b66fdb, type: 3}
+  timer: 0
+  TypeEnemy: 0
+  target: {fileID: 0}
+  bestSpawnPoint: {fileID: 0}
+--- !u!68 &5904747506186890696
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -170,28 +232,18 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.7, y: 0.9}
-  m_Direction: 0
---- !u!114 &3921433918581982686
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4415659618706800059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c510669508d487469d8d694aa3c48fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 7
-  health: 0
-  maxHealth: 10
-  expOnDefeat: 1
-  floatingtextPrefab: {fileID: 5099652313274479680, guid: abf381679dc758648915dad2a3b66fdb, type: 3}
-  timer: 0
-  target: {fileID: 0}
-  bestSpawnPoint: {fileID: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.36161295, y: 0.39934546}
+  - {x: 0.39142847, y: 0.3883417}
+  - {x: 0.6848724, y: -0.09476445}
+  - {x: 0.106044024, y: -0.39585945}
+  - {x: -0.52211916, y: -0.40742794}
+  - {x: -0.36590797, y: 0.39539158}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
 --- !u!1 &6466666471309446902
 GameObject:
   m_ObjectHideFlags: 0

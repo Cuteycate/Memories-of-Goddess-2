@@ -36,7 +36,7 @@ public class PropBreak : MonoBehaviour
 
     }
 
-    public void TakeDamage(float damage)
+    void TakeDamage(float damage)
     {
         health -= damage;
         if (health <= 0)
