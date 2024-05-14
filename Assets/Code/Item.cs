@@ -48,7 +48,10 @@ public class Item : MonoBehaviour
                     textDesc.text = string.Format(data.itemDesc[level], data.damages[level] * 100, data.counts[level], data.penetrations[level]);
                     break;
                 case ItemData.ItemType.Scythe:
-                    textDesc.text = string.Format(data.itemDesc[level], data.damages[level], data.counts[level] * 20);
+                    textDesc.text = string.Format(data.itemDesc[level], data.damages[level] * 100, data.counts[level]);
+                    break;
+                case ItemData.ItemType.Lightning:
+                    textDesc.text = string.Format(data.itemDesc[level], data.damages[level] * 100, data.counts[level]);
                     break;
                 case ItemData.ItemType.Glove:
                 case ItemData.ItemType.Shoe:
@@ -75,6 +78,7 @@ public class Item : MonoBehaviour
             case ItemData.ItemType.Shotgun:
             case ItemData.ItemType.SniperRifle:
             case ItemData.ItemType.Scythe:
+            case ItemData.ItemType.Lightning:
                 if (level == 0)
                 {
                     GameObject newWeapon = new GameObject();
@@ -137,6 +141,7 @@ public class Item : MonoBehaviour
             case ItemData.ItemType.Bandage:
             case ItemData.ItemType.XpCrown:
             case ItemData.ItemType.Scythe:
+            case ItemData.ItemType.Lightning:
                 level++;
                 break;
             case ItemData.ItemType.Heal:

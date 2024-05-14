@@ -130,13 +130,13 @@ MonoBehaviour:
   propDrops:
   - name: Bomb
     ItemPrefab: {fileID: 8398588510668082214, guid: fea773a20ad386941a8a3c5c1637b943, type: 3}
-    dropRate: 20
-  - name: Turret
+    dropRate: 5
+  - name: Turet
     ItemPrefab: {fileID: 2129692238775210415, guid: b1d90289014537e4491ed2782d23da86, type: 3}
-    dropRate: 30
-  - name: Health
+    dropRate: 9
+  - name: Health Kit
     ItemPrefab: {fileID: 7686707184283945390, guid: 07aa649c575180446b90eded3bfcfdd3, type: 3}
-    dropRate: 40
+    dropRate: 100
 --- !u!114 &5120405939749398120
 MonoBehaviour:
   m_ObjectHideFlags: 0

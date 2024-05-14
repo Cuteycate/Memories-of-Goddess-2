@@ -83,7 +83,7 @@ public class LevelUp : MonoBehaviour
         else
         {
             // If there are no upgradable items, activate items[4]
-            items[11].gameObject.SetActive(true);
+            items[12].gameObject.SetActive(true);
         }
     }
 }

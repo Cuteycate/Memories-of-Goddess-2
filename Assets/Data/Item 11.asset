@@ -14,20 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemType: 11
   itemId: 11
-  itemName: Health Kit
+  itemName: Lightning
   itemDesc:
-  - Fully Heals
-  itemIcon: {fileID: 927338625, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  baseDamage: 0
-  baseCount: 0
+  - 2 LightNing Bolt Will Attack The Random Enemy
+  - Add {1} Extra LightNing Bolt
+  - Add {1} Extra LightNing Bolt
+  - Increase Damage By {0}%
+  - 'Increase Damage By {0}%
+
+    Add {1} Extra LightNing Bolt'
+  itemIcon: {fileID: 719128248, guid: 3138eb2a60bf98e4e8fd78d6d3683f50, type: 3}
+  baseDamage: 4
+  baseCount: 2
   basePenetration: 0
   damages:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  counts: 0000000000000000000000000000000000000000
+  - 0.5
+  - 0.5
+  - 1
+  - 1
+  - 1.5
+  counts: 0000000001000000000000000100000001000000
   penetrations: 0000000000000000000000000000000000000000
   projectiles: {fileID: 0}
+  HitEffect: {fileID: 3055892998958464220, guid: f0178a1535a5472409cfa6c67c59c393, type: 3}
   hand: {fileID: 0}
