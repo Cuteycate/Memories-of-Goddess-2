@@ -2251,7 +2251,7 @@ MonoBehaviour:
   maxgameTime: 300
   PlayerId: 0
   Health: 0
-  MaxHealth: 1000
+  MaxHealth: 100
   level: 0
   kill: 0
   exp: 0
@@ -14140,7 +14140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &353559327
 Transform:
   m_ObjectHideFlags: 0
@@ -62393,7 +62393,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2068502240
 Transform:
   m_ObjectHideFlags: 0

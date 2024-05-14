@@ -193,12 +193,9 @@ public class EnemyEvent : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Enemy"))
-        {
-            rigid.mass = 1.5f;
-        }
 
-        if ( TypeEnemy == 1)
+
+        if (TypeEnemy == 1)
         {
             if (collision.gameObject.CompareTag("Player"))
             {
@@ -209,6 +206,13 @@ public class EnemyEvent : MonoBehaviour
         {
             rigid.mass = 1.5f;
         }
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            rigid.mass = 1.5f;
+        }
+
+      
 
     }
 
