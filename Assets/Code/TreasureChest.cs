@@ -77,9 +77,9 @@ public class TreasureChest : MonoBehaviour
         }
         else
         {
-            if (items.Length > 10)
+            if (items.Length > 11)
             {
-                items[11].gameObject.SetActive(true);
+                items[12].gameObject.SetActive(true);
             }
             else
             {

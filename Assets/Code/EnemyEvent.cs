@@ -77,6 +77,12 @@ public class EnemyEvent : MonoBehaviour
         if (!GameManager.instance.isLive)
             return;
 
+        if (!isLive)
+        {
+            coll.isTrigger = true;
+        }
+
+
         if (TypeEnemy == 0)
         {
             if (bestSpawnPoint != null)

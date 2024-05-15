@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -3123895015007979175}
   - component: {fileID: -8506190992979465064}
   - component: {fileID: 7980689087223324799}
-  - component: {fileID: 7583756136998886632}
+  - component: {fileID: 4323665263115523641}
   m_Layer: 0
   m_Name: Slash(Scythe)
   m_TagString: Bullet
@@ -143,8 +143,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!68 &7583756136998886632
-EdgeCollider2D:
+--- !u!61 &4323665263115523641
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -172,30 +172,19 @@ EdgeCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.49386978, y: 0.01795888}
+  m_SpriteTilingProperty:
+    border: {x: 0.61, y: 0.29999998, z: 0.21, w: 0.24}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 5.28, y: 3.84}
+    newSize: {x: 5.28, y: 3.84}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.7175741, y: 3.2293968}
   m_EdgeRadius: 0
-  m_Points:
-  - {x: 2.4950302, y: 0.335572}
-  - {x: 2.27346, y: 1.095284}
-  - {x: 1.678412, y: 1.5365437}
-  - {x: 0.97297, y: 1.7185621}
-  - {x: -0.05620861, y: 1.6613176}
-  - {x: -1.209791, y: 1.2876545}
-  - {x: -1.762868, y: 0.34217638}
-  - {x: -0.757463, y: 0.4705901}
-  - {x: -0.87683415, y: -1.0600331}
-  - {x: -2.1328063, y: -0.9652582}
-  - {x: -1.9672296, y: -1.3565665}
-  - {x: -0.56847477, y: -1.7575277}
-  - {x: 1.1610641, y: -1.3378574}
-  - {x: 1.8216705, y: -0.893364}
-  - {x: 2.280861, y: -0.3129903}
-  - {x: 2.2902308, y: -0.2848658}
-  - {x: 2.507332, y: 0.36678773}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
