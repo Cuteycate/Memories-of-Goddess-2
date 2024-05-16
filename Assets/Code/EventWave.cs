@@ -92,13 +92,14 @@ public class EventWave : MonoBehaviour
  
             if( TypeEvent == 2 )
             {
-                foreach (Transform SpawnPoint in spawnPoint)
+                for ( int i = 1; i < spawnPoint.Length; i++ )
                 {
                     GameObject Wave = GameManager.instance.pool.Get(9);
-                    Wave.transform.position = SpawnPoint.position;
+                    Wave.transform.position = spawnPoint[i].position;
                     Wave.GetComponent<EnemyEvent>().Init(bestSpawnPoint, 1);
                     check = false;
                 }
+
             }
 
 

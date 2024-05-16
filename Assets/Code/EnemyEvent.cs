@@ -25,7 +25,7 @@ public class EnemyEvent : MonoBehaviour
     Rigidbody2D rigid;
 
     public float timer = 0;
-    float cooldown = 10f;
+    float cooldown = 15f;
     public int TypeEnemy;
 
     public Rigidbody2D target;
@@ -148,7 +148,8 @@ public class EnemyEvent : MonoBehaviour
         {
             //Chết
             isLive = false;
-            coll.enabled = false;        
+            coll.enabled = false;
+            rigid.simulated = false;
             spriter.sortingOrder = 1;
             anim.SetBool("Dead", true);
             GameManager.instance.kill++;

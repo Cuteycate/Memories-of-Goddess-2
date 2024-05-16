@@ -3,7 +3,7 @@ using UnityEngine;
 public class HealthPotion : MonoBehaviour
 {
     public float healPercentage = 0.2f; // Percentage of maximum health restored by the potion
-
+        
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))

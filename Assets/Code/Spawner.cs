@@ -73,7 +73,7 @@ public class Spawner : MonoBehaviour
         {
 
             GameObject Wave = GameManager.instance.pool.Get(10);
-            Wave.transform.position = GameManager.instance.player.transform.position;
+            Wave.transform.position= GameManager.instance.player.transform.position;
             Wave.GetComponent<EventWave>().Inti(GameManager.instance.player.transform, null, TypeEvent);
 
         }

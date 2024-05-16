@@ -128,10 +128,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   propDrops:
-  - name: bomb
+  - name: Bomb
     ItemPrefab: {fileID: 8398588510668082214, guid: fea773a20ad386941a8a3c5c1637b943, type: 3}
-    dropRate: 5
-  - name: turret
+    dropRate: 6
+  - name: turet
     ItemPrefab: {fileID: 2129692238775210415, guid: b1d90289014537e4491ed2782d23da86, type: 3}
     dropRate: 8
   - name: Health
