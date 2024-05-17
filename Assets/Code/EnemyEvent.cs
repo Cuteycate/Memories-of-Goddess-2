@@ -184,6 +184,12 @@ public class EnemyEvent : MonoBehaviour
         // Subtract damage from health
         health -= damage;
         ShowDamage(damage.ToString());
+        if (health > 0)
+        {
+            anim.SetTrigger("Hit");
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
+            //.. sống,bị trúng
+        }
         // Check if the enemy is dead
         if (health <= 0)
         {

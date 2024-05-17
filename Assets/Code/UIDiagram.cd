@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="UnityEngine.MonoBehaviour" Collapsed="true">
+    <Position X="15" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="AchiveManager">
+    <Position X="13.25" Y="2.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="AchiveManager.Achive" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Code\Achive Manager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>CAQAAABAACAAAAgAAEAAAABAAAAAABAEAAACAAAAAEI=</HashCode>
+      <FileName>Assets\Code\Achive Manager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AudioManager">
+    <Position X="11.25" Y="2.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="AudioManager.Sfx" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Code\AudioManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAEAAQAYgAACAAAgABAEEAFAABAgAAYQAASKAAAAEQ=</HashCode>
+      <FileName>Assets\Code\AudioManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DestroyNumber">
+    <Position X="15.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Assets\Code\DestroyNumber.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HUD">
+    <Position X="17.25" Y="2.75" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="HUD.InfoType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Code\HUD.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAgBAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Code\HUD.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DisableAttackSlash">
+    <Position X="19" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAIIAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Assets\Code\Disable Attack Slash.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DisablePointWave">
+    <Position X="20.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAAAIIAAAAAAAAAAAAAAAAAAACAA=</HashCode>
+      <FileName>Assets\Code\DisablePointWave.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

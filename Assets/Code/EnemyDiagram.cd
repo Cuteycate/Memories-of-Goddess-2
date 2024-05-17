@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="UnityEngine.MonoBehaviour" Collapsed="true">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="BossEnemy">
+    <Position X="1.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAGAIAgAAABEAIAAAKAAAEFBAAwAEAYACiAJACEg=</HashCode>
+      <FileName>Assets\Code\BossEnemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BossSpawner">
+    <Position X="3.5" Y="1" Width="1.5" />
+    <NestedTypes>
+      <Class Name="BossSpawner.SpawnData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Code\BossSpawner.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAADAAAAAAAAAAQAAEAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Code\BossSpawner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="BulletEnemy">
+    <Position X="9" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAgAAAAAgAAAAAAEBAAAAQAAACAAAAAEA=</HashCode>
+      <FileName>Assets\Code\BulletEnemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Enemy">
+    <Position X="7.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAGAIAgAAABEAIAAAKAAAEFBAAwAEAYACiABACEg=</HashCode>
+      <FileName>Assets\Code\Enemy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EnemyEvent">
+    <Position X="10.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQQAACAIAgIAABEAIAAACAAAAHBAAQAEAYACiABACEg=</HashCode>
+      <FileName>Assets\Code\EnemyEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="EventWave">
+    <Position X="12.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AARABACAAgIIAAAAIAAAIAAQAABAAQAAAEAEABAMCEA=</HashCode>
+      <FileName>Assets\Code\EventWave.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DestroyNumber">
+    <Position X="9" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Assets\Code\DestroyNumber.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PoolManager">
+    <Position X="5.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAABAAEAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Code\PoolManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Spawner">
+    <Position X="14.5" Y="0.75" Width="1.5" />
+    <NestedTypes>
+      <Class Name="Spawner.SpawnData" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Code\Spawner.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAACAAAAAEAAAAQAAEAAAAAAAAAAgAACEA=</HashCode>
+      <FileName>Assets\Code\Spawner.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

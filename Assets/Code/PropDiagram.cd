@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="PropRandom">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQBAAAQACAQIAIAAwAAAEAAABAAAAAAAAAAgAQAAQA=</HashCode>
+      <FileName>Assets\Code\PropRandom.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PropBreak">
+    <Position X="10" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAAAAAkAAAACAAAAFAAAAAAAAAAgAAAAEg=</HashCode>
+      <FileName>Assets\Code\PropBreak.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TuretGun">
+    <Position X="15.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEREAECAAgAAgCAABAgACAAAAABAAQAEAQAgCABACEA=</HashCode>
+      <FileName>Assets\Code\TuretGun.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PoolManager">
+    <Position X="13.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAAABAAEAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Code\PoolManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DropRate">
+    <Position X="11.75" Y="1.75" Width="1.5" />
+    <NestedTypes>
+      <Class Name="DropRate.PropDrop" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Code\DropRate.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAABABAAAAAAAAAAAAAAEAAAAAJAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\DropRate.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Bomb">
+    <Position X="17" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAIAgAAAACgAAAAAAEAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Assets\Code\Bomb.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TuretIcon">
+    <Position X="18.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\TuretIcon.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UnityEngine.MonoBehaviour" Collapsed="true">
+    <Position X="15" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="HealthPotion">
+    <Position X="20.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAEAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Code\Health.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
