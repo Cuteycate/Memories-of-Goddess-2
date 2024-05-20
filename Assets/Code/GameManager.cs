@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     public float maxgameTime = 30f;
     [Header("# Player Info")]
     public int PlayerId;
+    public bool FinalBossStillAlive = true;
+
+
     public float Health;
     public float MaxHealth = 100;
     public int level;
@@ -37,7 +40,7 @@ public class GameManager : MonoBehaviour
         PlayerId = id;
         Health = MaxHealth;
         player.gameObject.SetActive(true);
-        uiLevelUp.Select(11);
+        uiLevelUp.Select(PlayerId%2);
         Resume();
         AudioManager.instance.PlayOpening(false);
         AudioManager.instance.PlayBgm(true);

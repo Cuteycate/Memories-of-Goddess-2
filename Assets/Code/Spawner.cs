@@ -13,6 +13,7 @@ public class Spawner : MonoBehaviour
     public Transform[] spawnPoint;
     public SpawnData[] spawnData;
     public GameObject PointWave;
+    private bool checkBossSpawn = true;
 
     float[] Rotation = { 0, 45, 90, 135, 180, 225, 270, 315, 160 };
 
@@ -28,10 +29,21 @@ public class Spawner : MonoBehaviour
     {
         if (!GameManager.instance.isLive)
             return;
+       
+
         timer += Time.deltaTime; //Timer tính giờ
         level =Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 30f),spawnData.Length -1); //Mỗi 10s sẽ tăng 1 level 
         if (timer > spawnData[level].spawnTime)  //Khi timer > level thì qua cái khác (vd element 0 chạy đc 10s spawntime 0.7 -> element 1 chạy 10s tiếp theo spawntime 0.2
         {
+
+            if ( level == spawnData.Length - 1)
+            {
+                if (checkBossSpawn)
+                {
+                    SpawnFinalBoss();
+                }
+
+            }
             timer = 0;
             Spawn();          
             if (spawnData[level].EventWave)
@@ -79,6 +91,16 @@ public class Spawner : MonoBehaviour
         }
         yield return new WaitForSeconds(3f);
     }
+
+    private void SpawnFinalBoss()
+    {
+        GameObject FinalBoss = GameManager.instance.pool.Get(12);
+        FinalBoss.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position;
+        checkBossSpawn = false;
+    }
+
+
+
 
     Transform[] GetChildPositions(GameObject parentObject)
     {

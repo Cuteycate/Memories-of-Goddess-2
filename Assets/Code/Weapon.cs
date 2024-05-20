@@ -70,7 +70,7 @@ public class Weapon : MonoBehaviour
                 if (timer > speed)
                 {
                     timer = 0f;
-                    StartCoroutine(LightningAttack());
+                    LightningAttack();
                 }
                 break;
             default:
@@ -306,7 +306,7 @@ public class Weapon : MonoBehaviour
 
     HashSet<Transform> enemiesHit = new HashSet<Transform>(); // HashSet to store enemies hit by lightning
 
-    IEnumerator LightningAttack()
+    void LightningAttack()
     {
         int initialCount = ExtraCount;
         int TempCount = count + initialCount;
@@ -321,6 +321,7 @@ public class Weapon : MonoBehaviour
                 targetTransforms.Add(hitResult.transform);
             }
         }
+
         Transform[] targetEnemies = targetTransforms.ToArray();
 
         // Check if there are any enemies found
@@ -344,7 +345,6 @@ public class Weapon : MonoBehaviour
 
                 // Perform an area attack around the lightning bolt's position
                 AreaAttack(lightningBolt.transform.position, radius, damage);
-                yield return new WaitForSeconds(0.05f);
             }
         }
         else
@@ -368,7 +368,7 @@ public class Weapon : MonoBehaviour
                 // Get the enemy component and deal damage to it
                 Enemy enemy = collider.GetComponent<Enemy>();
                 BossEnemy bossEnemy = collider.GetComponent<BossEnemy>();
-                EnemyEvent enemyevent = collider.GetComponent<EnemyEvent>();
+
                 if (enemy != null)
                 {
                     enemy.TakeDamage(damage);
@@ -377,11 +377,6 @@ public class Weapon : MonoBehaviour
                 else if (bossEnemy != null)
                 {
                     bossEnemy.TakeDamage(damage);
-
-                }
-                else if (enemyevent != null)
-                {
-                    enemyevent.TakeDamage(damage);
 
                 }
             }
@@ -410,7 +405,7 @@ public class Weapon : MonoBehaviour
         enemiesHit.Clear();
 
         // After cooldown, retry the lightning attack
-        StartCoroutine(LightningAttack());
+        LightningAttack();
     }
 
 

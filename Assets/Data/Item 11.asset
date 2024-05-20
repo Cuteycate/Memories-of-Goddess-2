@@ -23,7 +23,7 @@ MonoBehaviour:
   - 'Increase Damage By {0}%
 
     Add {1} Extra LightNing Bolt'
-  itemIcon: {fileID: -123453050, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
+  itemIcon: {fileID: 719128248, guid: 3138eb2a60bf98e4e8fd78d6d3683f50, type: 3}
   baseDamage: 4
   baseCount: 2
   basePenetration: 0
