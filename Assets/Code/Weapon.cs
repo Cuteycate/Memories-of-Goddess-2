@@ -237,10 +237,23 @@ public class Weapon : MonoBehaviour
         count = count + initialCount;
         Vector3 targetPos = player.scanner.nearestTarget.position;
         Vector3 dirToTarget = (targetPos - transform.position).normalized;
+
+        float spreadRange = 0.4f;
+        HashSet<float> usedSpreadValues = new HashSet<float>();
+        System.Random random = new System.Random();
+
         for (int i = 0; i < count; i++)
         {
+            float spreadValue;
+            do
+            {
+                spreadValue = (float)(random.NextDouble() * 2 * spreadRange - spreadRange);
+            } while (usedSpreadValues.Contains(spreadValue));
+
+            usedSpreadValues.Add(spreadValue);
+
             Vector3 perpendicularDir = Vector3.Cross(dirToTarget, Vector3.up).normalized;
-            Vector3 spreadDir = dirToTarget + perpendicularDir * Random.Range(-0.4f, 0.4f);
+            Vector3 spreadDir = dirToTarget + perpendicularDir * spreadValue;
 
             spreadDir = Quaternion.Euler(0, -45f, 0) * spreadDir;
 

@@ -2250,6 +2250,7 @@ MonoBehaviour:
   gameTime: 0
   maxgameTime: 600
   PlayerId: 0
+  FinalBossStillAlive: 1
   Health: 0
   MaxHealth: 100
   level: 0
@@ -2342,7 +2343,6 @@ MonoBehaviour:
   treasureChest: {fileID: 2128906633}
   uiResult: {fileID: 445763108}
   enemyCleaner: {fileID: 252969317}
-  count: 0
 --- !u!4 &148727616
 Transform:
   m_ObjectHideFlags: 0
@@ -25621,7 +25621,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.185185
+  orthographic size: 10.666667
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -26337,6 +26337,9 @@ MonoBehaviour:
   - {fileID: 4415659618706800059, guid: f3d03883280b3934c8c2b8080cffb53d, type: 3}
   - {fileID: 7583383863574564017, guid: 5cd9884151106c9489e84eaab2f8a9fd, type: 3}
   - {fileID: 6161307586378570800, guid: 22b9b7f28ca159d4eb34209cc783b068, type: 3}
+  - {fileID: 3927005524077685750, guid: d1bfedd74918a174ca3135127239f573, type: 3}
+  - {fileID: 5599927472821100622, guid: 5476c8429ca849a4eb5cdf6c64195c04, type: 3}
+  - {fileID: 1336976825616783080, guid: d14ac2115dcb96f4496a72a575dfa994, type: 3}
 --- !u!1 &585482766
 GameObject:
   m_ObjectHideFlags: 0
