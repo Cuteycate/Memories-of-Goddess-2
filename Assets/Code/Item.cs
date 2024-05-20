@@ -48,10 +48,10 @@ public class Item : MonoBehaviour
                     textDesc.text = string.Format(data.itemDesc[level], data.damages[level] * 100, data.counts[level], data.penetrations[level]);
                     break;
                 case ItemData.ItemType.Scythe:
-                    textDesc.text = string.Format(data.itemDesc[level], data.damages[level] * 100, data.counts[level]);
+                    textDesc.text = string.Format(data.itemDesc[level], data.damages[level] * 100, data.counts[level]*50) ;
                     break;
                 case ItemData.ItemType.Lightning:
-                    textDesc.text = string.Format(data.itemDesc[level], data.damages[level] * 100, data.counts[level]);
+                    textDesc.text = string.Format(data.itemDesc[level], data.damages[level] * 100, data.counts[level], data.penetrations[level] * 50);
                     break;
                 case ItemData.ItemType.Glove:
                 case ItemData.ItemType.Shoe:

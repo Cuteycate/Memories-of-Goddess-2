@@ -18,6 +18,7 @@ MonoBehaviour:
   itemDesc:
   - "Weapon fire \n1 more Projectile"
   - "Weapon fire 1 \nextra projectile"
+  - "Weapon fire 1 \nextra projectile"
   itemIcon: {fileID: -1002307068, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseDamage: 0
   baseCount: 0
@@ -25,7 +26,9 @@ MonoBehaviour:
   damages:
   - 1
   - 2
+  - 3
   counts: 0000000000000000
   penetrations: 0000000000000000
   projectiles: {fileID: 0}
+  HitEffect: {fileID: 0}
   hand: {fileID: 0}

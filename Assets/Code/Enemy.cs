@@ -116,7 +116,7 @@ public class Enemy : MonoBehaviour
 
         if (Data.spriteType == 0 || Data.spriteType == 1 || Data.spriteType == 4 || Data.spriteType == 7)
         {
-            if (UnityEngine.Random.value < 0.25f) 
+            if (UnityEngine.Random.value < 0.15f) 
             {
                 CanFire = true;
             }

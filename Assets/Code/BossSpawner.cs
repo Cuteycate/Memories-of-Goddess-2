@@ -20,7 +20,7 @@ public class BossSpawner : MonoBehaviour
             return;
 
         timer += Time.deltaTime; // Timer tính giờ
-        int currentLevel = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 30f), spawnData.Length - 1);
+        int currentLevel = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 60f), spawnData.Length - 1);
         if (currentLevel != level)
         {
             level = currentLevel;

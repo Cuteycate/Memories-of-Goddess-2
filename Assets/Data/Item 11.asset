@@ -16,25 +16,36 @@ MonoBehaviour:
   itemId: 11
   itemName: Lightning
   itemDesc:
-  - 2 LightNing Bolt Will Attack The Random Enemy
-  - Add {1} Extra LightNing Bolt
-  - Add {1} Extra LightNing Bolt
-  - Increase Damage By {0}%
+  - "The LightNing Bolt \nWill Attack Enemy"
+  - "Add {1} Extra \nLightNing Bolt"
+  - "Add {1} Extra \nLightNing Bolt"
   - 'Increase Damage By {0}%
 
-    Add {1} Extra LightNing Bolt'
+    Increase Radius {2}%'
+  - "Add {1} Extra \nLightNing Bolt"
+  - 'Increase Damage By {0}%
+
+'
+  - "Add {1} Extra \nLightNing Bolt\nIncrease Radius {2}%"
+  - 'Increase Damage By {0}%
+
+
+'
   itemIcon: {fileID: -123453050, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  baseDamage: 4
-  baseCount: 2
-  basePenetration: 0
+  baseDamage: 5
+  baseCount: 1
+  basePenetration: 1
   damages:
+  - 0
+  - 0
+  - 0
   - 0.5
   - 0.5
   - 1
   - 1
-  - 1.5
-  counts: 0000000001000000000000000100000001000000
-  penetrations: 0000000000000000000000000000000000000000
+  - 2
+  counts: 0000000001000000010000000000000001000000000000000100000000000000
+  penetrations: 0000000000000000000000000100000000000000000000000100000000000000
   projectiles: {fileID: 0}
   HitEffect: {fileID: 3055892998958464220, guid: f0178a1535a5472409cfa6c67c59c393, type: 3}
   hand: {fileID: 0}

@@ -17,25 +17,32 @@ MonoBehaviour:
   itemName: Shovel
   itemDesc:
   - "Orbits around \nthe character."
-  - Increase Damage By {0}%
+  - Add {1} Extra Shovel
+  - Add {1} Extra Shovel
   - 'Increase Damage By {0}%
 
-    Add {1} Extra Shovel'
-  - Increase Damage By {0}%
+'
   - 'Increase Damage By {0}%
 
-    Add {1} Extra Shovel'
+'
+  - Add {1} Extra Shovel
+  - Add {1} Extra Shovel
+  - Increase Damage By {0}%
   itemIcon: {fileID: -181907988, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseDamage: 3
-  baseCount: 2
+  baseCount: 1
   basePenetration: -1
   damages:
+  - 0
+  - 0
+  - 0
   - 0.5
   - 1
-  - 1.5
+  - 0
+  - 0
   - 2
-  - 2.5
-  counts: 0100000000000000010000000000000001000000
-  penetrations: 0000000000000000000000000000000000000000
+  counts: 0000000001000000010000000000000000000000010000000100000000000000
+  penetrations: 0000000000000000000000000000000000000000000000000000000000000000
   projectiles: {fileID: 2514192426124917062, guid: 3403651a35757104da2d4bdfb1264e83, type: 3}
+  HitEffect: {fileID: 0}
   hand: {fileID: 143021600, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}

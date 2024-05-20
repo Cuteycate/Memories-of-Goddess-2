@@ -133,10 +133,10 @@ MonoBehaviour:
     dropRate: 6
   - name: turet
     ItemPrefab: {fileID: 2129692238775210415, guid: b1d90289014537e4491ed2782d23da86, type: 3}
-    dropRate: 8
+    dropRate: 15
   - name: Health
     ItemPrefab: {fileID: 7686707184283945390, guid: 07aa649c575180446b90eded3bfcfdd3, type: 3}
-    dropRate: 100
+    dropRate: 30
 --- !u!114 &-7002718716921078130
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 10
-  destructionEffect: {fileID: 0}
+  destructionEffect: {fileID: 8869795812268201123, guid: 345c215bc990c0344be5af3e82ba346c, type: 3}
 --- !u!70 &-1026694161917923547
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

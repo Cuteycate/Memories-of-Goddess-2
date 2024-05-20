@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class GameManager : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
     public Result uiResult;
     public GameObject enemyCleaner;
 
+    public int count = 0;
     void Awake()
     {
         instance = this;
@@ -37,7 +39,7 @@ public class GameManager : MonoBehaviour
         PlayerId = id;
         Health = MaxHealth;
         player.gameObject.SetActive(true);
-        uiLevelUp.Select(11);
+        uiLevelUp.Select(PlayerId % 2);
         Resume();
         AudioManager.instance.PlayOpening(false);
         AudioManager.instance.PlayBgm(true);
@@ -93,7 +95,7 @@ public class GameManager : MonoBehaviour
         {
             gameTime = maxgameTime;
             GameVictory();
-        }
+        } 
     }
     public void GetExp(Enemy enemy)
     {

@@ -310,6 +310,7 @@ public class Weapon : MonoBehaviour
     {
         int initialCount = ExtraCount;
         int TempCount = count + initialCount;
+
         // Find the nearest enemies to the player
         RaycastHit2D[] hitResults = GameManager.instance.player.GetComponent<Scanner>().targets;
         List<Transform> targetTransforms = new List<Transform>();
@@ -331,7 +332,7 @@ public class Weapon : MonoBehaviour
 
             // Define the damage and range of the lightning attack
             float damage = this.damage;
-            float radius = 1f;
+            float radius = this.penetration;
             int temp;
             // Limit the count to the number of enemies if count exceeds the number of enemies
             temp = Mathf.Min(TempCount, targetEnemies.Length);

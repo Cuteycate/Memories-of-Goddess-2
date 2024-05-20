@@ -25,7 +25,7 @@ public class PropBreak : MonoBehaviour
             if (bullet != null)
             {
                 TakeDamage(bullet.damage);
-                
+                Instantiate(destructionEffect, transform.position, Quaternion.identity);
             }
         }
         else if (collision.CompareTag("Player")) // Check if the collision is with the player

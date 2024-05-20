@@ -2248,10 +2248,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLive: 0
   gameTime: 0
-  maxgameTime: 300
+  maxgameTime: 600
   PlayerId: 0
   Health: 0
-  MaxHealth: 10000
+  MaxHealth: 100
   level: 0
   kill: 0
   exp: 0
@@ -2287,6 +2287,54 @@ MonoBehaviour:
   - 296
   - 309
   - 322
+  - 340
+  - 360
+  - 380
+  - 400
+  - 420
+  - 440
+  - 460
+  - 480
+  - 500
+  - 520
+  - 540
+  - 560
+  - 580
+  - 600
+  - 620
+  - 640
+  - 660
+  - 680
+  - 700
+  - 720
+  - 740
+  - 760
+  - 780
+  - 800
+  - 820
+  - 860
+  - 880
+  - 900
+  - 920
+  - 940
+  - 960
+  - 980
+  - 1000
+  - 1020
+  - 1040
+  - 1111
+  - 1222
+  - 1333
+  - 1444
+  - 1555
+  - 1666
+  - 1777
+  - 1888
+  - 1999
+  - 2111
+  - 2222
+  - 2333
+  - 1e+10
   ExtraRateExp: 0
   pool: {fileID: 578147826}
   player: {fileID: 936314354}
@@ -2294,6 +2342,7 @@ MonoBehaviour:
   treasureChest: {fileID: 2128906633}
   uiResult: {fileID: 445763108}
   enemyCleaner: {fileID: 252969317}
+  count: 0
 --- !u!4 &148727616
 Transform:
   m_ObjectHideFlags: 0
@@ -14312,7 +14361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: []
   spawnData:
-  - spawnTime: 2
+  - spawnTime: 1
     spriteType: 0
     health: 10
     speed: 1
@@ -14320,59 +14369,163 @@ MonoBehaviour:
     EventWave: 0
     CountEvent: 0
     TypeEvent: 0
-  - spawnTime: 1
+  - spawnTime: 0.9
+    spriteType: 0
+    health: 10
+    speed: 1
+    expOnDefeat: 2
+    EventWave: 1
+    CountEvent: 2
+    TypeEvent: 1
+  - spawnTime: 0.7
+    spriteType: 0
+    health: 10
+    speed: 1
+    expOnDefeat: 2
+    EventWave: 1
+    CountEvent: 1
+    TypeEvent: 1
+  - spawnTime: 0.1
+    spriteType: 0
+    health: 10
+    speed: 1
+    expOnDefeat: 2
+    EventWave: 1
+    CountEvent: 1
+    TypeEvent: 2
+  - spawnTime: 0.3
     spriteType: 1
     health: 15
-    speed: 1
-    expOnDefeat: 2
+    speed: 1.1
+    expOnDefeat: 3
     EventWave: 1
     CountEvent: 1
-    TypeEvent: 2
-  - spawnTime: 0.9
-    spriteType: 2
-    health: 20
-    speed: 1
-    expOnDefeat: 2
-    EventWave: 1
-    CountEvent: 1
-    TypeEvent: 2
-  - spawnTime: 0.8
-    spriteType: 3
-    health: 25
-    speed: 1
+    TypeEvent: 1
+  - spawnTime: 0.3
+    spriteType: 1
+    health: 15
+    speed: 1.1
     expOnDefeat: 3
     EventWave: 1
     CountEvent: 3
     TypeEvent: 1
-  - spawnTime: 0.7
-    spriteType: 4
-    health: 30
+  - spawnTime: 0.2
+    spriteType: 3
+    health: 20
     speed: 1
     expOnDefeat: 4
     EventWave: 1
-    CountEvent: 3
+    CountEvent: 2
     TypeEvent: 1
-  - spawnTime: 0.1
-    spriteType: 5
-    health: 35
+  - spawnTime: 0.3
+    spriteType: 2
+    health: 20
     speed: 1
-    expOnDefeat: 5
-    EventWave: 1
-    CountEvent: 4
-    TypeEvent: 1
-  - spawnTime: 0.1
-    spriteType: 6
-    health: 40
-    speed: 1
-    expOnDefeat: 6
+    expOnDefeat: 4
     EventWave: 0
     CountEvent: 0
     TypeEvent: 0
+  - spawnTime: 0.05
+    spriteType: 2
+    health: 20
+    speed: 2
+    expOnDefeat: 4
+    EventWave: 1
+    CountEvent: 2
+    TypeEvent: 1
+  - spawnTime: 0.3
+    spriteType: 2
+    health: 25
+    speed: 1.5
+    expOnDefeat: 5
+    EventWave: 1
+    CountEvent: 3
+    TypeEvent: 1
+  - spawnTime: 0.2
+    spriteType: 3
+    health: 30
+    speed: 1.5
+    expOnDefeat: 6
+    EventWave: 1
+    CountEvent: 2
+    TypeEvent: 1
+  - spawnTime: 0.3
+    spriteType: 4
+    health: 60
+    speed: 1
+    expOnDefeat: 12
+    EventWave: 1
+    CountEvent: 1
+    TypeEvent: 2
   - spawnTime: 0.1
-    spriteType: 7
+    spriteType: 3
     health: 45
     speed: 1
     expOnDefeat: 7
+    EventWave: 1
+    CountEvent: 3
+    TypeEvent: 2
+  - spawnTime: 0.1
+    spriteType: 2
+    health: 45
+    speed: 1
+    expOnDefeat: 7
+    EventWave: 1
+    CountEvent: 2
+    TypeEvent: 1
+  - spawnTime: 0.2
+    spriteType: 5
+    health: 50
+    speed: 2
+    expOnDefeat: 12
+    EventWave: 1
+    CountEvent: 1
+    TypeEvent: 1
+  - spawnTime: 0.1
+    spriteType: 7
+    health: 50
+    speed: 2
+    expOnDefeat: 12
+    EventWave: 1
+    CountEvent: 2
+    TypeEvent: 1
+  - spawnTime: 0.05
+    spriteType: 6
+    health: 70
+    speed: 0.9
+    expOnDefeat: 15
+    EventWave: 1
+    CountEvent: 4
+    TypeEvent: 1
+  - spawnTime: 0.05
+    spriteType: 8
+    health: 50
+    speed: 4
+    expOnDefeat: 15
+    EventWave: 1
+    CountEvent: 1
+    TypeEvent: 2
+  - spawnTime: 0.05
+    spriteType: 7
+    health: 60
+    speed: 2
+    expOnDefeat: 30
+    EventWave: 1
+    CountEvent: 3
+    TypeEvent: 1
+  - spawnTime: 0.01
+    spriteType: 6
+    health: 170
+    speed: 0.7
+    expOnDefeat: 40
+    EventWave: 0
+    CountEvent: 1
+    TypeEvent: 2
+  - spawnTime: 9999
+    spriteType: 0
+    health: 1
+    speed: 0
+    expOnDefeat: 0
     EventWave: 0
     CountEvent: 0
     TypeEvent: 0
@@ -62859,53 +63012,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: []
   spawnData:
-  - spawnTime: 15
+  - spawnTime: 55
     spriteType: 0
     health: 100
     speed: 1.5
     expOnDefeat: 70
     bossSpawned: 0
-  - spawnTime: 10
-    spriteType: 1
+  - spawnTime: 55
+    spriteType: 0
     health: 200
     speed: 2
     expOnDefeat: 70
     bossSpawned: 0
-  - spawnTime: 25
-    spriteType: 2
+  - spawnTime: 55
+    spriteType: 1
     health: 350
-    speed: 3
-    expOnDefeat: 70
+    speed: 2
+    expOnDefeat: 100
     bossSpawned: 0
-  - spawnTime: 15
-    spriteType: 3
+  - spawnTime: 55
+    spriteType: 1
     health: 500
-    speed: 3
-    expOnDefeat: 70
+    speed: 2
+    expOnDefeat: 100
     bossSpawned: 0
-  - spawnTime: 15
-    spriteType: 4
+  - spawnTime: 55
+    spriteType: 2
     health: 600
-    speed: 4
-    expOnDefeat: 100
+    speed: 2
+    expOnDefeat: 150
     bossSpawned: 0
-  - spawnTime: 15
-    spriteType: 5
+  - spawnTime: 55
+    spriteType: 3
     health: 650
-    speed: 4
-    expOnDefeat: 100
+    speed: 2.5
+    expOnDefeat: 150
     bossSpawned: 0
-  - spawnTime: 15
-    spriteType: 6
+  - spawnTime: 55
+    spriteType: 4
     health: 700
-    speed: 3
-    expOnDefeat: 100
+    speed: 2.5
+    expOnDefeat: 150
     bossSpawned: 0
-  - spawnTime: 10
-    spriteType: 7
+  - spawnTime: 55
+    spriteType: 5
     health: 800
+    speed: 2.5
+    expOnDefeat: 200
+    bossSpawned: 0
+  - spawnTime: 55
+    spriteType: 6
+    health: 900
     speed: 3
-    expOnDefeat: 100
+    expOnDefeat: 250
+    bossSpawned: 0
+  - spawnTime: 55
+    spriteType: 7
+    health: 1000
+    speed: 3
+    expOnDefeat: 300
     bossSpawned: 0
   level: 0
 --- !u!1 &2077983855
