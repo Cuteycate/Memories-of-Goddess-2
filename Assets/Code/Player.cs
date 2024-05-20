@@ -1,5 +1,6 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -106,6 +107,9 @@ public class Player : MonoBehaviour
         {
             GameManager.instance.Health -= Time.deltaTime * 10;
         }
+
+       
+
         if (GameManager.instance.Health < 0)
         {
             for (int i = 2; i < transform.childCount; i++)
@@ -117,6 +121,16 @@ public class Player : MonoBehaviour
         }
     }
 
+
+    IEnumerator KnockBack()
+    {
+        /*   yield return null; //khựng 1 frame
+           yield return new WaitForSeconds(2f); //coroutine 2s hết 2s mới tiếp tục bị knockback bới return null */
+        yield return 1f;
+        Vector3 playerPos = scanner.transform.position;
+        Vector3 dirVec = transform.position - playerPos; // khoảng cách enemy - khoảng cách nhân vật
+        rigid.AddForce(dirVec.normalized * 20, ForceMode2D.Impulse); //Truyền knockback ngược về so với PlayerPos
+    }
 
 
     public void StartHealthRecovery(float recoveryRate)

@@ -208,11 +208,11 @@ public class Enemy : MonoBehaviour
             Vector3 targetPos = target.position;
             Vector3 dir = targetPos - transform.position;
             dir = dir.normalized;
-
+            Transform targett = target.transform;
             Transform bullet = GameManager.instance.pool.Get(5).transform;
             bullet.position = transform.position;
             bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
-            bullet.GetComponent<BulletEnemy>().Init( 0, dir);
+            bullet.GetComponent<BulletEnemy>().Init( 0, dir, targett, false);
             //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
             yield return new WaitForSeconds(5f); // Delay viên đạn để ko stack lên nhau
             isFiring = false;
