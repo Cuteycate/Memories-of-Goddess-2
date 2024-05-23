@@ -3,19 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Ground
-  - Area
-  - Enemy
-  - Bullet
-  - Prop
-  - Player
-  - BulletE
-  - Turet
-  - AreaTuret
-  - BulletTur
-  - HitBoxBoss
-  - BulletBoss
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -23,7 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-  - Enemy
+  - 
   - 
   - 
   - 
