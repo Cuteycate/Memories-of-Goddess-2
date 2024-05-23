@@ -25,7 +25,7 @@ public class EnemyEvent : MonoBehaviour
     Rigidbody2D rigid;
 
     public float timer = 0;
-    float cooldown = 15f;
+    float cooldown = 20f;
     public int TypeEnemy;
 
     public Rigidbody2D target;
@@ -201,25 +201,24 @@ public class EnemyEvent : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-
-        if (TypeEnemy == 1)
+        if (collision.gameObject.CompareTag("Player"))
         {
-            if (collision.gameObject.CompareTag("Player"))
+            if (TypeEnemy == 1)
             {
                 rigid.mass = 500;
+                return;
             }
-        }
-        else if (TypeEnemy == 0)
-        {
-            rigid.mass = 1.5f;
+            else if (TypeEnemy == 0)
+            {
+                rigid.mass = 1.5f;
+            }
         }
 
         if (collision.gameObject.CompareTag("Enemy"))
         {
             rigid.mass = 1.5f;
+            return;
         }
-
-      
 
     }
 

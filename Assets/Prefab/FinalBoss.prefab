@@ -285,7 +285,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 50
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -357,9 +357,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f2db500e50f4847b6174706b450cf9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 2
   health: 0
-  maxHealth: 1000
+  maxHealth: 10000
   expOnDefeat: 0
   canDash: 1
   isDashing: 0
@@ -368,9 +368,12 @@ MonoBehaviour:
   dashingCoolDown: 10
   CanFire: 1
   isFiring: 0
-  FiringCoolDown: 10
+  FiringCoolDown: 5
+  isDoing: 0
   target: {fileID: 0}
   floatingtextPrefab: {fileID: 5099652313274479680, guid: abf381679dc758648915dad2a3b66fdb, type: 3}
+  IsRingOfFire: 0
+  RingOfFire: {fileID: 8820439255138701955, guid: 2c7975145840e784abd9a45f5b33581a, type: 3}
   tr: {fileID: 7882708439225234213}
   Collider2Ds:
   - {fileID: 5089097023438998627}

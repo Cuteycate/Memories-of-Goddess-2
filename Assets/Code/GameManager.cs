@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
         if (!isLive)
             return;
         gameTime += Time.deltaTime;
-        if (gameTime > maxgameTime)
+        if (gameTime > maxgameTime && !FinalBossStillAlive)
         {
             gameTime = maxgameTime;
             GameVictory();

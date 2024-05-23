@@ -35,7 +35,6 @@ public class TuretGun : MonoBehaviour
     private void Update()
     {
        
-
             timer -= Time.deltaTime ;
         
          if (timer >= -1 && timer <= 0.9 || timer < disappear)

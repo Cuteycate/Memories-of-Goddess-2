@@ -14498,7 +14498,7 @@ MonoBehaviour:
     CountEvent: 4
     TypeEvent: 1
   - spawnTime: 0.05
-    spriteType: 8
+    spriteType: 5
     health: 50
     speed: 4
     expOnDefeat: 15

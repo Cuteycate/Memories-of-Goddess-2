@@ -382,6 +382,8 @@ public class Weapon : MonoBehaviour
                 // Get the enemy component and deal damage to it
                 Enemy enemy = collider.GetComponent<Enemy>();
                 BossEnemy bossEnemy = collider.GetComponent<BossEnemy>();
+                FinalBoss finalBoss = collider.GetComponent<FinalBoss>();
+                EnemyEvent enemyEvent = collider.GetComponent<EnemyEvent>();
 
                 if (enemy != null)
                 {
@@ -392,7 +394,17 @@ public class Weapon : MonoBehaviour
                 {
                     bossEnemy.TakeDamage(damage);
 
+                }else if ( finalBoss != null)
+                {
+                    finalBoss.TakeDamage(damage);
                 }
+                else if (enemyEvent != null)
+                {
+                    enemyEvent.TakeDamage(damage);
+
+                }
+
+
             }
             if (collider.CompareTag("Prop"))
             {

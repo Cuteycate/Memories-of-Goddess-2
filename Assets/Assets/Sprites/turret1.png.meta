@@ -995,10 +995,10 @@ TextureImporter:
       name: turret1_55
       rect:
         serializedVersion: 2
-        x: 457
-        y: 2229
-        width: 168
-        height: 141
+        x: 589
+        y: 2175
+        width: 150
+        height: 120
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

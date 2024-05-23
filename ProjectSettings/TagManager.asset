@@ -15,6 +15,7 @@ TagManager:
   - AreaTuret
   - BulletTur
   - HitBoxBoss
+  - BulletBoss
   layers:
   - Default
   - TransparentFX

@@ -24,10 +24,21 @@ public class BulletEnemy : MonoBehaviour
        
         this.per = per;
         
-        if (per > -1)
+        if (check)
         {
-            rigid.velocity = dir * 5f;
+            if (per > -1)
+            {
+                rigid.velocity = dir * 20f;
+            }
         }
+        else
+        {
+            if (per > -1)
+            {
+                rigid.velocity = dir * 5f;
+            }
+        }
+
 
         PlayerTranform = playerpo;
         FinalBoss = check;
@@ -38,7 +49,7 @@ public class BulletEnemy : MonoBehaviour
     {
         if (FinalBoss)
         {
-            if (Vector3.Distance(transform.position, targetPosition) < 1f) // Kiểm tra xem viên đạn có đến được vị trí người chơi không
+            if (Vector3.Distance(transform.position, targetPosition) < 1.5f) // Kiểm tra xem viên đạn có đến được vị trí người chơi không
             {
                 GameObject FireBallEx = GameManager.instance.pool.Get(14);
                 FireBallEx.transform.position = transform.position;
@@ -56,12 +67,14 @@ public class BulletEnemy : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        if (FinalBoss && collision.CompareTag("Bullet"))
+            return;
+
+
         if (collision.CompareTag("Bullet") || collision.CompareTag("Player"))
         {
             per--;
         }
-
         if (per == -1)
         {
             rigid.velocity = Vector3.zero;

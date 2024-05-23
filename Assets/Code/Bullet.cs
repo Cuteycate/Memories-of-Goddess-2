@@ -41,6 +41,13 @@ public class Bullet : MonoBehaviour
             rigid.velocity = Vector3.zero;
             gameObject.SetActive(false);
         }
+
+        if (collision.CompareTag("BulletBoss"))
+        {
+            rigid.velocity = Vector3.zero;
+            gameObject.SetActive(false);
+        }
+
     }
     void OnTriggerExit2D(Collider2D other)
     {

@@ -35,9 +35,16 @@ public class HUD : MonoBehaviour
                 break;
             case InfoType.Time:
                 float remainTime = GameManager.instance.maxgameTime - GameManager.instance.gameTime;
-                int min = Mathf.FloorToInt(remainTime / 60);
-                int sec = Mathf.FloorToInt(remainTime % 60);
-                myText.text = string.Format("{0:D2}:{1:D2}", min,sec);
+                if (remainTime <= 0)
+                {
+                    myText.text = "00:00";
+                }
+                else
+                {
+                    int min = Mathf.FloorToInt(remainTime / 60);
+                    int sec = Mathf.FloorToInt(remainTime % 60);
+                    myText.text = string.Format("{0:D2}:{1:D2}", min, sec);
+                }
                 break;
             case InfoType.Health:
                 float curHealth = GameManager.instance.Health;
