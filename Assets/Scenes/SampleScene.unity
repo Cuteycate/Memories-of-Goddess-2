@@ -14378,7 +14378,7 @@ MonoBehaviour:
     CountEvent: 2
     TypeEvent: 1
   - spawnTime: 0.7
-    spriteType: 0
+    spriteType: 1
     health: 10
     speed: 1
     expOnDefeat: 2
@@ -14386,7 +14386,7 @@ MonoBehaviour:
     CountEvent: 1
     TypeEvent: 1
   - spawnTime: 0.1
-    spriteType: 0
+    spriteType: 3
     health: 5
     speed: 2
     expOnDefeat: 2

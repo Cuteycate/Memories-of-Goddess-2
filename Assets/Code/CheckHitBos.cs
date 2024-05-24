@@ -16,7 +16,7 @@ public class CheckHitBos : MonoBehaviour
             if (results[i].CompareTag("Player"))
             {
                 Debug.Log("Da Chem Trung");
-                GameManager.instance.Health -= 10;
+                GameManager.instance.Health -= 5;
                 break;
             }
         }
