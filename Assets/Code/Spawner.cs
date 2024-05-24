@@ -79,7 +79,7 @@ public class Spawner : MonoBehaviour
                 Transform[] childTransforms = GetChildPositions(PointWave);
                 Wave.transform.position = childTransforms[1].position;             
                 Wave.GetComponent<EventWave>().Inti(childTransforms[2], childTransforms[1], TypeEvent);
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(7f);
             
             }
         }

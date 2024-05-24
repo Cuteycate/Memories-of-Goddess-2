@@ -70,7 +70,7 @@ public class Weapon : MonoBehaviour
                 if (timer > speed)
                 {
                     timer = 0f;
-                    LightningAttack();
+                    StartCoroutine(LightningAttack());
                 }
                 break;
             default:
@@ -107,12 +107,14 @@ public class Weapon : MonoBehaviour
                 batchCoroutine = StartCoroutine(ToggleBatchCoroutine());
                 break;
             case 1:
-            case 8:
             case 10:
                 speed = 3f * Character.WeaponRate;
                 break;
+            case 8:
+                speed = 5f * Character.WeaponRate;
+                break;
             case 9:
-                speed = 7f * Character.WeaponRate;
+                speed = 10f * Character.WeaponRate;
                 break;
             case 11:
                 speed = 3f * Character.WeaponRate;
@@ -233,33 +235,18 @@ public class Weapon : MonoBehaviour
         {
             return;
         }
+
         int initialCount = ExtraCount;
         count = count + initialCount;
+
         Vector3 targetPos = player.scanner.nearestTarget.position;
         Vector3 dirToTarget = (targetPos - transform.position).normalized;
-
-        float spreadRange = 0.4f;
-        HashSet<float> usedSpreadValues = new HashSet<float>();
-        System.Random random = new System.Random();
-
         for (int i = 0; i < count; i++)
         {
-            float spreadValue;
-            do
-            {
-                spreadValue = (float)(random.NextDouble() * 2 * spreadRange - spreadRange);
-            } while (usedSpreadValues.Contains(spreadValue));
-
-            usedSpreadValues.Add(spreadValue);
-
-            Vector3 perpendicularDir = Vector3.Cross(dirToTarget, Vector3.up).normalized;
-            Vector3 spreadDir = dirToTarget + perpendicularDir * spreadValue;
-
-            spreadDir = Quaternion.Euler(0, -45f, 0) * spreadDir;
-
+            float angle = i * (45f / count);
+            Vector3 spreadDir = Quaternion.Euler(0, 0, angle) * dirToTarget;
             Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
             bullet.position = transform.position;
-            bullet.rotation = Quaternion.FromToRotation(Vector3.up, dirToTarget);
             bullet.GetComponent<Bullet>().Init(damage, penetration, spreadDir, i);
             AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
         }
@@ -319,7 +306,7 @@ public class Weapon : MonoBehaviour
 
     HashSet<Transform> enemiesHit = new HashSet<Transform>(); // HashSet to store enemies hit by lightning
 
-    void LightningAttack()
+    IEnumerator LightningAttack()
     {
         int initialCount = ExtraCount;
         int TempCount = count + initialCount;
@@ -336,10 +323,11 @@ public class Weapon : MonoBehaviour
             }
         }
 
+        // Convert to array for easier indexing
         Transform[] targetEnemies = targetTransforms.ToArray();
 
         // Check if there are any enemies found
-        if (targetEnemies != null && targetEnemies.Length > 0)
+        if (targetEnemies.Length > 0 && targetEnemies != null)
         {
             // Define the lightning bolt effect prefab
             GameObject lightningBoltEffectPrefab = hiteffect;
@@ -347,18 +335,35 @@ public class Weapon : MonoBehaviour
             // Define the damage and range of the lightning attack
             float damage = this.damage;
             float radius = this.penetration;
-            int temp;
+
             // Limit the count to the number of enemies if count exceeds the number of enemies
-            temp = Mathf.Min(TempCount, targetEnemies.Length);
+            int temp = Mathf.Min(TempCount, targetEnemies.Length);
+
+            // List to keep track of already targeted enemies
+            List<int> targetedIndices = new List<int>();
 
             // Loop through the count and spawn lightning bolts on each enemy
             for (int i = 0; i < temp; i++)
             {
-                // Instantiate the lightning bolt effect at the position of the target enemy
-                GameObject lightningBolt = Instantiate(lightningBoltEffectPrefab, targetEnemies[i].position, Quaternion.identity);
+                int randomIndex;
 
-                // Perform an area attack around the lightning bolt's position
-                AreaAttack(lightningBolt.transform.position, radius, damage);
+                // Find a unique random enemy index that has not been targeted yet
+                do
+                {
+                    randomIndex = Random.Range(0, targetEnemies.Length);
+                } while (targetedIndices.Contains(randomIndex));
+
+                // Add this index to the list of targeted indices
+                targetedIndices.Add(randomIndex);
+                if (targetEnemies[randomIndex] != null)
+                {
+                    // Instantiate the lightning bolt effect at the position of the target enemy
+                    GameObject lightningBolt = Instantiate(lightningBoltEffectPrefab, targetEnemies[randomIndex].position, Quaternion.identity);
+
+                    // Perform an area attack around the lightning bolt's position
+                    AreaAttack(lightningBolt.transform.position, radius, damage);
+                    yield return new WaitForSeconds(0.05f);
+                }
             }
         }
         else
@@ -367,7 +372,6 @@ public class Weapon : MonoBehaviour
             StartCoroutine(CooldownCoroutine());
         }
     }
-
 
     void AreaAttack(Vector3 center, float radius, float damage)
     {

@@ -2909,7 +2909,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -14369,7 +14369,7 @@ MonoBehaviour:
     EventWave: 0
     CountEvent: 0
     TypeEvent: 0
-  - spawnTime: 0.9
+  - spawnTime: 1
     spriteType: 0
     health: 10
     speed: 1
@@ -14387,8 +14387,8 @@ MonoBehaviour:
     TypeEvent: 1
   - spawnTime: 0.1
     spriteType: 0
-    health: 10
-    speed: 1
+    health: 5
+    speed: 2
     expOnDefeat: 2
     EventWave: 1
     CountEvent: 1
@@ -14403,7 +14403,7 @@ MonoBehaviour:
     TypeEvent: 1
   - spawnTime: 0.3
     spriteType: 1
-    health: 15
+    health: 30
     speed: 1.1
     expOnDefeat: 3
     EventWave: 1
@@ -14411,9 +14411,9 @@ MonoBehaviour:
     TypeEvent: 1
   - spawnTime: 0.2
     spriteType: 3
-    health: 20
+    health: 40
     speed: 1
-    expOnDefeat: 4
+    expOnDefeat: 2
     EventWave: 1
     CountEvent: 2
     TypeEvent: 1
@@ -14421,7 +14421,7 @@ MonoBehaviour:
     spriteType: 2
     health: 20
     speed: 1
-    expOnDefeat: 4
+    expOnDefeat: 3
     EventWave: 0
     CountEvent: 0
     TypeEvent: 0
@@ -14429,15 +14429,15 @@ MonoBehaviour:
     spriteType: 2
     health: 20
     speed: 2
-    expOnDefeat: 4
+    expOnDefeat: 3
     EventWave: 1
     CountEvent: 2
     TypeEvent: 1
-  - spawnTime: 0.3
+  - spawnTime: 0.1
     spriteType: 2
-    health: 25
+    health: 30
     speed: 1.5
-    expOnDefeat: 5
+    expOnDefeat: 3
     EventWave: 1
     CountEvent: 3
     TypeEvent: 1
@@ -14445,23 +14445,23 @@ MonoBehaviour:
     spriteType: 3
     health: 30
     speed: 1.5
-    expOnDefeat: 6
+    expOnDefeat: 3
     EventWave: 1
     CountEvent: 2
     TypeEvent: 1
   - spawnTime: 0.3
     spriteType: 4
     health: 60
-    speed: 1
-    expOnDefeat: 12
+    speed: 2
+    expOnDefeat: 3
     EventWave: 1
     CountEvent: 1
     TypeEvent: 2
   - spawnTime: 0.1
     spriteType: 3
-    health: 45
-    speed: 1
-    expOnDefeat: 7
+    health: 60
+    speed: 1.5
+    expOnDefeat: 3
     EventWave: 1
     CountEvent: 3
     TypeEvent: 2
@@ -14469,7 +14469,7 @@ MonoBehaviour:
     spriteType: 2
     health: 45
     speed: 1
-    expOnDefeat: 7
+    expOnDefeat: 3
     EventWave: 1
     CountEvent: 2
     TypeEvent: 1
@@ -14477,7 +14477,7 @@ MonoBehaviour:
     spriteType: 5
     health: 50
     speed: 2
-    expOnDefeat: 12
+    expOnDefeat: 3
     EventWave: 1
     CountEvent: 1
     TypeEvent: 1
@@ -14485,7 +14485,7 @@ MonoBehaviour:
     spriteType: 7
     health: 50
     speed: 2
-    expOnDefeat: 12
+    expOnDefeat: 3
     EventWave: 1
     CountEvent: 2
     TypeEvent: 1
@@ -14493,7 +14493,7 @@ MonoBehaviour:
     spriteType: 6
     health: 70
     speed: 0.9
-    expOnDefeat: 15
+    expOnDefeat: 5
     EventWave: 1
     CountEvent: 4
     TypeEvent: 1
@@ -14501,7 +14501,7 @@ MonoBehaviour:
     spriteType: 5
     health: 50
     speed: 4
-    expOnDefeat: 15
+    expOnDefeat: 5
     EventWave: 1
     CountEvent: 1
     TypeEvent: 2
@@ -14509,7 +14509,7 @@ MonoBehaviour:
     spriteType: 7
     health: 60
     speed: 2
-    expOnDefeat: 30
+    expOnDefeat: 5
     EventWave: 1
     CountEvent: 3
     TypeEvent: 1
@@ -14517,15 +14517,15 @@ MonoBehaviour:
     spriteType: 6
     health: 170
     speed: 0.7
-    expOnDefeat: 40
+    expOnDefeat: 5
     EventWave: 0
     CountEvent: 1
     TypeEvent: 2
-  - spawnTime: 9999
-    spriteType: 0
-    health: 1
-    speed: 0
-    expOnDefeat: 0
+  - spawnTime: 0.5
+    spriteType: 7
+    health: 200
+    speed: 2
+    expOnDefeat: 9
     EventWave: 0
     CountEvent: 0
     TypeEvent: 0
@@ -14826,7 +14826,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -32937,7 +32937,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -42238,7 +42238,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -2
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16

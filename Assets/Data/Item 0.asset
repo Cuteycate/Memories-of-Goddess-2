@@ -30,7 +30,7 @@ MonoBehaviour:
   - Increase Damage By {0}%
   itemIcon: {fileID: -181907988, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseDamage: 5
-  baseCount: 2
+  baseCount: 1
   basePenetration: -1
   damages:
   - 0

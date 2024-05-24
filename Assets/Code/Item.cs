@@ -22,10 +22,6 @@ public class Item : MonoBehaviour
         textName = texts[1];
         textDesc = texts.Length > 2 ? texts[2] : null;
         textName.text = data.itemName;
-        if (!allItemData.Contains(data))
-        {
-            allItemData.Add(data);
-        }
     }
     public static List<ItemData> allItemData = new List<ItemData>();
     void OnEnable()
@@ -83,6 +79,10 @@ public class Item : MonoBehaviour
                 {
                     GameObject newWeapon = new GameObject();
                     weapon = newWeapon.AddComponent<Weapon>();
+                    if (!allItemData.Contains(data))
+                    {
+                        allItemData.Add(data);
+                    }
                     weapon.Init(data);
                 }
                 else
@@ -107,6 +107,10 @@ public class Item : MonoBehaviour
                 {
                     GameObject newGear = new GameObject();
                     gear = newGear.AddComponent<Gear>();
+                    if (!allItemData.Contains(data))
+                    {
+                        allItemData.Add(data);
+                    }
                     gear.Init(data);
                 }
                 else
@@ -117,7 +121,7 @@ public class Item : MonoBehaviour
                 LevelCount();
                 break;
             case ItemData.ItemType.Heal:
-                GameManager.instance.Health = GameManager.instance.MaxHealth;
+                GameManager.instance.ResHealth(30);
                 break;
         }
         if(level == data.damages.Length)
@@ -145,7 +149,7 @@ public class Item : MonoBehaviour
                 level++;
                 break;
             case ItemData.ItemType.Heal:
-                GameManager.instance.Health = GameManager.instance.MaxHealth;
+                GameManager.instance.ResHealth(30);
                 break;
         }
         if (level == data.damages.Length)

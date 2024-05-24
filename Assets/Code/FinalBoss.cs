@@ -288,7 +288,7 @@ public class FinalBoss : MonoBehaviour
             bullet.rotation = Quaternion.FromToRotation(Vector3.right, dir);
             bullet.GetComponent<BulletEnemy>().Init(0, dir, targett, true);
             //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);      
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1.5f);
         }
         isFiring = false;
         yield return new WaitForSeconds(FiringCoolDown);

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4629323865847381827}
   - component: {fileID: 2207390921129960334}
   - component: {fileID: 4834717910763014484}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BulletEnemy_1
   m_TagString: BulletE
   m_Icon: {fileID: 0}
@@ -164,3 +164,6 @@ MonoBehaviour:
   damage: 0
   per: 0
   projectileNumber: 0
+  PlayerTranform: {fileID: 0}
+  FinalBoss: 0
+  targetPosition: {x: 0, y: 0, z: 0}

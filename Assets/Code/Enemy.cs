@@ -202,8 +202,6 @@ public class Enemy : MonoBehaviour
 
     IEnumerator FireCoroutine()
     {
-  
-       
             isFiring = true;
             Vector3 targetPos = target.position;
             Vector3 dir = targetPos - transform.position;

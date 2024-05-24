@@ -103,13 +103,6 @@ public class Player : MonoBehaviour
     {
         if (!GameManager.instance.isLive)
             return;
-        if (collision.CompareTag("BulletE"))
-        {
-            GameManager.instance.Health -= Time.deltaTime * 10;
-        }
-
-       
-
         if (GameManager.instance.Health < 0)
         {
             for (int i = 2; i < transform.childCount; i++)

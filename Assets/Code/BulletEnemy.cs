@@ -75,6 +75,10 @@ public class BulletEnemy : MonoBehaviour
         {
             per--;
         }
+        if(collision.CompareTag("Player"))
+        {
+            GameManager.instance.Health -= Time.deltaTime * 10;
+        }
         if (per == -1)
         {
             rigid.velocity = Vector3.zero;
