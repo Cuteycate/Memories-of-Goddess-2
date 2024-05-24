@@ -68,9 +68,9 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator GameVictoryRoutine()
     {
-        isLive = false;
         enemyCleaner.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(6f);
+        isLive = false;
         uiResult.gameObject.SetActive(true);
         uiResult.Win();
         Stop();

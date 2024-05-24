@@ -14403,7 +14403,7 @@ MonoBehaviour:
     TypeEvent: 1
   - spawnTime: 0.3
     spriteType: 1
-    health: 30
+    health: 35
     speed: 1.1
     expOnDefeat: 3
     EventWave: 1
@@ -14419,7 +14419,7 @@ MonoBehaviour:
     TypeEvent: 1
   - spawnTime: 0.3
     spriteType: 2
-    health: 20
+    health: 50
     speed: 1
     expOnDefeat: 3
     EventWave: 0
@@ -14427,7 +14427,7 @@ MonoBehaviour:
     TypeEvent: 0
   - spawnTime: 0.05
     spriteType: 2
-    health: 20
+    health: 30
     speed: 2
     expOnDefeat: 3
     EventWave: 1
@@ -14435,23 +14435,23 @@ MonoBehaviour:
     TypeEvent: 1
   - spawnTime: 0.1
     spriteType: 2
-    health: 30
-    speed: 1.5
+    health: 50
+    speed: 2
     expOnDefeat: 3
     EventWave: 1
     CountEvent: 3
     TypeEvent: 1
   - spawnTime: 0.2
     spriteType: 3
-    health: 30
-    speed: 1.5
+    health: 60
+    speed: 2
     expOnDefeat: 3
     EventWave: 1
     CountEvent: 2
     TypeEvent: 1
   - spawnTime: 0.3
     spriteType: 4
-    health: 60
+    health: 80
     speed: 2
     expOnDefeat: 3
     EventWave: 1
@@ -14467,7 +14467,7 @@ MonoBehaviour:
     TypeEvent: 2
   - spawnTime: 0.1
     spriteType: 2
-    health: 45
+    health: 70
     speed: 1
     expOnDefeat: 3
     EventWave: 1
@@ -14475,15 +14475,15 @@ MonoBehaviour:
     TypeEvent: 1
   - spawnTime: 0.2
     spriteType: 5
-    health: 50
-    speed: 2
+    health: 100
+    speed: 3
     expOnDefeat: 3
     EventWave: 1
     CountEvent: 1
     TypeEvent: 1
   - spawnTime: 0.1
     spriteType: 7
-    health: 50
+    health: 80
     speed: 2
     expOnDefeat: 3
     EventWave: 1
@@ -14493,7 +14493,7 @@ MonoBehaviour:
     spriteType: 6
     health: 70
     speed: 0.9
-    expOnDefeat: 5
+    expOnDefeat: 3
     EventWave: 1
     CountEvent: 4
     TypeEvent: 1
@@ -14507,8 +14507,8 @@ MonoBehaviour:
     TypeEvent: 2
   - spawnTime: 0.05
     spriteType: 7
-    health: 60
-    speed: 2
+    health: 70
+    speed: 3.5
     expOnDefeat: 5
     EventWave: 1
     CountEvent: 3
@@ -14522,7 +14522,7 @@ MonoBehaviour:
     CountEvent: 1
     TypeEvent: 2
   - spawnTime: 0.5
-    spriteType: 7
+    spriteType: 0
     health: 200
     speed: 2
     expOnDefeat: 9
@@ -63035,43 +63035,43 @@ MonoBehaviour:
     bossSpawned: 0
   - spawnTime: 55
     spriteType: 1
-    health: 500
+    health: 600
     speed: 2
     expOnDefeat: 100
     bossSpawned: 0
   - spawnTime: 55
     spriteType: 2
-    health: 600
+    health: 700
     speed: 2
     expOnDefeat: 150
     bossSpawned: 0
   - spawnTime: 55
     spriteType: 3
-    health: 650
+    health: 800
     speed: 2.5
     expOnDefeat: 150
     bossSpawned: 0
   - spawnTime: 55
     spriteType: 4
-    health: 700
+    health: 900
     speed: 2.5
     expOnDefeat: 150
     bossSpawned: 0
   - spawnTime: 55
     spriteType: 5
-    health: 800
+    health: 1000
     speed: 2.5
     expOnDefeat: 200
     bossSpawned: 0
   - spawnTime: 55
     spriteType: 6
-    health: 900
+    health: 1100
     speed: 3
     expOnDefeat: 250
     bossSpawned: 0
   - spawnTime: 55
     spriteType: 7
-    health: 1000
+    health: 1200
     speed: 3
     expOnDefeat: 300
     bossSpawned: 0

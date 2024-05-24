@@ -359,7 +359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   health: 0
-  maxHealth: 10000
+  maxHealth: 6000
   expOnDefeat: 0
   canDash: 1
   isDashing: 0

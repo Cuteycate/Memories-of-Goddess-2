@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 100
-  shrinkSpeed: 0.02
+  shrinkSpeed: 0.01
 --- !u!68 &693318068633226506
 EdgeCollider2D:
   m_ObjectHideFlags: 0

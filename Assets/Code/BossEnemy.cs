@@ -160,7 +160,7 @@ public class BossEnemy : MonoBehaviour
         yield return wait;
         Vector3 playerPos = GameManager.instance.player.transform.position;
         Vector3 dirVec = transform.position - playerPos; // khoảng cách enemy - khoảng cách nhân vật
-        rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse); //Truyền knockback ngược về so với PlayerPos
+        rigid.AddForce(dirVec.normalized*0.1f, ForceMode2D.Impulse); //Truyền knockback ngược về so với PlayerPos
     }
     void Dead()
     {

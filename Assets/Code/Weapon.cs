@@ -313,6 +313,7 @@ public class Weapon : MonoBehaviour
 
         // Find the nearest enemies to the player
         RaycastHit2D[] hitResults = GameManager.instance.player.GetComponent<Scanner>().targets;
+
         List<Transform> targetTransforms = new List<Transform>();
 
         foreach (RaycastHit2D hitResult in hitResults)
@@ -362,7 +363,7 @@ public class Weapon : MonoBehaviour
 
                     // Perform an area attack around the lightning bolt's position
                     AreaAttack(lightningBolt.transform.position, radius, damage);
-                    yield return new WaitForSeconds(0.05f);
+                    yield return new WaitForSeconds(0.1f);
                 }
             }
         }
