@@ -20,7 +20,7 @@ public class BossEnemy : MonoBehaviour
     public Rigidbody2D target;
     public GameObject floatingtextPrefab;
 
-    bool isLive;
+    public bool isLive;
 
     Rigidbody2D rigid;
     SpriteRenderer spriter;

@@ -16,7 +16,7 @@ public class EnemyEvent : MonoBehaviour
 
 
     public GameObject floatingtextPrefab;
-    bool isLive;
+    public bool isLive;
 
     SpriteRenderer spriter;
     Animator anim;

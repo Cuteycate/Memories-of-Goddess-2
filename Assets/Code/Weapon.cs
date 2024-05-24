@@ -391,11 +391,15 @@ public class Weapon : MonoBehaviour
 
                 if (enemy != null)
                 {
-                    enemy.TakeDamage(damage);
+                    if (enemy.isLive)
+                    {
+                        enemy.TakeDamage(damage);
+                    }
 
                 }
                 else if (bossEnemy != null)
                 {
+                    if(bossEnemy.isLive)
                     bossEnemy.TakeDamage(damage);
 
                 }else if ( finalBoss != null)
@@ -404,11 +408,10 @@ public class Weapon : MonoBehaviour
                 }
                 else if (enemyEvent != null)
                 {
+                    if(enemyEvent.isLive)
                     enemyEvent.TakeDamage(damage);
 
                 }
-
-
             }
             if (collider.CompareTag("Prop"))
             {
