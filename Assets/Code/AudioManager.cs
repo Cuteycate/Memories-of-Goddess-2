@@ -28,7 +28,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] List<Slider> sfxSliders = new List<Slider>();
     int channelIndex;
 
-    public enum Sfx { Dead, Hit, LevelUp = 3, Lose, Melee, Range = 7, Select, Win }
+    public enum Sfx { Dead, Hit, LevelUp = 3, Lose, Melee, Range = 7, Select, Win,Lightning,Bossdead = 12,FireballShoot,FireballExplode}
 
     void Awake()
     {
@@ -126,7 +126,7 @@ public class AudioManager : MonoBehaviour
                 continue;
             }
             int ranIndex = 0;
-            if (sfx == Sfx.Hit || sfx == Sfx.Melee)
+            if (sfx == Sfx.Hit || sfx == Sfx.Melee || sfx == Sfx.Lightning)
             {
                 ranIndex = Random.Range(0, 2);
             }

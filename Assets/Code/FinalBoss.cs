@@ -41,6 +41,7 @@ public class FinalBoss : MonoBehaviour
 
 
     public Collider2D[] Collider2Ds;
+    public GameObject invulnerabilityShield;
 
 
     void Awake()
@@ -75,7 +76,6 @@ public class FinalBoss : MonoBehaviour
         
         if (distanceToPlayer > 6 && distanceToPlayer < 15 && canDash )
         {
-           
             StartCoroutine(Dash());
            
         }
@@ -155,7 +155,6 @@ public class FinalBoss : MonoBehaviour
             tr.emitting = false;
         }
         isDashing = false;
-
         yield return new WaitForSeconds(dashingCoolDown);
         canDash = true;
     }
@@ -206,9 +205,13 @@ public class FinalBoss : MonoBehaviour
             return;
         if (isDashing || isFiring || isDoing)
         {
-            return; 
+            ActivateShield();
+            return;
         }
-
+        if(!isDashing || !isFiring || !isDoing)
+        {
+            DeactivateShield();
+        }
             health -= collision.GetComponent<Bullet>().damage;
             StartCoroutine(KnockBack());
             ShowDamage(collision.GetComponent<Bullet>().damage.ToString());
@@ -229,9 +232,9 @@ public class FinalBoss : MonoBehaviour
                 spriter.sortingOrder = 1;
                 anim.SetBool("Dead", true);
                 GameManager.instance.kill++;
-                //GameManager.instance.GetExp(this);
-                if (GameManager.instance.isLive)
-                    AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead);
+            //GameManager.instance.GetExp(this);
+            if (GameManager.instance.isLive)
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.Bossdead);
             }
         
     }
@@ -244,9 +247,13 @@ public class FinalBoss : MonoBehaviour
     {
         if (isDashing || isFiring || isDoing)
         {
+            ActivateShield();
             return;
         }
-
+        if (!isDashing || !isFiring || !isDoing)
+        {
+            DeactivateShield();
+        }
         // Subtract damage from health
         health -= damage;
         ShowDamage(damage.ToString());
@@ -268,7 +275,7 @@ public class FinalBoss : MonoBehaviour
             GameManager.instance.kill++;
             //GameManager.instance.GetExp(this);
             if (GameManager.instance.isLive)
-                AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead);
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.Bossdead);
         }
     }
     
@@ -279,6 +286,7 @@ public class FinalBoss : MonoBehaviour
         {
             CanFire = false;
             isFiring = true;
+            ActivateShield();
             Vector3 targetPos = target.position;
             Vector3 dir = targetPos - transform.position;
             Transform targett = target.transform;
@@ -287,14 +295,36 @@ public class FinalBoss : MonoBehaviour
             bullet.position = transform.position;
             bullet.rotation = Quaternion.FromToRotation(Vector3.right, dir);
             bullet.GetComponent<BulletEnemy>().Init(0, dir, targett, true);
-            //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);      
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.FireballShoot);      
             yield return new WaitForSeconds(1.5f);
         }
         isFiring = false;
+        DeactivateShield();
         yield return new WaitForSeconds(FiringCoolDown);
         
         CanFire = true;           
         
     }
-
+    void ActivateShield()
+    {
+        if (invulnerabilityShield != null)
+        {
+            invulnerabilityShield.transform.localScale = new Vector3(5, 5, 0);
+        }
+        else
+        {
+            Debug.LogWarning("Invulnerability Shield not assigned.");
+        }
+    }
+    void DeactivateShield()
+    {
+        if (invulnerabilityShield != null)
+        {
+            invulnerabilityShield.transform.localScale = Vector3.zero;
+        }
+        else
+        {
+            Debug.LogWarning("Invulnerability Shield not assigned.");
+        }
+    }
 }

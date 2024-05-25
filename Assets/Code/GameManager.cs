@@ -69,12 +69,12 @@ public class GameManager : MonoBehaviour
     IEnumerator GameVictoryRoutine()
     {
         enemyCleaner.SetActive(true);
-        yield return new WaitForSeconds(6f);
         isLive = false;
+        AudioManager.instance.PlayBgm(false);
+        yield return new WaitForSeconds(4f);
         uiResult.gameObject.SetActive(true);
         uiResult.Win();
         Stop();
-        AudioManager.instance.PlayBgm(false);
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Win);
     }
     public void GameRetry()

@@ -14371,7 +14371,7 @@ MonoBehaviour:
     TypeEvent: 0
   - spawnTime: 1
     spriteType: 0
-    health: 10
+    health: 20
     speed: 1
     expOnDefeat: 2
     EventWave: 1
@@ -14379,33 +14379,33 @@ MonoBehaviour:
     TypeEvent: 1
   - spawnTime: 0.7
     spriteType: 1
-    health: 10
+    health: 30
     speed: 1
     expOnDefeat: 2
     EventWave: 1
     CountEvent: 1
     TypeEvent: 1
   - spawnTime: 0.1
-    spriteType: 3
+    spriteType: 0
     health: 5
     speed: 2
-    expOnDefeat: 2
+    expOnDefeat: 1
     EventWave: 1
     CountEvent: 1
     TypeEvent: 2
   - spawnTime: 0.3
     spriteType: 1
-    health: 15
+    health: 30
     speed: 1.1
-    expOnDefeat: 3
+    expOnDefeat: 2
     EventWave: 1
     CountEvent: 1
     TypeEvent: 1
   - spawnTime: 0.3
     spriteType: 1
-    health: 35
+    health: 40
     speed: 1.1
-    expOnDefeat: 3
+    expOnDefeat: 2
     EventWave: 1
     CountEvent: 3
     TypeEvent: 1
@@ -14421,7 +14421,7 @@ MonoBehaviour:
     spriteType: 2
     health: 50
     speed: 1
-    expOnDefeat: 3
+    expOnDefeat: 2
     EventWave: 0
     CountEvent: 0
     TypeEvent: 0
@@ -14429,7 +14429,7 @@ MonoBehaviour:
     spriteType: 2
     health: 30
     speed: 2
-    expOnDefeat: 3
+    expOnDefeat: 2
     EventWave: 1
     CountEvent: 2
     TypeEvent: 1
@@ -14437,7 +14437,7 @@ MonoBehaviour:
     spriteType: 2
     health: 50
     speed: 2
-    expOnDefeat: 3
+    expOnDefeat: 2
     EventWave: 1
     CountEvent: 3
     TypeEvent: 1
@@ -14445,7 +14445,7 @@ MonoBehaviour:
     spriteType: 3
     health: 60
     speed: 2
-    expOnDefeat: 3
+    expOnDefeat: 2
     EventWave: 1
     CountEvent: 2
     TypeEvent: 1
@@ -14453,13 +14453,13 @@ MonoBehaviour:
     spriteType: 4
     health: 80
     speed: 2
-    expOnDefeat: 3
+    expOnDefeat: 2
     EventWave: 1
     CountEvent: 1
     TypeEvent: 2
   - spawnTime: 0.1
     spriteType: 3
-    health: 60
+    health: 80
     speed: 1.5
     expOnDefeat: 3
     EventWave: 1
@@ -14467,7 +14467,7 @@ MonoBehaviour:
     TypeEvent: 2
   - spawnTime: 0.1
     spriteType: 2
-    health: 70
+    health: 90
     speed: 1
     expOnDefeat: 3
     EventWave: 1
@@ -14483,7 +14483,7 @@ MonoBehaviour:
     TypeEvent: 1
   - spawnTime: 0.1
     spriteType: 7
-    health: 80
+    health: 90
     speed: 2
     expOnDefeat: 3
     EventWave: 1
@@ -14499,7 +14499,7 @@ MonoBehaviour:
     TypeEvent: 1
   - spawnTime: 0.05
     spriteType: 5
-    health: 50
+    health: 60
     speed: 4
     expOnDefeat: 5
     EventWave: 1
@@ -14525,7 +14525,7 @@ MonoBehaviour:
     spriteType: 0
     health: 200
     speed: 2
-    expOnDefeat: 9
+    expOnDefeat: 5
     EventWave: 0
     CountEvent: 0
     TypeEvent: 0
@@ -24413,6 +24413,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6f0c572d865b4664db7a460972bc4768, type: 3}
   - {fileID: 8300000, guid: 4b294d59d2399014daa718b35c9de73b, type: 3}
   - {fileID: 8300000, guid: 2c4bc183a5df5aa4baf7c4fcf236a2de, type: 3}
+  - {fileID: 8300000, guid: 97d0fbf706549f24c82c9d530e47a2d9, type: 3}
+  - {fileID: 8300000, guid: 94ca0bb683db51445b59639ea520b1fe, type: 3}
+  - {fileID: 8300000, guid: 7a6027f3eb4883349bd75b79a729c8f6, type: 3}
+  - {fileID: 8300000, guid: e3b9ffd53a8d9204985406fe4fd2ef17, type: 3}
+  - {fileID: 8300000, guid: 406e219c304e4464e8840c44de9c5329, type: 3}
   sfxVolume: 0
   channels: 16
   bgmSliders:
@@ -26337,7 +26342,7 @@ MonoBehaviour:
   - {fileID: 4415659618706800059, guid: f3d03883280b3934c8c2b8080cffb53d, type: 3}
   - {fileID: 7583383863574564017, guid: 5cd9884151106c9489e84eaab2f8a9fd, type: 3}
   - {fileID: 6161307586378570800, guid: 22b9b7f28ca159d4eb34209cc783b068, type: 3}
-  - {fileID: 3927005524077685750, guid: d1bfedd74918a174ca3135127239f573, type: 3}
+  - {fileID: 2171072642437720319, guid: 892cd2eaeb301434e91b15934ce68197, type: 3}
   - {fileID: 5599927472821100622, guid: 5476c8429ca849a4eb5cdf6c64195c04, type: 3}
   - {fileID: 1336976825616783080, guid: d14ac2115dcb96f4496a72a575dfa994, type: 3}
 --- !u!1 &585482766

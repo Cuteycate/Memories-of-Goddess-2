@@ -54,6 +54,7 @@ public class BulletEnemy : MonoBehaviour
                 GameObject FireBallEx = GameManager.instance.pool.Get(14);
                 FireBallEx.transform.position = transform.position;
                 gameObject.SetActive(false);
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.FireballExplode);
             }
         }
     }
@@ -71,7 +72,7 @@ public class BulletEnemy : MonoBehaviour
             return;
 
 
-        if (collision.CompareTag("Bullet") || collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             per--;
         }

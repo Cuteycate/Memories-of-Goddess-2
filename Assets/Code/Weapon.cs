@@ -363,6 +363,7 @@ public class Weapon : MonoBehaviour
 
                     // Perform an area attack around the lightning bolt's position
                     AreaAttack(lightningBolt.transform.position, radius, damage);
+                    AudioManager.instance.PlaySfx(AudioManager.Sfx.Lightning);
                     yield return new WaitForSeconds(0.1f);
                 }
             }
