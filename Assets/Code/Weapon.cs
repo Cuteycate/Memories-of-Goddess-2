@@ -107,7 +107,6 @@ public class Weapon : MonoBehaviour
                 batchCoroutine = StartCoroutine(ToggleBatchCoroutine());
                 break;
             case 1:
-            case 10:
                 speed = 3f * Character.WeaponRate;
                 break;
             case 8:
@@ -115,6 +114,9 @@ public class Weapon : MonoBehaviour
                 break;
             case 9:
                 speed = 10f * Character.WeaponRate;
+                break;
+            case 10:
+                speed = 2f * Character.WeaponRate;
                 break;
             case 11:
                 speed = 3f * Character.WeaponRate;

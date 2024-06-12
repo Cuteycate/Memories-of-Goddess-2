@@ -60,7 +60,7 @@ public class AchiveManager : MonoBehaviour
         switch (achive)
         {
             case Achive.UnlockCharacter2:
-                isAchive = GameManager.instance.kill >= 10;
+                isAchive = GameManager.instance.kill >= 1000;
                 break;
             case Achive.UnlockCharacter3:
                 isAchive = GameManager.instance.gameTime == GameManager.instance.maxgameTime;

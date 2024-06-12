@@ -29,9 +29,11 @@ MonoBehaviour:
   - Increase Damage By {0}%
   - 'Increase Damage By {0}%
 
+    Shoot {1} extra bullets
+
 '
   itemIcon: {fileID: -762074860, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  baseDamage: 8
+  baseDamage: 10
   baseCount: 3
   basePenetration: 1
   damages:
@@ -44,7 +46,7 @@ MonoBehaviour:
   - 0.75
   - 1
   counts: 0300000000000000000000000100000000000000010000000000000000000000
-  penetrations: 0000000000000000010000000000000000000000000000000100000000000000
+  penetrations: 0000000000000000010000000000000000000000000000000100000001000000
   projectiles: {fileID: 4496611369239243523, guid: b442b16d0d6b10b48b3dad85198309ec, type: 3}
   HitEffect: {fileID: 0}
   hand: {fileID: 1772703093, guid: 0d5e657ee5a074e4baa53d5b248a01d2, type: 3}

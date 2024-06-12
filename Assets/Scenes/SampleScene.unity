@@ -14427,7 +14427,7 @@ MonoBehaviour:
     TypeEvent: 0
   - spawnTime: 0.05
     spriteType: 2
-    health: 30
+    health: 20
     speed: 2
     expOnDefeat: 2
     EventWave: 1
@@ -14521,9 +14521,9 @@ MonoBehaviour:
     EventWave: 0
     CountEvent: 1
     TypeEvent: 2
-  - spawnTime: 0.5
+  - spawnTime: 0.3
     spriteType: 0
-    health: 200
+    health: 100
     speed: 2
     expOnDefeat: 5
     EventWave: 0
@@ -24418,7 +24418,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7a6027f3eb4883349bd75b79a729c8f6, type: 3}
   - {fileID: 8300000, guid: e3b9ffd53a8d9204985406fe4fd2ef17, type: 3}
   - {fileID: 8300000, guid: 406e219c304e4464e8840c44de9c5329, type: 3}
-  sfxVolume: 0
+  sfxVolume: 0.1
   channels: 16
   bgmSliders:
   - {fileID: 1174230723}
@@ -25570,7 +25570,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -31999,7 +31999,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: 'Kill 10 Enemies to Unlock
+  m_Text: 'Kill 1000 Enemies to Unlock
 
 '
 --- !u!222 &1022083100
@@ -53082,7 +53082,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.2
-  m_Text: 'Survive one time to unlock
+  m_Text: 'Survive 10 minute to unlock
 
 '
 --- !u!222 &1252857266
@@ -55012,6 +55012,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1394315956}
   m_CullTransparentMesh: 1
+--- !u!1 &1394612382
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1394612384}
+  - component: {fileID: 1394612383}
+  m_Layer: 0
+  m_Name: Global Volume
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1394612383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394612382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: 6fe06b4bdc70c534d91e7372c5ae9d81, type: 2}
+--- !u!4 &1394612384
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394612382}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.04, z: -0.19482806}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1395229651
 GameObject:
   m_ObjectHideFlags: 0
@@ -64612,3 +64661,4 @@ SceneRoots:
   - {fileID: 1670980795}
   - {fileID: 252969320}
   - {fileID: 421026719}
+  - {fileID: 1394612384}
