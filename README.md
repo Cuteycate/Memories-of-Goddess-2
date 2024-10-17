@@ -27,28 +27,27 @@
 - Đánh bại con trùm cuối hoặc sống sót tới bình minh
 ---
 ## Hình ẢNh Minh Họa 
-- **HUB:**
   
   ![HUB](Uploads/HUB.png)
   - **HUB:**
   
   ![Chọn Nhân Vật](Uploads/ChooseChar.png)
-  - **HUB:**
+  - **Chọn Nhân Vật:**
   
   ![Vũ Khí](Uploads/PassiveLevelup.png)
-  - **HUB:**
+  - **Vũ Khí:**
   
   ![Boss](Uploads/Boss.png)
-  - **HUB:**
+  - **Boss:**
   
   ![Phần thưởng cho mỗi con boss](Uploads/Treasurre.png)
-  - **HUB:**
+  - **Phần thưởng cho mỗi con boss:**
   
   ![Số lượng áp đảo](Uploads/Gioihan.png)
-  - **HUB:**
+  - **Số lượng áp đảo:**
   
-  ![Chết](Uploads/Dead.png)
-
+  ![](Uploads/Dead.png)
+ - **Dead:**
 ---
 ## Team
 
