@@ -15,6 +15,7 @@ public class Spawner : MonoBehaviour
     
 
     float[] Rotation = { 0, 45, 90, 135, 180, 225, 270, 315, 160 };
+    float[] RotantionEventPlus = { 0, 90};
 
     public int level;
     float timer;
@@ -64,33 +65,72 @@ public class Spawner : MonoBehaviour
 
     IEnumerator SpawnEvent(float time, int level, int TypeEvent)
     {
-       if ( TypeEvent == 1)
+        switch (TypeEvent)
         {
-            for (int i = 0; i < spawnData[level].CountEvent; i++)
-            {
-                int ran;
-                ran = Random.Range(0, Rotation.Length);
-                GameObject Wave = GameManager.instance.pool.Get(8);
-                GameObject PointWave = GameManager.instance.pool.Get(11);
-                PointWave.transform.position = GameManager.instance.player.transform.position;
-                PointWave.transform.Rotate(0, 0, Rotation[ran]);
-                Transform[] childTransforms = GetChildPositions(PointWave);
-                Wave.transform.position = childTransforms[1].position;             
-                Wave.GetComponent<EventWave>().Inti(childTransforms[2], childTransforms[1], TypeEvent);
-                yield return new WaitForSeconds(7f);
-            
-            }
-        }
-        else if (TypeEvent == 2)
-        {
+            case 1:
+                for (int i = 0; i < spawnData[level].CountEvent; i++)
+                {
+                    int ran = Random.Range(0, Rotation.Length);
+                    GameObject Wave = GameManager.instance.pool.Get(8);
+                    GameObject PointWave = GameManager.instance.pool.Get(11);
 
-            GameObject Wave = GameManager.instance.pool.Get(10);
-            Wave.transform.position= GameManager.instance.player.transform.position;
-            Wave.GetComponent<EventWave>().Inti(GameManager.instance.player.transform, null, TypeEvent);
+                    PointWave.transform.position = GameManager.instance.player.transform.position;
+                    PointWave.transform.Rotate(0, 0, Rotation[ran]);
 
+                    Transform[] childTransforms = GetChildPositions(PointWave);
+                    Wave.transform.position = childTransforms[1].position;
+                    Wave.GetComponent<EventWave>().Inti(childTransforms[2], childTransforms[1], TypeEvent, false);
+
+                    yield return new WaitForSeconds(7f);
+                }
+                break;
+
+            case 2:
+                GameObject waveType2 = GameManager.instance.pool.Get(10);
+                waveType2.transform.position = GameManager.instance.player.transform.position;
+                waveType2.GetComponent<EventWave>().Inti(GameManager.instance.player.transform, null, TypeEvent, false);
+                break;
+
+            case 3:
+                int randomRotation = Random.Range(0, RotantionEventPlus.Length);
+                Transform position = GameManager.instance.player.transform;
+
+                for (int i = -50; i < 51; i += 2)
+                {
+                    GameObject waveType3 = GameManager.instance.pool.Get(15);
+
+                    if (RotantionEventPlus[randomRotation] == 0)
+                    {
+                        waveType3.transform.position = new Vector3(position.position.x, position.position.y - i, 0);
+                        waveType3.transform.rotation = Quaternion.identity; // Reset rotation
+                        waveType3.transform.Rotate(0, 0, 0);
+                    }
+                    else
+                    {
+                        waveType3.transform.position = new Vector3(position.position.x - i, position.position.y, 0);
+                        waveType3.transform.rotation = Quaternion.identity; // Reset rotation
+                        waveType3.transform.Rotate(0, 0, 90);
+                    }
+
+                    waveType3.GetComponent<EventWave>().Inti(GameManager.instance.player.transform, null, TypeEvent, RotantionEventPlus[randomRotation] != 0);
+                }
+                break;
+            case 4:
+                Transform positionEvent5 = GameManager.instance.player.transform;
+                for (float i = -50; i < 51; i += 4f)
+                {
+                    GameObject waveType3 = GameManager.instance.pool.Get(17);  
+                    waveType3.transform.position = new Vector3(positionEvent5.position.x, positionEvent5.position.y - i, 0);
+                    waveType3.transform.rotation = Quaternion.identity; // Reset rotation
+                    waveType3.transform.Rotate(0, 0, 0);
+                    waveType3.GetComponent<EventWave>().Inti(GameManager.instance.player.transform, null, TypeEvent, false );
+                }
+                break;
         }
+
         yield return new WaitForSeconds(3f);
     }
+
 
     private void SpawnFinalBoss()
     {
