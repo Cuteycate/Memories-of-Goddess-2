@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Unity.VisualScripting;
@@ -15,7 +16,7 @@ public class EventWave : MonoBehaviour
     public Transform bestSpawnPoint = null;
     public Transform FirstSpawnPoint;
     public int TypeEvent;
-   
+    public bool isRotaion;
 
     public float Timer;
     public float coolTime = 5;
@@ -28,7 +29,8 @@ public class EventWave : MonoBehaviour
    
     bool check = true;
     public Spawner spawner;
-    
+
+    public GameObject spawnEffect;
 
     private void Awake()
     {
@@ -36,11 +38,12 @@ public class EventWave : MonoBehaviour
         spawnPoint = GetComponentsInChildren<Transform>();
     }
 
-    public void Inti(Transform BestSpawnPoint, Transform f, int TypeEv)
+    public void Inti(Transform BestSpawnPoint, Transform f, int TypeEv, bool isRotationR)
     {
         bestSpawnPoint = BestSpawnPoint;
         FirstSpawnPoint = f;
         TypeEvent = TypeEv;
+        isRotaion = isRotationR;
     }
 
 
@@ -85,7 +88,7 @@ public class EventWave : MonoBehaviour
                 {
                     GameObject Wave = GameManager.instance.pool.Get(9);
                     Wave.transform.position = SpawnPoint.position;
-                    Wave.GetComponent<EnemyEvent>().Init(bestSpawnPoint, 0);
+                    Wave.GetComponent<EnemyEvent>().Init(bestSpawnPoint, 0); //0 là event chay 
                 }
                 check = false;
             }
@@ -95,12 +98,51 @@ public class EventWave : MonoBehaviour
                 for ( int i = 1; i < spawnPoint.Length; i++ )
                 {
                     GameObject Wave = GameManager.instance.pool.Get(9);
+                    GameObject vfx = Instantiate(spawnEffect, spawnPoint[i].position, Quaternion.identity);
                     Wave.transform.position = spawnPoint[i].position;
-                    Wave.GetComponent<EnemyEvent>().Init(bestSpawnPoint, 1);
+                    Wave.GetComponent<EnemyEvent>().Init(bestSpawnPoint, 1); //1 là event vong tron
                     check = false;
                 }
 
             }
+            
+            if ( TypeEvent == 3)
+            {
+                for (int i = 1; i < spawnPoint.Length; i++)
+                {
+                   GameObject Wave = GameManager.instance.pool.Get(16);
+                   Wave.transform.position = spawnPoint[i].position;  
+                   if ( i % 2 == 0)
+                    {
+                        Wave.GetComponent<EnemyEventPlus>().Init( true, isRotaion ,TypeEvent);
+                    }
+                    else
+                    {
+                        Wave.GetComponent<EnemyEventPlus>().Init (false, isRotaion, TypeEvent);
+                    }
+                   
+                   check = false;
+                }
+            }
+
+            if(TypeEvent == 4)
+            {
+                for (int i = 1; i < spawnPoint.Length; i++)
+                {
+                    GameObject Wave = GameManager.instance.pool.Get(16);
+                    Wave.transform.position = spawnPoint[i].position;
+                    if (i % 2 == 0)
+                    {
+                        Wave.GetComponent<EnemyEventPlus>().Init(true, isRotaion,TypeEvent);
+                    }
+                    else
+                    {
+                        Wave.GetComponent<EnemyEventPlus>().Init(false, isRotaion, TypeEvent);
+                    }
+
+                    check = false;
+                }
+            } 
 
 
         }
@@ -116,14 +158,6 @@ public class EventWave : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-    }
-
-
-
 
 
 }

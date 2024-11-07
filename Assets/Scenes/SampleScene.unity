@@ -15737,9 +15737,9 @@ MonoBehaviour:
     health: 10
     speed: 1
     expOnDefeat: 2
-    EventWave: 0
-    CountEvent: 0
-    TypeEvent: 0
+    EventWave: 1
+    CountEvent: 1
+    TypeEvent: 2
   - spawnTime: 1
     spriteType: 0
     health: 20
@@ -15747,7 +15747,7 @@ MonoBehaviour:
     expOnDefeat: 2
     EventWave: 1
     CountEvent: 2
-    TypeEvent: 1
+    TypeEvent: 3
   - spawnTime: 0.7
     spriteType: 1
     health: 30
@@ -15755,7 +15755,7 @@ MonoBehaviour:
     expOnDefeat: 2
     EventWave: 1
     CountEvent: 1
-    TypeEvent: 1
+    TypeEvent: 4
   - spawnTime: 0.1
     spriteType: 0
     health: 5
@@ -15763,7 +15763,7 @@ MonoBehaviour:
     expOnDefeat: 1
     EventWave: 1
     CountEvent: 1
-    TypeEvent: 2
+    TypeEvent: 3
   - spawnTime: 0.3
     spriteType: 1
     health: 30
@@ -15779,7 +15779,7 @@ MonoBehaviour:
     expOnDefeat: 2
     EventWave: 1
     CountEvent: 3
-    TypeEvent: 1
+    TypeEvent: 3
   - spawnTime: 0.2
     spriteType: 3
     health: 40
@@ -15803,7 +15803,7 @@ MonoBehaviour:
     expOnDefeat: 2
     EventWave: 1
     CountEvent: 2
-    TypeEvent: 1
+    TypeEvent: 3
   - spawnTime: 0.1
     spriteType: 2
     health: 50
@@ -28043,6 +28043,9 @@ MonoBehaviour:
   - {fileID: 2171072642437720319, guid: 892cd2eaeb301434e91b15934ce68197, type: 3}
   - {fileID: 5599927472821100622, guid: 5476c8429ca849a4eb5cdf6c64195c04, type: 3}
   - {fileID: 1336976825616783080, guid: d14ac2115dcb96f4496a72a575dfa994, type: 3}
+  - {fileID: 7853291334845928894, guid: 16087077d49dab141855b982e36d2232, type: 3}
+  - {fileID: 7317869106351284931, guid: e571eee2556361e45a1cf2ae31552411, type: 3}
+  - {fileID: 4905297108732978901, guid: a286e73c2f540244796e475026b57eee, type: 3}
 --- !u!1 &585482766
 GameObject:
   m_ObjectHideFlags: 0
@@ -36409,7 +36412,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 65955e097df3f8b419732607e1536d92, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -1,19 +1,23 @@
-﻿using JetBrains.Annotations;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyEvent : MonoBehaviour
+public class EnemyEventPlus : MonoBehaviour
 {
     public float[] speed;
     public float health;
     public float maxHealth;
     public float expOnDefeat;
+
+    public ParticleSystem DustLeft;
+    public ParticleSystem DustRight;
+    public ParticleSystem DustUp;
+    public ParticleSystem DustDown;
+
     public bool IsAlive { get { return isLive; } }
     public RuntimeAnimatorController[] animController;
-
 
     public GameObject floatingtextPrefab;
     public bool isLive;
@@ -24,15 +28,19 @@ public class EnemyEvent : MonoBehaviour
     WaitForFixedUpdate wait;
     Rigidbody2D rigid;
 
-    public float timer = 0;
-    float cooldown = 20f;
-    public int TypeEnemy;
-
     public Rigidbody2D target;
     public Transform bestSpawnPoint;
 
+    public float timer = 0;
+    float cooldown = 10f;
+    public int TypeEnemy;
+
+    private bool isTopDown;
+    private bool isLeft;
+    private bool isFlixp = false;
+
     void Awake()
-    {    
+    {
         coll = GetComponent<Collider2D>();
         anim = GetComponent<Animator>();
         spriter = GetComponent<SpriteRenderer>();
@@ -41,38 +49,21 @@ public class EnemyEvent : MonoBehaviour
         target = GameManager.instance.player.GetComponent<Rigidbody2D>();
     }
 
-    public void Init( Transform transform, int Type)
+    public void Init( bool c, bool isRotation, int TypeEn )
     {
-        anim.runtimeAnimatorController = animController[Type];
-        bestSpawnPoint = transform;
-        TypeEnemy = Type;
-
-        if (TypeEnemy == 1)
-        {
-            health = 1000;
-            rigid.mass = 1000;       
-        }
-        else
-        {
-            health = maxHealth;
-            rigid.mass = 1f;
-        }
+        
+        isLeft = c;
+        maxHealth = 1000;
+        health = maxHealth;
+        rigid.mass = health;
+        isTopDown = isRotation;
+        TypeEnemy = TypeEn;
+       
     }
-
-    private void Update()
-    {
-        timer += Time.deltaTime;
-        if ( timer >= cooldown )
-        {
-            gameObject.SetActive( false );
-        }
-    }
-
-
 
     private void FixedUpdate()
     {
-      
+
         if (!GameManager.instance.isLive)
             return;
 
@@ -81,40 +72,70 @@ public class EnemyEvent : MonoBehaviour
             coll.isTrigger = true;
         }
 
-        //0 la event chay
-        if (TypeEnemy == 0)
+        switch (TypeEnemy) 
         {
-            if (bestSpawnPoint != null)
-            {
-                if (isLive)
+            case 3:
+                if (isTopDown)
                 {
-                    Vector2 dirVec = (Vector2)bestSpawnPoint.transform.position - rigid.position;
-                    Vector2 nextVec = dirVec.normalized * speed[0] * Time.fixedDeltaTime;
-                    rigid.MovePosition(rigid.position + nextVec);
-                    rigid.velocity = Vector2.zero;
+                    if (isLeft)
+                    {
+                        rigid.velocity = Vector2.up * 1f;
+                        CreateDustDown();
+                    }
+                    else
+                    {
+                        rigid.velocity = Vector2.down * 1f;
+                        CreateDustUp();
+                    }
+                }
+                else
+                {
+                    if (isLeft)
+                    {
+                        rigid.velocity = Vector2.right * 1f;
+                        CreateDustLeft();
+                    }
+                    else
+                    {
+                        rigid.velocity = Vector2.left * 1f;
+                        CreateDustRight();
+                    }
                 }
 
-            }
-        }
-        //1 la event vong tron
-        else
-        if (TypeEnemy == 1)
-        {
-            if (isLive)
-            {
-                Vector2 dirVec = target.position - rigid.position;
-                Vector2 nextVec;
-                nextVec = dirVec.normalized * speed[1] * Time.fixedDeltaTime;
-                rigid.MovePosition(rigid.position + nextVec);
-                rigid.velocity = Vector2.zero;
-            }
-        }  
-        
+                spriter.flipX = target.position.x < rigid.position.x;
 
-        spriter.flipX = bestSpawnPoint.transform.position.x < rigid.position.x;
+                break;
+            case 4:
+                
+                if (isLeft)
+                {
+                    rigid.velocity = Vector2.right * 5f;
+                    CreateDustLeft();
+                    
+                }
+                else
+                {
+                    spriter.flipX = true;
+                    rigid.velocity = Vector2.left * 5f;
+                    CreateDustRight();
+                    
+                }
+                break;
+
+        }  
     }
 
 
+
+    private void Update()
+    {
+        timer += Time.deltaTime;
+        if (timer >= cooldown)
+        {
+            anim.SetBool("Dead", true);
+            //gameObject.SetActive(false);
+        }
+    }
 
     private void OnEnable()
     {
@@ -124,8 +145,7 @@ public class EnemyEvent : MonoBehaviour
         spriter.sortingOrder = 2;
         anim.SetBool("Dead", false);
         health = maxHealth;
-        timer = 0;
-     
+        timer = 0;    
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -151,32 +171,22 @@ public class EnemyEvent : MonoBehaviour
             spriter.sortingOrder = 1;
             anim.SetBool("Dead", true);
             GameManager.instance.kill++;
-            GameManager.instance.GetExp(this);
+            //GameManager.instance.GetExp(this);
             if (GameManager.instance.isLive)
                 AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead);
         }
     }
 
-    IEnumerator KnockBack()
-    {
-        /*   yield return null; //khựng 1 frame
-           yield return new WaitForSeconds(2f); //coroutine 2s hết 2s mới tiếp tục bị knockback bới return null */
-        yield return wait;
-        Vector3 playerPos = GameManager.instance.player.transform.position;
-        Vector3 dirVec = transform.position - playerPos; // khoảng cách enemy - khoảng cách nhân vật
-       rigid.AddForce(dirVec.normalized * 3, ForceMode2D.Impulse); //Truyền knockback ngược về so với PlayerPos
-    }
-
-
     void Dead()
     {
-       gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
     void ShowDamage(string text)
     {
         GameObject prefab = Instantiate(floatingtextPrefab, transform.position, Quaternion.identity);
         prefab.GetComponentInChildren<TextMesh>().text = text;
     }
+
     public void TakeDamage(float damage)
     {
         // Subtract damage from health
@@ -186,11 +196,11 @@ public class EnemyEvent : MonoBehaviour
         if (health <= 0)
         {
             isLive = false;
-            coll.enabled = false;       
+            coll.enabled = false;
             spriter.sortingOrder = 1;
             anim.SetBool("Dead", true);
             GameManager.instance.kill++;
-            GameManager.instance.GetExp(this);
+            //GameManager.instance.GetExp(this);
             if (GameManager.instance.isLive)
                 AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead);
         }
@@ -200,30 +210,28 @@ public class EnemyEvent : MonoBehaviour
     {
 
         if (collision.gameObject.CompareTag("Player"))
-        {
-            if (TypeEnemy == 1)
-            {
-                rigid.mass = 500;
-                return;
-            }
-            else if (TypeEnemy == 0)
-            {
-                rigid.mass = 1.5f;
-            }
-        }
-
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            rigid.mass = 1.5f;
+         
+            rigid.mass = 500;
             return;
-        }
-
+      
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void CreateDustLeft()
     {
-        
+        DustLeft.Play();
+    }
+    
+    private void CreateDustRight()
+    {
+        DustRight.Play();
     }
 
-
+    private void CreateDustUp()
+    {
+        DustUp.Play();
+    }
+    private void CreateDustDown()
+    {
+        DustDown.Play();
+    }
 }

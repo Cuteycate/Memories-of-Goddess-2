@@ -200,6 +200,7 @@ MonoBehaviour:
   coolTime: 0
   target: {fileID: 0}
   spawner: {fileID: 0}
+  spawnEffect: {fileID: 0}
 --- !u!50 &7825445129230775729
 Rigidbody2D:
   serializedVersion: 4
