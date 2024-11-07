@@ -134,7 +134,11 @@ public class Enemy : MonoBehaviour
         health -= collision.GetComponent<Bullet>().damage;
         StartCoroutine(KnockBack());
         ShowDamage(collision.GetComponent<Bullet>().damage.ToString());
-      
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            return;
+        }
+
         if (health > 0)
         {
             anim.SetTrigger("Hit");

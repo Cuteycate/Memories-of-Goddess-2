@@ -11,8 +11,8 @@ public class PropRandom : MonoBehaviour
     public Tilemap[] groundTilemaps;
     public float nextSpawnTime = 10; //Khoang cach thoi gian spawn prop
 
-    public float spawnRangeX = 20f; // Khoang cach spawn Prop tren truc X
-    public float spawnRangeY = 20f; // Khoang cach spawn Prop tren truc Y
+    public float spawnRangeX = 10f; // Khoang cach spawn Prop tren truc X
+    public float spawnRangeY = 10f; // Khoang cach spawn Prop tren truc Y
 
     public float minDistanceBetweenProps = 5f; // Khoang cach toi thieu giua cac prop
     public float minDistanceToPlayer = 10f; // Khoang cach toi thieu voi player
@@ -99,7 +99,7 @@ public class PropRandom : MonoBehaviour
             foreach (Tilemap tilemap in groundTilemaps)
             {
                 Vector3Int cellPosition = tilemap.WorldToCell(spawnPosition);
-                if (tilemap.cellBounds.Contains(cellPosition))
+                if (tilemap.HasTile(cellPosition))
                 {
                     insideBounds = true;
 
@@ -114,7 +114,7 @@ public class PropRandom : MonoBehaviour
                         }
                     }
 
-                    if (!tooCloseToExistingProps && distanceToPlayer > minDistanceToPlayer)
+                    if (!tooCloseToExistingProps && distanceToPlayer > minDistanceToPlayer && insideBounds == true)
                     {
                         // Found a valid spawn position
                         return spawnPosition;

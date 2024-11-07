@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
             return;
         Vector2 nextVec = inputVec * speed * Time.fixedDeltaTime;
         rigid.MovePosition(rigid.position + nextVec);
+
     }
     void OnMove(InputValue value)
     {
@@ -86,6 +87,11 @@ public class Player : MonoBehaviour
         {
             return;
         }
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+                return;
+        }
+
         GameManager.instance.Health -= Time.deltaTime * 10;
 
         if (GameManager.instance.Health < 0)
