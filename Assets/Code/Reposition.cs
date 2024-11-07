@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -44,6 +44,19 @@ public class RePosition : MonoBehaviour
                     Vector3 ran = new Vector3(Random.Range(1,-3), Random.Range(1,-3), 0);
                     transform.Translate(ran + dist * 2);
                 }
+                break;
+            case "Wall":
+                float difffX = playerPos.x - myPos.x;
+                float difffY = playerPos.y - myPos.y;
+                float dirrX = difffX < 0 ? -1 : 1;
+                float dirrY = difffY < 0 ? -1 : 1;
+                diffX = Mathf.Abs(difffX);
+                diffY = Mathf.Abs(difffY);
+                if (diffX > diffY)
+                {
+                    transform.Translate(Vector3.right * dirrX * 60 );
+                }
+                
                 break;
         }
         OnTilemapMove.Invoke();

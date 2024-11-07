@@ -16,6 +16,7 @@ TagManager:
   - BulletTur
   - HitBoxBoss
   - BulletBoss
+  - Wall
   layers:
   - Default
   - TransparentFX
