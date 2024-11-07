@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,7 +18,10 @@ public class Character : MonoBehaviour
     }
     public static float Damage
     {
-        get { return GameManager.instance.PlayerId == 2 ? 1.2f : 1f; }
+        get
+        {
+            return GameManager.instance.PlayerId == 2 ? 1.2f * ShopStats.Instance.damageMultiplier : 1f * ShopStats.Instance.damageMultiplier;
+        }
     }
     public static int Count
     {

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public int level;
     public int kill;
     public float exp;
+    public int gold;
+    public int totalGold;
     public float[] nextExp = { 3, 5, 10, 100, 150, 210, 280, 360, 450, 600 };
     public float ExtraRateExp=0;
     [Header("# Game Object")]
@@ -34,9 +36,11 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        totalGold = PlayerPrefs.GetInt("TotalGold", 0);
     }
     public void GameStart(int id)
     {
+        ShopStats.Instance.LoadStats();
         PlayerId = id;
         Health = MaxHealth;
         player.gameObject.SetActive(true);
@@ -54,6 +58,10 @@ public class GameManager : MonoBehaviour
     IEnumerator GameOverRoutine()
     {
         isLive = false;
+        // Truyền vàng vào Total vàng rồi lưu lại qua PlayerPrefs
+        totalGold += gold;
+        PlayerPrefs.SetInt("TotalGold", totalGold);
+        PlayerPrefs.Save();
         yield return new WaitForSeconds(0.5f);
         uiResult.gameObject.SetActive(true);
         uiResult.Lose();
@@ -70,6 +78,10 @@ public class GameManager : MonoBehaviour
     {
         enemyCleaner.SetActive(true);
         isLive = false;
+        // Truyền vàng vào Total vàng rồi lưu lại qua PlayerPrefs
+        totalGold += gold;
+        PlayerPrefs.SetInt("TotalGold", totalGold);
+        PlayerPrefs.Save();
         AudioManager.instance.PlayBgm(false);
         yield return new WaitForSeconds(4f);
         uiResult.gameObject.SetActive(true);

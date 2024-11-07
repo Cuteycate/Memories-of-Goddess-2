@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using static Cinemachine.DocumentationSortingAttribute;
 public class HUD : MonoBehaviour
 {
-    public enum InfoType { Exp, Level, Kill, Time, Health}
+    public enum InfoType { Exp, Level, Kill,Gold , Time, Health, Totalgold}
     public InfoType type;
 
     Text myText;
@@ -33,6 +33,9 @@ public class HUD : MonoBehaviour
             case InfoType.Kill:
                 myText.text = string.Format("{0:F0}", GameManager.instance.kill);
                 break;
+            case InfoType.Gold:
+                myText.text = string.Format("{0:F0}", GameManager.instance.gold);
+                break;
             case InfoType.Time:
                 float remainTime = GameManager.instance.maxgameTime - GameManager.instance.gameTime;
                 if (remainTime <= 0)
@@ -50,6 +53,9 @@ public class HUD : MonoBehaviour
                 float curHealth = GameManager.instance.Health;
                 float maxHealth = GameManager.instance.MaxHealth;
                 mySlider.value = curHealth / maxHealth;
+                break;
+            case InfoType.Totalgold:
+                myText.text = string.Format("{0:F0}", GameManager.instance.totalGold);
                 break;
 
         }

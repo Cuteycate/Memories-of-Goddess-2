@@ -690,7 +690,7 @@ TextureImporter:
         width: 18
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -698,6 +698,48 @@ TextureImporter:
       bones: []
       spriteID: f990abb92e287a347bf25f59adb1b582
       internalID: -1323163944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Icon 4
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 37
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22ace05dac8a3b749a4c67dac823fa5e
+      internalID: -810532023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_Gold
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 0
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3955765e6bcd197409024de9237a4ff0
+      internalID: 1481902859
       vertices: []
       indices: 
       edges: []
@@ -723,6 +765,7 @@ TextureImporter:
       Front 1: -1722126508
       HollowHeart_UI: -335569666
       Icon 0: 891942287
+      Icon 4: -810532023
       Joystick 0: 1328899968
       Joystick 1: -1798395208
       Lightning_Ring_UI: -1323163944
@@ -740,6 +783,7 @@ TextureImporter:
       Title 0: 1315674547
       Title 1: -1799623379
       Title 2: -77559378
+      UI_Gold: 1481902859
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
