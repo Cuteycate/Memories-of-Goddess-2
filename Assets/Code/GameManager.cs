@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     public TreasureChest treasureChest;
     public Result uiResult;
     public GameObject enemyCleaner;
-
+    public int mapid;
     void Awake()
     {
         instance = this;
@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     }
     public void GameStart(int id)
     {
+        Item.ListGear.Clear();
+        Item.ListWeapon.Clear();
         ShopStats.Instance.LoadStats();
         PlayerId = id;
         Health = MaxHealth;
@@ -49,6 +51,7 @@ public class GameManager : MonoBehaviour
         AudioManager.instance.PlayOpening(false);
         AudioManager.instance.PlayBgm(true);
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Select);
+
     }
 
     public void GameOver()
@@ -106,7 +109,6 @@ public class GameManager : MonoBehaviour
         gameTime += Time.deltaTime;
         if (gameTime > maxgameTime && !FinalBossStillAlive)
         {
-            gameTime = maxgameTime;
             GameVictory();
         }
     }
@@ -177,5 +179,10 @@ public class GameManager : MonoBehaviour
     public void PlaySelect()
     {
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Select);
+    }
+    
+    public void setmap(int id)
+    {
+        mapid = id;
     }
 }

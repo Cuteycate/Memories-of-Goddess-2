@@ -20,6 +20,10 @@ public class Weapon : MonoBehaviour
     private Coroutine batchCoroutine;
     Player player;
 
+    public Sprite Icon;
+    public int level = 1;
+    public int maxlevel;
+
     void Awake()
     {
         player = GameManager.instance.player;
@@ -91,6 +95,8 @@ public class Weapon : MonoBehaviour
         penetration = data.basePenetration;
         //hiteffect
         hiteffect = data.HitEffect;
+        Icon = data.itemIcon;
+        maxlevel = data.damages.Length;
         for (int i = 0; i < GameManager.instance.pool.prefabs.Length; i++)
         {
             if (data.projectiles == GameManager.instance.pool.prefabs[i])
@@ -134,6 +140,7 @@ public class Weapon : MonoBehaviour
     }
     public void LevelUp(float damage, int count, int penetration)
     {
+        level++;
         this.damage = damage * Character.Damage;
         this.count += count;
         this.penetration += penetration;
