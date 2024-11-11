@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopType: 5
   shopId: 5
-  shopName: Speed
+  shopName: Cooldown
   shopDesc:
-  - 'Increase weapon speed by '
-  - 'Increase weapon speed by '
+  - Decrease weapon cooldown by {0}%
+  - Decrease weapon cooldown by {0}%
   shopIcon: {fileID: -201829820, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseNumber: 0.1
   baseGold: 300
   Numbers:
   - 0.1
   - 0.2
-  Golds:
-  - 300
-  - 600
+  Golds: 2c01000058020000
+  isMaxed: 1
+  currentLevel: 1

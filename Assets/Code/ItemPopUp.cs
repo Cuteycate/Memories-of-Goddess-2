@@ -45,13 +45,13 @@ public class ItemPopUp : MonoBehaviour
     private void UpdateDisplay()
     {
         textName.text = data.shopName;
-        textLevel.text = "Lv." + (currentLevel + 1);
-
+        textLevel.text = "Lv." + currentLevel;
+        textDesc.text = string.Format(data.shopDesc[currentLevel], data.Numbers[currentLevel] * 100);
         if (data.isMaxed)
         {
             // Nếu như Maxed thì truyền những dữ liệu bên dưới và xóa interactable nút upgrade
-            textDesc.text = "Maxed";
             goldAmount.text = "0";
+            textLevel.text = "Lv." + ( currentLevel +1);
             if (upgradeButton != null)
             {
                 upgradeButton.interactable = false;
@@ -60,7 +60,6 @@ public class ItemPopUp : MonoBehaviour
         else
         {
             // Hiển thị bth theo data
-            textDesc.text = string.Format(data.shopDesc[currentLevel], data.Numbers[currentLevel] * 100);
             goldAmount.text = data.Golds[currentLevel].ToString();
             if (upgradeButton != null)
             {
@@ -115,9 +114,10 @@ public class ItemPopUp : MonoBehaviour
             PlayerPrefs.SetInt("TotalGold", GameManager.instance.totalGold);
             PlayerPrefs.Save();
             float upgradeValue = data.Numbers[currentLevel];
+            textDesc.text = string.Format(data.shopDesc[currentLevel], data.Numbers[currentLevel] * 100);
+            textLevel.text = "Lv." + (currentLevel + 1);
             shopStats.ApplyUpgrade(data.shopId, upgradeValue);
             data.isMaxed = true;
-            textDesc.text = "Maxed";
             goldAmount.text = "0";
         }
     }

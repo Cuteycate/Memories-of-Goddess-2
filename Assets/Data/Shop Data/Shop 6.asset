@@ -16,14 +16,14 @@ MonoBehaviour:
   shopId: 6
   shopName: Magnet
   shopDesc:
-  - Increase item pickup range
-  - Increase item pickup range
+  - Increase item pickup range by {0}%
+  - Increase item pickup range by {0}%
   shopIcon: {fileID: -5023191571745468844, guid: a412965c220eabf449947809d2387dee, type: 3}
   baseNumber: 0.25
   baseGold: 400
   Numbers:
   - 0.25
   - 0.5
-  Golds:
-  - 400
-  - 800
+  Golds: 9001000020030000
+  isMaxed: 0
+  currentLevel: 0

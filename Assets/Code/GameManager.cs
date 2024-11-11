@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.EditorTools;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -32,6 +33,7 @@ public class GameManager : MonoBehaviour
     public TreasureChest treasureChest;
     public Result uiResult;
     public GameObject enemyCleaner;
+    public GameObject ExpPickUpPrefab;
 
     void Awake()
     {
@@ -42,8 +44,10 @@ public class GameManager : MonoBehaviour
     {
         ShopStats.Instance.LoadStats();
         PlayerId = id;
-        Health = MaxHealth;
-        player.gameObject.SetActive(true);
+        MaxHealth *= ShopStats.Instance.maxhealthMultiplier; // Lay multiplier to ShopStats roi tinh toan
+        Health = MaxHealth; // Health = maxHealth
+        player.gameObject.SetActive(true); // Set player object true de bat dau
+        instance.player.StartHealthRecovery(0); // Bat dau HealthRecovery nhung khong co gear (trong truong hop nay gear = 0)
         uiLevelUp.Select(PlayerId % 2); //
         Resume();
         AudioManager.instance.PlayOpening(false);
@@ -66,7 +70,6 @@ public class GameManager : MonoBehaviour
         uiResult.gameObject.SetActive(true);
         uiResult.Lose();
         Stop();
-
         AudioManager.instance.PlayBgm(false);
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Lose);
     }
@@ -112,45 +115,35 @@ public class GameManager : MonoBehaviour
     }
     public void GetExp(Enemy enemy)
     {
-        if (!isLive)
-            return;
-        Debug.Log("Base expOnDefeat: " + enemy.expOnDefeat);
-        Debug.Log("ExtraRateExp: " + ExtraRateExp);
-        exp += enemy.expOnDefeat + (enemy.expOnDefeat * ExtraRateExp);
-        if (exp >= nextExp[Mathf.Min(level, nextExp.Length - 1)])
+        if (!isLive) return;
+
+        // Spawn ra hat XP duoi vi tri ma Enemy dead
+        SpawnExpPickUp(enemy.transform.position, enemy.expOnDefeat);
+    }
+    void SpawnExpPickUp(Vector3 position, float expAmount)
+    {
+        // Tao mot instance cua expPickUp (make sure ExpPickUpPrefab is assigned in the Inspector)
+        GameObject expPickUp = pool.Get(18);
+        expPickUp.transform.position = position;
+        ExpPickUp expPickUpComponent = expPickUp.GetComponent<ExpPickUp>();
+        if (expPickUpComponent != null)
         {
-            level++;
-            exp = 0;
-            uiLevelUp.Show();
-        }
+            expPickUpComponent.expAmount = expAmount;
+        } // Đặt exp amount
     }
     public void GetExp(EnemyEvent enemy)
     {
-        if (!isLive)
-            return;
-        Debug.Log("Base expOnDefeat: " + enemy.expOnDefeat);
-        Debug.Log("ExtraRateExp: " + ExtraRateExp);
-        exp += enemy.expOnDefeat + (enemy.expOnDefeat * ExtraRateExp);
-        if (exp >= nextExp[Mathf.Min(level, nextExp.Length - 1)])
-        {
-            level++;
-            exp = 0;
-            uiLevelUp.Show();
-        }
+        if (!isLive) return;
+
+        // Spawn ra hat XP duoi vi tri ma Enemy dead
+        SpawnExpPickUp(enemy.transform.position, enemy.expOnDefeat);
     }
     public void GetExp(BossEnemy enemy)
     {
-        if (!isLive)
-            return;
-        Debug.Log("Base expOnDefeat: " + enemy.expOnDefeat);
-        Debug.Log("ExtraRateExp: " + ExtraRateExp);
-        exp += enemy.expOnDefeat + (enemy.expOnDefeat * ExtraRateExp);
-        if (exp >= nextExp[Mathf.Min(level, nextExp.Length - 1)])
-        {
-            level++;
-            exp = 0;
-            uiLevelUp.Show();
-        }
+        if (!isLive) return;
+
+        // Spawn ra hat XP duoi vi tri ma Enemy dead
+        SpawnExpPickUp(enemy.transform.position, enemy.expOnDefeat);
     }
     public void ResHealth(float amount)
     {

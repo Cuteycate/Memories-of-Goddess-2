@@ -16,8 +16,9 @@ MonoBehaviour:
   shopId: 1
   shopName: Max Health
   shopDesc:
-  - 
-  - 
+  - Increase max health by {0}%
+  - Increase max health by {0}%
+  - Increase max health by {0}%
   shopIcon: {fileID: -335569666, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseNumber: 0.1
   baseGold: 200
@@ -25,7 +26,6 @@ MonoBehaviour:
   - 0.1
   - 0.2
   - 0.3
-  Golds:
-  - 200
-  - 400
-  - 600
+  Golds: c80000009001000058020000
+  isMaxed: 0
+  currentLevel: 0

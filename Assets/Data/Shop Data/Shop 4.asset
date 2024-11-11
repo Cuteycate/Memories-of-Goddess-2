@@ -17,13 +17,13 @@ MonoBehaviour:
   shopName: Amount
   shopDesc:
   - Fires 1 more projectile (all weapons).
-  - Fires 1 more projectile (all weapons).
+  - Fires 2 more projectile (all weapons).
   shopIcon: {fileID: -1002307068, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseNumber: 1
   baseGold: 5000
   Numbers:
   - 1
   - 2
-  Golds:
-  - 5000
-  - 10000
+  Golds: 8813000010270000
+  isMaxed: 0
+  currentLevel: 1

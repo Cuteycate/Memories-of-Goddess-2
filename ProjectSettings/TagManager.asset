@@ -17,6 +17,7 @@ TagManager:
   - HitBoxBoss
   - BulletBoss
   - Wall
+  - CircleCollider
   layers:
   - Default
   - TransparentFX

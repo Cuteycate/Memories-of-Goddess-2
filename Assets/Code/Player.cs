@@ -82,14 +82,16 @@ public class Player : MonoBehaviour
     {
         if (!GameManager.instance.isLive)
             return;
-
+        CapsuleCollider2D playerCollider = GetComponent<CapsuleCollider2D>();
+        if (collision.otherCollider != playerCollider)
+            return;
         if (collision.gameObject.CompareTag("Turet"))
         {
             return;
         }
         if (collision.gameObject.CompareTag("Wall"))
         {
-                return;
+            return;
         }
 
         GameManager.instance.Health -= Time.deltaTime * 10;
@@ -132,13 +134,14 @@ public class Player : MonoBehaviour
     }
 
 
-    public void StartHealthRecovery(float recoveryRate)
+    public void StartHealthRecovery(float gearRecoveryRate)
     {
+        float shopRecoveryRate = ShopStats.Instance.healthrecoveryMultiplier;
         if (healthRecoveryCoroutine != null)
         {
             StopCoroutine(healthRecoveryCoroutine);
         }
-        healthRecoveryCoroutine = StartCoroutine(HealthRecoveryCoroutine(recoveryRate));
+        healthRecoveryCoroutine = StartCoroutine(HealthRecoveryCoroutine(gearRecoveryRate, shopRecoveryRate));
     }
     public void StopHealthRecovery()
     {
@@ -148,16 +151,20 @@ public class Player : MonoBehaviour
             healthRecoveryCoroutine = null;
         }
     }
-    private IEnumerator HealthRecoveryCoroutine(float recoveryRate)
+    private IEnumerator HealthRecoveryCoroutine(float gearRecoveryRate, float shopRecoveryRate)
     {
         while (true)
         {
             GameManager gameManager = GameManager.instance;
             if (gameManager != null && gameManager.Health < gameManager.MaxHealth)
             {
-                gameManager.Health = Mathf.Min(gameManager.Health + recoveryRate, gameManager.MaxHealth);
+                // Tinh tong tu gear + shop
+                float totalRecoveryRate = gearRecoveryRate + shopRecoveryRate;
+                gameManager.Health = Mathf.Min(gameManager.Health + totalRecoveryRate, gameManager.MaxHealth);
             }
+            // Moi 1 giay thi hoi nhu totalrecoveryrate mau.
             yield return new WaitForSeconds(1f);
         }
     }
+
 }

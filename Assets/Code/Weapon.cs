@@ -15,7 +15,8 @@ public class Weapon : MonoBehaviour
     float timer;
     private bool isBatchEnabled = false;
     public float MeleeCoolDown = 3f;
-
+    private static List<float> baseCoolDowns = new List<float>();
+    public float baseCoolDown;
     public GameObject hiteffect;
     private Coroutine batchCoroutine;
     Player player;
@@ -87,8 +88,12 @@ public class Weapon : MonoBehaviour
         //Property Set
         id = data.itemId;
         damage = data.baseDamage * Character.Damage;
-        count = data.baseCount + Character.Count + ExtraCount;
+        baseCoolDown = data.baseCoolDown;
+        // Base Count = Count nguyên bản - ExtraCount = Count từ Gear ProjectileMultiplier = Count từ Shop
+        count = data.baseCount + Character.Count + ExtraCount + ShopStats.Instance.projectileMultiplier;
         penetration = data.basePenetration;
+        //Su dung de tinh CoolDown Cua vu khi va luu tru vao baseCoolDowns
+        float calculatedSpeed = 0f;
         //hiteffect
         hiteffect = data.HitEffect;
         for (int i = 0; i < GameManager.instance.pool.prefabs.Length; i++)
@@ -103,27 +108,27 @@ public class Weapon : MonoBehaviour
         {
             case 0:
                 speed = 150 * Character.WeaponSpeed;
+                MeleeCoolDown = MeleeCoolDown * Character.WeaponRate;
+                calculatedSpeed = MeleeCoolDown;
                 Batch();
                 batchCoroutine = StartCoroutine(ToggleBatchCoroutine());
                 break;
             case 1:
-                speed = 3f * Character.WeaponRate;
-                break;
             case 8:
-                speed = 5f * Character.WeaponRate;
-                break;
             case 9:
-                speed = 10f * Character.WeaponRate;
-                break;
             case 10:
-                speed = 2f * Character.WeaponRate;
-                break;
             case 11:
-                speed = 3f * Character.WeaponRate;
+                speed = baseCoolDown * Character.WeaponRate;
+                calculatedSpeed = speed;
                 break;
             default:
                 break;
         }
+        if (id >= baseCoolDowns.Count)
+        {
+            baseCoolDowns.AddRange(new float[id - baseCoolDowns.Count + 1]);
+        }
+        baseCoolDowns[id] = calculatedSpeed;
         if ((int)data.itemType == 0 || (int)data.itemType == 1)
         {
             Hand hand = player.hands[(int)data.itemType];
@@ -443,6 +448,11 @@ public class Weapon : MonoBehaviour
 
         // After cooldown, retry the lightning attack
         LightningAttack();
+    }
+    //Lay basecooldown tu danh sach vu khi dua vao weaponId
+    public static float GetBaseCoolDown(int weaponId)
+    {
+        return weaponId < baseCoolDowns.Count ? baseCoolDowns[weaponId] : 0f;
     }
 
 

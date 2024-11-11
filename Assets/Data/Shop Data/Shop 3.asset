@@ -16,14 +16,20 @@ MonoBehaviour:
   shopId: 3
   shopName: MoveSpeed
   shopDesc:
-  - 
-  - 
+  - Increase movement speed by {0}%
+  - Increase movement speed by {0}%
+  - Increase movement speed by {0}%
+  - Increase movement speed by {0}%
+  - Increase movement speed by {0}%
   shopIcon: {fileID: -966295699, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
-  baseNumber: 0.05
+  baseNumber: 0.1
   baseGold: 300
   Numbers:
   - 0.05
   - 0.1
-  Golds:
-  - 300
-  - 600
+  - 0.15
+  - 0.2
+  - 0.25
+  Golds: 2c0100005802000084030000b0040000dc050000
+  isMaxed: 0
+  currentLevel: 0

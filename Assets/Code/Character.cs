@@ -6,7 +6,7 @@ public class Character : MonoBehaviour
 {
     public static float Speed
     {
-        get { return GameManager.instance.PlayerId == 0 ? 1.1f : 1f; }
+        get { return GameManager.instance.PlayerId == 0 ? 1.1f * ShopStats.Instance.movementspeedMultiplier : 1f * ShopStats.Instance.movementspeedMultiplier;  }
     }
     public static float WeaponSpeed
     {
@@ -14,7 +14,7 @@ public class Character : MonoBehaviour
     }
     public static float WeaponRate
     {
-        get { return GameManager.instance.PlayerId == 1 ? 0.9f : 1f; }
+        get { return GameManager.instance.PlayerId == 1 ? 0.9f * ShopStats.Instance.cooldownMultiplier : 1f * ShopStats.Instance.cooldownMultiplier; }
     }
     public static float Damage
     {

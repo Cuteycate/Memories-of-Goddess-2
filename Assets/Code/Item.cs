@@ -53,6 +53,7 @@ public class Item : MonoBehaviour
                 case ItemData.ItemType.Shoe:
                 case ItemData.ItemType.EmptyHeart:
                 case ItemData.ItemType.XpCrown:
+                case ItemData.ItemType.Radius:
                     textDesc.text = string.Format(data.itemDesc[level], data.damages[level] * 100);
                     break;
                 case ItemData.ItemType.ExtraProjectile:
@@ -103,6 +104,7 @@ public class Item : MonoBehaviour
             case ItemData.ItemType.ExtraProjectile:
             case ItemData.ItemType.Bandage:
             case ItemData.ItemType.XpCrown:
+            case ItemData.ItemType.Radius:
                 if (level == 0)
                 {
                     GameObject newGear = new GameObject();
@@ -146,6 +148,7 @@ public class Item : MonoBehaviour
             case ItemData.ItemType.XpCrown:
             case ItemData.ItemType.Scythe:
             case ItemData.ItemType.Lightning:
+            case ItemData.ItemType.Radius:
                 level++;
                 break;
             case ItemData.ItemType.Heal:

@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +6,8 @@ public class Gear : MonoBehaviour
 {
     public ItemData.ItemType type;
     public float rate;
-
+    private float baseMaxHealth;
+    private float baseSpeed;
     public void Init(ItemData data)
     {
         //Basic set
@@ -16,6 +17,14 @@ public class Gear : MonoBehaviour
         //Property set
         type = data.itemType;
         rate = data.damages[0];
+        if (baseMaxHealth == 0f)
+        {
+            baseMaxHealth = GameManager.instance.MaxHealth;
+        }
+        if (baseSpeed == 0f)
+        {
+            baseSpeed = GameManager.instance.player.speed;
+        }
         ApplyGear();
     }
     public void LevelUp(float rate)
@@ -25,7 +34,7 @@ public class Gear : MonoBehaviour
     }
     void ApplyGear()
     {
-        switch(type)
+        switch (type)
         {
             case ItemData.ItemType.Glove:
                 RateUp();
@@ -45,47 +54,48 @@ public class Gear : MonoBehaviour
             case ItemData.ItemType.XpCrown:
                 IncreaseXp();
                 break;
+            case ItemData.ItemType.Radius:
+                IncreaseRadius();
+                break;
         }
     }
-    void RateUp()
+    public void RateUp()
     {
         Weapon[] weapons = transform.parent.GetComponentsInChildren<Weapon>();
-        foreach(Weapon weapon in weapons)
+        foreach (Weapon weapon in weapons)
         {
-            switch(weapon.id)
+            float calculatedSpeed = Weapon.GetBaseCoolDown(weapon.id);
+            float rateAdjustedSpeed = calculatedSpeed * (1f - rate);
+
+            switch (weapon.id)
             {
                 case 0:
                     float speed = 150 * Character.WeaponSpeed;
                     weapon.speed = speed + (speed * rate);
-                    float firerate = 3f * Character.WeaponRate;
-                    weapon.MeleeCoolDown = firerate * (1f - rate);
+                    float fireRate = rateAdjustedSpeed;
+                    weapon.MeleeCoolDown = fireRate * (1f - rate);
                     weapon.BroadcastMessage("Batch", SendMessageOptions.DontRequireReceiver);
                     break;
                 case 1:
                 case 8:
+                case 9:
                 case 10:
                 case 11:
-                    speed = 3f * Character.WeaponRate;
-                    weapon.speed = speed * (1f - rate);
-                    break;
-                case 9:
-                    speed = 7f * Character.WeaponRate;
-                    weapon.speed = speed * (1f - rate);
+                    weapon.speed = rateAdjustedSpeed;
                     break;
                 default:
                     break;
             }
         }
     }
+
     void SpeedUp()
     {
-        float speed = 3 * Character.Speed;
-        GameManager.instance.player.speed = speed + speed * rate;
+        GameManager.instance.player.speed = baseSpeed * (1 + rate);
     }
     void MaxHealthUp()
     {
-        float maxhealth = 100;
-        GameManager.instance.MaxHealth = maxhealth + maxhealth*rate;
+        GameManager.instance.MaxHealth = baseMaxHealth * (1 + rate);
     }
     void ProjectileUp()
     {
@@ -106,7 +116,7 @@ public class Gear : MonoBehaviour
                 case 11:
                     weapon.ExtraCount = Mathf.Min((int)rate, 2);
                     break;
-                
+
                 default:
                     break;
             }
@@ -114,10 +124,22 @@ public class Gear : MonoBehaviour
     }
     void RecoverHp()
     {
-        GameManager.instance.player.StartHealthRecovery(0.2f * rate);
+        float gearRecoveryRate = 0.2f * rate; //Tinh rate sau do cho truyen vao starthealthrecovery
+        GameManager.instance.player.StartHealthRecovery(gearRecoveryRate);
     }
     void IncreaseXp()
     {
         GameManager.instance.ExtraRateExp = rate;
+    }
+    void IncreaseRadius()
+    {
+        ItemCollider itemCollider = GameManager.instance.player.GetComponentInChildren<ItemCollider>();
+
+        if (itemCollider != null)
+        {
+            // Tính radius mới dùng số cũ * rates
+            float newRadius = itemCollider.circleCollider.radius * (1f + rate);
+            itemCollider.UpdateRadius(newRadius);
+        }
     }
 }

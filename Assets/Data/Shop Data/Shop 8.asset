@@ -16,8 +16,11 @@ MonoBehaviour:
   shopId: 8
   shopName: Greed
   shopDesc:
-  - Increase Gold by
-  - Increase Gold by
+  - Increase Gold by {0}%
+  - Increase Gold by {0}%
+  - Increase Gold by {0}%
+  - Increase Gold by {0}%
+  - Increase Gold by {0}%
   shopIcon: {fileID: 1481902859, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseNumber: 0.1
   baseGold: 200
@@ -27,9 +30,6 @@ MonoBehaviour:
   - 0.3
   - 0.4
   - 0.5
-  Golds:
-  - 200
-  - 400
-  - 600
-  - 800
-  - 1000
+  Golds: c8000000900100005802000020030000e8030000
+  isMaxed: 0
+  currentLevel: 2

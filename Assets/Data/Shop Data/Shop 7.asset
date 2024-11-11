@@ -16,8 +16,11 @@ MonoBehaviour:
   shopId: 7
   shopName: Growth
   shopDesc:
-  - 'Increase XP by '
-  - 'Increase XP by '
+  - Increase XP  by {0}%
+  - Increase XP by {0}%
+  - Increase XP by {0}%
+  - Increase XP by {0}%
+  - Increase XP by {0}%
   shopIcon: {fileID: -1064734474, guid: d71a3dc7aa20fad4f9a99fc76a9254ba, type: 3}
   baseNumber: 0.03
   baseGold: 900
@@ -27,9 +30,6 @@ MonoBehaviour:
   - 0.09
   - 0.12
   - 0.15
-  Golds:
-  - 900
-  - 1800
-  - 2700
-  - 3600
-  - 4500
+  Golds: 84030000080700008c0a0000100e000094110000
+  isMaxed: 0
+  currentLevel: 0
