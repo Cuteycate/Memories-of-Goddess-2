@@ -8,8 +8,10 @@ public class AchiveManager : MonoBehaviour
 {
     public GameObject[] lockCharacter;
     public GameObject[] unlockCharacter;
+    public GameObject[] lockMap;
+    public GameObject[] unlockMap;
     public GameObject uiNotice;
-    enum Achive {UnlockCharacter2,UnlockCharacter3 }
+    enum Achive {UnlockCharacter2,UnlockCharacter3}
     Achive[] achives;
     WaitForSecondsRealtime wait;
     void Awake()
@@ -32,6 +34,10 @@ public class AchiveManager : MonoBehaviour
     void Start()
     {
         UnlockCharacter();
+        int unlockedMap = PlayerPrefs.GetInt("Map", 1);
+        bool isMap2Unlocked = unlockedMap >= 2;
+        lockMap[0].SetActive(!isMap2Unlocked);  
+        unlockMap[0].SetActive(isMap2Unlocked);
     }
     void UnlockCharacter()
     {
@@ -84,4 +90,11 @@ public class AchiveManager : MonoBehaviour
         yield return wait;
         uiNotice.SetActive(false);
     }
+
+    public void map2unlockNotice()
+    {
+        uiNotice.transform.GetChild(2).gameObject.SetActive(true);
+        StartCoroutine(NoticeRoutine());
+    }
+
 }

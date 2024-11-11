@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +12,9 @@ public class Item : MonoBehaviour
     Text textLevel;
     Text textName;
     Text textDesc;
+
+    public static List<Weapon> ListWeapon = new List<Weapon>();
+    public static List<Gear> ListGear = new List<Gear>();
     void Awake()
     {
         icon = GetComponentsInChildren<Image>()[1];
@@ -80,11 +83,13 @@ public class Item : MonoBehaviour
                 {
                     GameObject newWeapon = new GameObject();
                     weapon = newWeapon.AddComponent<Weapon>();
+                    
                     if (!allItemData.Contains(data))
                     {
                         allItemData.Add(data);
                     }
                     weapon.Init(data);
+                    ListWeapon.Add(weapon);
                 }
                 else
                 {
@@ -114,6 +119,7 @@ public class Item : MonoBehaviour
                         allItemData.Add(data);
                     }
                     gear.Init(data);
+                    ListGear.Add(gear);
                 }
                 else
                 {

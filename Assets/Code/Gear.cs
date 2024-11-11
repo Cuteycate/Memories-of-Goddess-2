@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Gear : MonoBehaviour
 {
+    public int id;
     public ItemData.ItemType type;
     public float rate;
     private float baseMaxHealth;
     private float baseSpeed;
+    public Sprite Icon;
+    public int level = 1;
+    public int maxlevel;
     public void Init(ItemData data)
     {
         //Basic set
+        id = data.itemId;
         name = "Gear" + data.itemId;
         transform.parent = GameManager.instance.player.transform;
         transform.localPosition = Vector3.zero;
@@ -25,11 +30,14 @@ public class Gear : MonoBehaviour
         {
             baseSpeed = GameManager.instance.player.speed;
         }
+        Icon = data.itemIcon;
+        maxlevel = data.damages.Length;
         ApplyGear();
     }
     public void LevelUp(float rate)
     {
         this.rate = rate;
+        level++;
         ApplyGear();
     }
     void ApplyGear()
