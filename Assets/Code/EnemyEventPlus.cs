@@ -37,7 +37,6 @@ public class EnemyEventPlus : MonoBehaviour
 
     private bool isTopDown;
     private bool isLeft;
-    private bool isFlixp = false;
 
     void Awake()
     {

@@ -22389,169 +22389,149 @@ MonoBehaviour:
     speed: 1
     expOnDefeat: 2
     EventWave: 1
-    CountEvent: 1
-    TypeEvent: 2
+    EventWaveDetails: []
   - spawnTime: 1
     spriteType: 0
     health: 20
     speed: 1
     expOnDefeat: 2
     EventWave: 1
-    CountEvent: 2
-    TypeEvent: 3
+    EventWaveDetails: []
   - spawnTime: 0.7
     spriteType: 1
     health: 30
     speed: 1
     expOnDefeat: 2
     EventWave: 1
-    CountEvent: 1
-    TypeEvent: 4
+    EventWaveDetails: []
   - spawnTime: 0.1
     spriteType: 0
     health: 5
     speed: 2
     expOnDefeat: 1
     EventWave: 1
-    CountEvent: 1
-    TypeEvent: 3
+    EventWaveDetails: []
   - spawnTime: 0.3
     spriteType: 1
     health: 30
     speed: 1.1
     expOnDefeat: 2
     EventWave: 1
-    CountEvent: 1
-    TypeEvent: 1
+    EventWaveDetails: []
   - spawnTime: 0.3
     spriteType: 1
     health: 40
     speed: 1.1
     expOnDefeat: 2
     EventWave: 1
-    CountEvent: 3
-    TypeEvent: 3
+    EventWaveDetails: []
   - spawnTime: 0.2
     spriteType: 3
     health: 40
     speed: 1
     expOnDefeat: 2
     EventWave: 1
-    CountEvent: 2
-    TypeEvent: 1
+    EventWaveDetails: []
   - spawnTime: 0.3
     spriteType: 2
     health: 50
     speed: 1
     expOnDefeat: 2
     EventWave: 0
-    CountEvent: 0
-    TypeEvent: 0
+    EventWaveDetails: []
   - spawnTime: 0.05
     spriteType: 2
     health: 20
     speed: 2
     expOnDefeat: 2
     EventWave: 1
-    CountEvent: 2
-    TypeEvent: 3
+    EventWaveDetails: []
   - spawnTime: 0.1
     spriteType: 2
     health: 50
     speed: 2
     expOnDefeat: 2
     EventWave: 1
-    CountEvent: 3
-    TypeEvent: 1
+    EventWaveDetails: []
   - spawnTime: 0.2
     spriteType: 3
     health: 60
     speed: 2
     expOnDefeat: 2
     EventWave: 1
-    CountEvent: 2
-    TypeEvent: 1
+    EventWaveDetails: []
   - spawnTime: 0.3
     spriteType: 4
     health: 80
     speed: 2
     expOnDefeat: 2
     EventWave: 1
-    CountEvent: 1
-    TypeEvent: 2
+    EventWaveDetails: []
   - spawnTime: 0.1
     spriteType: 3
     health: 80
     speed: 1.5
     expOnDefeat: 3
     EventWave: 1
-    CountEvent: 3
-    TypeEvent: 2
+    EventWaveDetails: []
   - spawnTime: 0.1
     spriteType: 2
     health: 90
     speed: 1
     expOnDefeat: 3
     EventWave: 1
-    CountEvent: 2
-    TypeEvent: 1
+    EventWaveDetails: []
   - spawnTime: 0.2
     spriteType: 5
     health: 100
     speed: 3
     expOnDefeat: 3
     EventWave: 1
-    CountEvent: 1
-    TypeEvent: 1
+    EventWaveDetails: []
   - spawnTime: 0.1
     spriteType: 7
     health: 90
     speed: 2
     expOnDefeat: 3
     EventWave: 1
-    CountEvent: 2
-    TypeEvent: 1
+    EventWaveDetails: []
   - spawnTime: 0.05
     spriteType: 6
     health: 70
     speed: 0.9
     expOnDefeat: 3
     EventWave: 1
-    CountEvent: 4
-    TypeEvent: 1
+    EventWaveDetails: []
   - spawnTime: 0.05
     spriteType: 5
     health: 60
     speed: 4
     expOnDefeat: 5
     EventWave: 1
-    CountEvent: 1
-    TypeEvent: 2
+    EventWaveDetails: []
   - spawnTime: 0.05
     spriteType: 7
     health: 70
     speed: 3.5
     expOnDefeat: 5
     EventWave: 1
-    CountEvent: 3
-    TypeEvent: 1
+    EventWaveDetails: []
   - spawnTime: 0.01
     spriteType: 6
     health: 170
     speed: 0.7
     expOnDefeat: 5
     EventWave: 0
-    CountEvent: 1
-    TypeEvent: 2
+    EventWaveDetails: []
   - spawnTime: 0.3
     spriteType: 0
     health: 100
     speed: 2
     expOnDefeat: 5
     EventWave: 0
-    CountEvent: 0
-    TypeEvent: 0
+    EventWaveDetails: []
   PointWave: {fileID: 0}
+  mapId: 1
   level: 0
 --- !u!1 &354831575
 GameObject:
@@ -34575,6 +34555,7 @@ GameObject:
   - component: {fileID: 519420034}
   - component: {fileID: 519420033}
   - component: {fileID: 519420035}
+  - component: {fileID: 519420036}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -34669,7 +34650,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.185185
+  orthographic size: 10.666667
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -34768,6 +34749,27 @@ AudioHighPassFilter:
   m_Enabled: 0
   m_CutoffFrequency: 5000
   m_HighpassResonanceQ: 1
+--- !u!95 &519420036
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &522585772
 GameObject:
   m_ObjectHideFlags: 0
@@ -35641,6 +35643,7 @@ MonoBehaviour:
   - {fileID: 7317869106351284931, guid: e571eee2556361e45a1cf2ae31552411, type: 3}
   - {fileID: 4905297108732978901, guid: a286e73c2f540244796e475026b57eee, type: 3}
   - {fileID: 8398588510668082214, guid: 8676480a4d719fd4bb88b3217ab6e887, type: 3}
+  - {fileID: 2675950546044449683, guid: 97c50d03e35b4b94cb4bc15bc2c1a4b3, type: 3}
 --- !u!1 &579959382
 GameObject:
   m_ObjectHideFlags: 0
@@ -93334,6 +93337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1502169329}
   - component: {fileID: 1502169328}
+  - component: {fileID: 1502169330}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -93396,6 +93400,27 @@ Transform:
   - {fileID: 744675657}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1502169330
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502169327}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1507440187
 GameObject:
   m_ObjectHideFlags: 0
