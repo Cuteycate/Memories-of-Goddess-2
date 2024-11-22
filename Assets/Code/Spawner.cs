@@ -139,7 +139,7 @@ public class Spawner : MonoBehaviour
 
     private void SpawnFinalBoss()
     {
-        int bossIndex = mapId == 1 ? 12 : 19; // Select boss index based on mapId
+        int bossIndex = mapId == 1 ? 12 : 21; // Select boss index based on mapId
         GameObject FinalBoss = GameManager.instance.pool.Get(bossIndex);
 
         FinalBoss.transform.position = spawnPoint[Random.Range(1, spawnPoint.Length)].position; // Spawn at a random spawn point

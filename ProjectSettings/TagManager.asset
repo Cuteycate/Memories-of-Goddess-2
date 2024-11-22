@@ -28,7 +28,7 @@ TagManager:
   - UI
   - Enemy
   - EnemyBullet
-  - 
+  - UIBoss
   - 
   - 
   - 
@@ -55,4 +55,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 1451068509
+    locked: 0
+  - name: UIBoss
+    uniqueID: 953402967
     locked: 0

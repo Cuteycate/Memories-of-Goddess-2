@@ -70,7 +70,7 @@ public class BossMap2 : MonoBehaviour
     public string cutsceneSceneName = "Cutscene"; 
     public string gameSceneName = "MainGame"; 
 
-    private bool cutsceneTriggered = false;
+   //private bool cutsceneTriggered = false;
 
     private void OnEnable()
     {

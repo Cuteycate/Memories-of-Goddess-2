@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 3368827260635339896}
   - component: {fileID: 2271266785693981355}
   - component: {fileID: 3663678227391927377}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 1473681928222057145}
   - component: {fileID: 7480066847975995732}
   - component: {fileID: 4700831275545085143}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: 4321023792913762299}
   - component: {fileID: 2351843640592205640}
   - component: {fileID: 2113646465303490316}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +318,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1014563643884227704}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: RightSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 904253546617952888}
   - component: {fileID: 7669980554447688377}
   - component: {fileID: 2776482652335164912}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Left (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -661,7 +661,7 @@ GameObject:
   - component: {fileID: 3947869213249680035}
   - component: {fileID: 6147390794635388398}
   - component: {fileID: 8844193727094563080}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -765,7 +765,7 @@ GameObject:
   - component: {fileID: 6871712678337441095}
   - component: {fileID: 907160658309319142}
   - component: {fileID: 5657941316183483620}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Health Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -790,7 +790,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 15, y: 614}
+  m_AnchoredPosition: {x: 20, y: 649}
   m_SizeDelta: {x: -939.5414, y: 34.7187}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &907160658309319142
@@ -868,7 +868,7 @@ GameObject:
   - component: {fileID: 8971002485955508889}
   - component: {fileID: 5761632027152942013}
   - component: {fileID: 7437402485508229802}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Right (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -943,7 +943,7 @@ GameObject:
   - component: {fileID: 921467122400830493}
   - component: {fileID: 2477874337924757618}
   - component: {fileID: 4588262886809584877}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1018,7 +1018,7 @@ GameObject:
   - component: {fileID: 4920112422146679575}
   - component: {fileID: 8527255561868797437}
   - component: {fileID: 7499919609903945128}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1091,7 +1091,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2769083811785976675}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1127,7 +1127,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7272257582565528754}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: LeftSide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
