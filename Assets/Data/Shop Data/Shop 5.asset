@@ -25,5 +25,5 @@ MonoBehaviour:
   - 0.1
   - 0.2
   Golds: 2c01000058020000
-  isMaxed: 1
-  currentLevel: 1
+  isMaxed: 0
+  currentLevel: 0

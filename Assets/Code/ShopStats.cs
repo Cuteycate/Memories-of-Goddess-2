@@ -11,6 +11,7 @@ public class ShopStats : MonoBehaviour
     public float cooldownMultiplier = 1f;
     public float xpMultiplier = 1f;
     public float goldMultiplier = 1f;
+    public float magnetMultiplier = 1f;
     void Awake()
     {
         if (Instance == null)
@@ -45,6 +46,9 @@ public class ShopStats : MonoBehaviour
                 break;
             case 5: //Decrease Cooldown (ID 5)
                 DecreaseCoolDown(upgradeValue);
+                break;
+            case 6: //Increase XP magnet range (ID 6)
+                IncreaseMagnet(upgradeValue);
                 break;
             case 7: //Increase EXP gain Cooldown (ID 7)
                 IncreaseXPRate(upgradeValue);
@@ -102,6 +106,11 @@ public class ShopStats : MonoBehaviour
         goldMultiplier = 1 + value;
         Debug.Log("Gold multiplier by :" + value);
     }
+    private void IncreaseMagnet(float value)
+    {
+        magnetMultiplier = 1 + value;
+        Debug.Log("Magnet multiplied by :" + value);
+    }
     // Lưu Stats qua PlayerPrefs
     public void SaveStats()
     {
@@ -113,6 +122,7 @@ public class ShopStats : MonoBehaviour
         PlayerPrefs.SetFloat("DecreaseCoolDown", cooldownMultiplier);
         PlayerPrefs.SetFloat("IncreaseXPRate", xpMultiplier);
         PlayerPrefs.SetFloat("GoldMultiplier", goldMultiplier);
+        PlayerPrefs.SetFloat("MagnetMultiplier", magnetMultiplier);
         PlayerPrefs.Save();
     }
 
@@ -127,5 +137,6 @@ public class ShopStats : MonoBehaviour
        cooldownMultiplier = PlayerPrefs.GetFloat("DecreaseCoolDown", 1f);
        xpMultiplier = PlayerPrefs.GetFloat("IncreaseXPRate", 1f);
        goldMultiplier = PlayerPrefs.GetFloat("GoldMultiplier", 1f);
+       magnetMultiplier = PlayerPrefs.GetFloat("MagnetMultiplier", 1f);
     }
 }

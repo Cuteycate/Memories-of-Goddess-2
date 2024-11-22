@@ -46,8 +46,8 @@ public class LevelUp : MonoBehaviour
 
         // Create a list to store indices of upgradable items
         List<int> upgradableIndices = new List<int>();
-        List<int> ListWeaponId = new List<int> {0,1,8,9,10,11};//id data item of weapon
-        List<int> ListGearId = new List<int> { 2,3,4,5,6,7 };  //id data item of gear
+        List<int> ListWeaponId = new List<int> {0,1,8,9,10,11,13,14};//id data item of weapon
+        List<int> ListGearId = new List<int> { 2,3,4,5,6,7,12 };  //id data item of gear
         // Find upgradable items and store their indices
         for (int i = 0; i < items.Length-1; i++)
         {
@@ -95,8 +95,8 @@ public class LevelUp : MonoBehaviour
         }
         else
         {
-            // If there are no upgradable items, activate items[4]
-            items[12].gameObject.SetActive(true);
+            // If there are no upgradable items, activate items[15]
+            items[15].gameObject.SetActive(true);
         }
     }
 }

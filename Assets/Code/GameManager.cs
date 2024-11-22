@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         Health = MaxHealth; // Health = maxHealth
         player.gameObject.SetActive(true); // Set player object true de bat dau
         instance.player.StartHealthRecovery(0); // Bat dau HealthRecovery nhung khong co gear (trong truong hop nay gear = 0)
-        uiLevelUp.Select(PlayerId % 2); //
+        uiLevelUp.Select(13); //
         Resume();
         AudioManager.instance.PlayOpening(false);
         AudioManager.instance.PlayBgm(true);
@@ -125,14 +125,19 @@ public class GameManager : MonoBehaviour
     }
     void SpawnExpPickUp(Vector3 position, float expAmount)
     {
-        // Tao mot instance cua expPickUp (make sure ExpPickUpPrefab is assigned in the Inspector)
         GameObject expPickUp = pool.Get(18);
         expPickUp.transform.position = position;
         ExpPickUp expPickUpComponent = expPickUp.GetComponent<ExpPickUp>();
         if (expPickUpComponent != null)
         {
-            expPickUpComponent.expAmount = expAmount;
-        } // Đặt exp amount
+            expPickUpComponent.ResetState(expAmount);
+            expPickUpComponent.CheckForNearbyMerges();
+        }
+    }
+    private IEnumerator DelayedMergeCheck(ExpPickUp expPickUp)
+    {
+        yield return null;
+        expPickUp.CheckForNearbyMerges();
     }
     public void GetExp(EnemyEvent enemy)
     {

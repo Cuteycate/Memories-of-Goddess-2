@@ -132,7 +132,7 @@ public class Enemy : MonoBehaviour
         if (!collision.CompareTag("Bullet") || !isLive)
             return;
         health -= collision.GetComponent<Bullet>().damage;
-        StartCoroutine(KnockBack());
+     //   StartCoroutine(KnockBack());
         ShowDamage(collision.GetComponent<Bullet>().damage.ToString());
         if (collision.gameObject.CompareTag("Wall"))
         {

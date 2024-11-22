@@ -16,7 +16,7 @@ MonoBehaviour:
   shopId: 7
   shopName: Growth
   shopDesc:
-  - Increase XP  by {0}%
+  - Increase XP by {0}%
   - Increase XP by {0}%
   - Increase XP by {0}%
   - Increase XP by {0}%

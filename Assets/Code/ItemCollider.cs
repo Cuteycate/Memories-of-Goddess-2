@@ -11,7 +11,7 @@ public class ItemCollider : MonoBehaviour
         {
             circleCollider = GetComponent<CircleCollider2D>();
         }
-        UpdateRadius(defaultRadius); 
+        UpdateRadius(defaultRadius * ShopStats.Instance.magnetMultiplier); 
     }
 
     void Update()

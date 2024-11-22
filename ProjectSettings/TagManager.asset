@@ -18,6 +18,7 @@ TagManager:
   - BulletBoss
   - Wall
   - CircleCollider
+  - ExpPickUp
   layers:
   - Default
   - TransparentFX

@@ -9,12 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7441594703261596246}
+  - component: {fileID: -2657418167838204912}
   - component: {fileID: 647564087609957470}
   - component: {fileID: 575053774324567804}
   - component: {fileID: -5645351300522764829}
   m_Layer: 0
   m_Name: XP 0
-  m_TagString: Untagged
+  m_TagString: ExpPickUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -34,6 +35,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &-2657418167838204912
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8398588510668082214}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1b9e7a4a0e11db245ab7ed0eafd414c8, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &647564087609957470
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -150,4 +172,11 @@ MonoBehaviour:
   - {fileID: -1750557128, guid: e217163a8332b44499c128ab10ff952f, type: 3}
   - {fileID: 241849338, guid: 303b4b05056bc6b498459eeb347c07da, type: 3}
   - {fileID: 600135587, guid: a2409339e218fbc41876e1544fe66639, type: 3}
-  magnetSpeed: 10
+  magnetSpeed: 5
+  mergeRadius: 1
+  animControllers:
+  - {fileID: 9100000, guid: 1b9e7a4a0e11db245ab7ed0eafd414c8, type: 2}
+  - {fileID: 22100000, guid: fe3977449be67de4b88260d25f1cc341, type: 2}
+  - {fileID: 22100000, guid: 001977fd4e61d2a4aaabeef37c39803a, type: 2}
+  - {fileID: 22100000, guid: 9fea67742d815a246b3f00e7da25dda3, type: 2}
+  animator: {fileID: -2657418167838204912}

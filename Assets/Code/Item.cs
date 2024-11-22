@@ -52,6 +52,12 @@ public class Item : MonoBehaviour
                 case ItemData.ItemType.Lightning:
                     textDesc.text = string.Format(data.itemDesc[level], data.damages[level] * 100, data.counts[level], data.penetrations[level] * 50);
                     break;
+                case ItemData.ItemType.Axe:
+                    textDesc.text = string.Format(data.itemDesc[level], data.damages[level] * 100, data.counts[level], data.penetrations[level] ,data.sizes[level] * 100);
+                    break;
+                case ItemData.ItemType.Knife:
+                    textDesc.text = string.Format(data.itemDesc[level], data.damages[level] * 100, data.counts[level], data.penetrations[level], data.sizes[level]);
+                    break;
                 case ItemData.ItemType.Glove:
                 case ItemData.ItemType.Shoe:
                 case ItemData.ItemType.EmptyHeart:
@@ -79,6 +85,7 @@ public class Item : MonoBehaviour
             case ItemData.ItemType.SniperRifle:
             case ItemData.ItemType.Scythe:
             case ItemData.ItemType.Lightning:
+            case ItemData.ItemType.Axe:
                 if (level == 0)
                 {
                     GameObject newWeapon = new GameObject();
@@ -93,13 +100,42 @@ public class Item : MonoBehaviour
                 }
                 else
                 {
-                    float nextDamage = data.baseDamage;
+                    float nextDamage = 0;
                     int nextCount = 0;
                     int nextPenetration = 0;
+                    float nextSize = 0;
                     nextDamage += data.baseDamage * data.damages[level];
                     nextCount += data.counts[level];
                     nextPenetration += data.penetrations[level];
-                    weapon.LevelUp(nextDamage, nextCount,nextPenetration);
+                    nextSize += weapon.size * data.sizes[level];
+                    weapon.LevelUp(nextDamage, nextCount,nextPenetration,nextSize);
+                }
+                LevelCount();
+                break;
+            case ItemData.ItemType.Knife:
+                if (level == 0)
+                {
+                    GameObject newWeapon = new GameObject();
+                    weapon = newWeapon.AddComponent<Weapon>();
+
+                    if (!allItemData.Contains(data))
+                    {
+                        allItemData.Add(data);
+                    }
+                    weapon.Init(data);
+                    ListWeapon.Add(weapon);
+                }
+                else
+                {
+                    float nextDamage = 0;
+                    int nextCount = 0;
+                    int nextPenetration = 0;
+                    float nextSize = 0;
+                    nextDamage += data.baseDamage * data.damages[level];
+                    nextCount += data.counts[level];
+                    nextPenetration += data.penetrations[level];
+                    nextSize += data.baseSize * data.sizes[level];
+                    weapon.LevelUp(nextDamage, nextCount, nextPenetration, nextSize);
                 }
                 LevelCount();
                 break;
@@ -155,6 +191,8 @@ public class Item : MonoBehaviour
             case ItemData.ItemType.Scythe:
             case ItemData.ItemType.Lightning:
             case ItemData.ItemType.Radius:
+            case ItemData.ItemType.Axe:
+            case ItemData.ItemType.Knife:
                 level++;
                 break;
             case ItemData.ItemType.Heal:

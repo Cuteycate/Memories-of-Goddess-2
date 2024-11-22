@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     public int projectileNumber; // Số lượng projectile
 
     Rigidbody2D rigid;
-
+    private AfterImageGenerator afterImage;
     void Awake()
     {
         rigid = GetComponent<Rigidbody2D>();
@@ -38,6 +38,13 @@ public class Bullet : MonoBehaviour
 
         if (per == -1)
         {
+            // loại bỏ afterimage
+            AfterImageGenerator afterImageGenerator = GetComponent<AfterImageGenerator>();
+            if (afterImageGenerator != null)
+            {
+                afterImageGenerator.StopAfterImages();
+            }
+            // xóa đạn
             rigid.velocity = Vector3.zero;
             gameObject.SetActive(false);
         }

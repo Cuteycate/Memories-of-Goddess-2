@@ -20,22 +20,39 @@ public class Gear : MonoBehaviour
         transform.parent = GameManager.instance.player.transform;
         transform.localPosition = Vector3.zero;
         //Property set
-        type = data.itemType;
-        rate = data.damages[0];
-        if (baseMaxHealth == 0f)
+        if (id == 12)
         {
-            baseMaxHealth = GameManager.instance.MaxHealth;
+            type = data.itemType;
+            rate = data.damages[0];
+            Icon = data.itemIcon;
+            maxlevel = data.damages.Length;
+            IncreaseRadius();
         }
-        if (baseSpeed == 0f)
+        else
         {
-            baseSpeed = GameManager.instance.player.speed;
+            type = data.itemType;
+            rate = data.damages[0];
+            if (baseMaxHealth == 0f)
+            {
+                baseMaxHealth = GameManager.instance.MaxHealth;
+            }
+            if (baseSpeed == 0f)
+            {
+                baseSpeed = GameManager.instance.player.speed;
+            }
+            Icon = data.itemIcon;
+            maxlevel = data.damages.Length;
+            ApplyGear();
         }
-        Icon = data.itemIcon;
-        maxlevel = data.damages.Length;
-        ApplyGear();
     }
     public void LevelUp(float rate)
     {
+        if (id == 12)
+        {
+            this.rate = rate;
+            level++;
+            IncreaseRadius();
+        }
         this.rate = rate;
         level++;
         ApplyGear();
@@ -62,9 +79,6 @@ public class Gear : MonoBehaviour
             case ItemData.ItemType.XpCrown:
                 IncreaseXp();
                 break;
-            case ItemData.ItemType.Radius:
-                IncreaseRadius();
-                break;
         }
     }
     public void RateUp()
@@ -73,7 +87,7 @@ public class Gear : MonoBehaviour
         foreach (Weapon weapon in weapons)
         {
             float calculatedSpeed = Weapon.GetBaseCoolDown(weapon.id);
-            float rateAdjustedSpeed = calculatedSpeed * (1f - rate);
+            float rateAdjustedSpeed = calculatedSpeed * (1f - rate) * Character.WeaponRate;
 
             switch (weapon.id)
             {
@@ -89,7 +103,11 @@ public class Gear : MonoBehaviour
                 case 9:
                 case 10:
                 case 11:
+                case 13:
                     weapon.speed = rateAdjustedSpeed;
+                    break;
+                case 14:
+                    weapon.speed = rateAdjustedSpeed * (1f - weapon.size);
                     break;
                 default:
                     break;
@@ -118,10 +136,10 @@ public class Gear : MonoBehaviour
                     break;
                 case 1:
                 case 8:
-                    weapon.ExtraCount = Mathf.Min((int)rate, 2);
-                    break;
                 case 9:
                 case 11:
+                case 13:
+                case 14:
                     weapon.ExtraCount = Mathf.Min((int)rate, 2);
                     break;
 
@@ -141,13 +159,16 @@ public class Gear : MonoBehaviour
     }
     void IncreaseRadius()
     {
-        ItemCollider itemCollider = GameManager.instance.player.GetComponentInChildren<ItemCollider>();
-
-        if (itemCollider != null)
+        if (id == 12)
         {
-            // Tính radius mới dùng số cũ * rates
-            float newRadius = itemCollider.circleCollider.radius * (1f + rate);
-            itemCollider.UpdateRadius(newRadius);
+            ItemCollider itemCollider = GameManager.instance.player.GetComponentInChildren<ItemCollider>();
+
+            if (itemCollider != null)
+            {
+                // Tinh Radius moi
+                float newRadius = itemCollider.circleCollider.radius * (1f + rate);
+                itemCollider.UpdateRadius(newRadius);
+            }
         }
     }
 }
