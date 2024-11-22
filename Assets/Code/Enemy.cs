@@ -45,7 +45,7 @@ public class Enemy : MonoBehaviour
     {
         if (!GameManager.instance.isLive)
             return;
-        if (!isLive || anim.GetCurrentAnimatorStateInfo(0).IsName("Hit"))
+        if (!isLive)
         {
             return;
         }
