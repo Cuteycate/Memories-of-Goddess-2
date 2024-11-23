@@ -15114,25 +15114,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 259691754}
-    m_ColliderPaths:
-    - - X: 150000096
-        Y: -41
-      - X: 150000096
-        Y: 150000032
-      - X: 150000032
-        Y: 150000096
-      - X: -150000032
-        Y: 150000096
-      - X: -150000096
-        Y: 150000032
-      - X: -150000096
-        Y: -41
-      - X: -150000032
-        Y: -100
-      - X: 150000032
-        Y: -100
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 14.999974, y: -0.00001}
@@ -21735,25 +21717,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 324406323}
-    m_ColliderPaths:
-    - - X: 150000000
-        Y: 150000000
-      - X: -150000000
-        Y: 150000000
-      - X: -150000000
-        Y: 0
-      - X: 150000000
-        Y: 0
-    - - X: 150000000
-        Y: -300000000
-      - X: -150000000
-        Y: -300000000
-      - X: -150000000
-        Y: -450000000
-      - X: 150000000
-        Y: -450000000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 14.999971, y: 0}
@@ -31438,8 +31402,10 @@ MonoBehaviour:
     health: 10
     speed: 1
     expOnDefeat: 2
-    EventWave: 0
-    EventWaveDetails: []
+    EventWave: 1
+    EventWaveDetails:
+    - TypeEvent: 3
+      Count: 3
   - spawnTime: 1
     spriteType: 0
     health: 20
@@ -31769,7 +31735,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1104178817}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -48709,25 +48675,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 753847903}
-    m_ColliderPaths:
-    - - X: 150000096
-        Y: -150000032
-      - X: 150000096
-        Y: 41
-      - X: 150000032
-        Y: 100
-      - X: -150000032
-        Y: 100
-      - X: -150000096
-        Y: 41
-      - X: -150000096
-        Y: -150000032
-      - X: -150000032
-        Y: -150000096
-      - X: 150000032
-        Y: -150000096
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 14.999974, y: -15.00001}
@@ -60298,7 +60246,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1104178818
 RectTransform:
   m_ObjectHideFlags: 0
@@ -81834,25 +81782,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 1228222442}
-    m_ColliderPaths:
-    - - X: 150000096
-        Y: -41
-      - X: 150000096
-        Y: 150000032
-      - X: 150000032
-        Y: 150000096
-      - X: -150000032
-        Y: 150000096
-      - X: -150000096
-        Y: 150000032
-      - X: -150000096
-        Y: -41
-      - X: -150000032
-        Y: -100
-      - X: 150000032
-        Y: -100
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 14.999974, y: -0.00001}
@@ -97287,25 +97217,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 1746256786}
-    m_ColliderPaths:
-    - - X: 150000000
-        Y: 150000000
-      - X: -150000000
-        Y: 150000000
-      - X: -150000000
-        Y: 0
-      - X: 150000000
-        Y: 0
-    - - X: 150000000
-        Y: -300000000
-      - X: -150000000
-        Y: -300000000
-      - X: -150000000
-        Y: -450000000
-      - X: 150000000
-        Y: -450000000
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 14.999971, y: 0}
@@ -108414,7 +108326,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1104178817}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
@@ -112560,25 +112472,7 @@ CompositeCollider2D:
   m_GeometryType: 0
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 2049113653}
-    m_ColliderPaths:
-    - - X: 150000096
-        Y: -150000032
-      - X: 150000096
-        Y: 41
-      - X: 150000032
-        Y: 100
-      - X: -150000032
-        Y: 100
-      - X: -150000096
-        Y: 41
-      - X: -150000096
-        Y: -150000032
-      - X: -150000032
-        Y: -150000096
-      - X: 150000032
-        Y: -150000096
+  m_ColliderPaths: []
   m_CompositePaths:
     m_Paths:
     - - {x: 14.999974, y: -15.00001}

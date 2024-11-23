@@ -47,8 +47,8 @@ public class BossMap2 : MonoBehaviour
     SpriteRenderer spriter;
     Rigidbody2D rigid;
     BoxCollider2D coll;
-    public Transform player;  
-    
+    public Transform player;
+    private Animator anim;
 
     [Header("# CoolTime Skill")]
     public float timeStart = 20f;
@@ -96,6 +96,7 @@ public class BossMap2 : MonoBehaviour
         coll = GetComponent<BoxCollider2D>();
         player = GameManager.instance.player.transform;
         HealthBar.value = health;
+        anim = GetComponent<Animator>();
         StartCoroutine(MoveBossRandomly());
     }
 
@@ -395,16 +396,19 @@ public class BossMap2 : MonoBehaviour
 
         if (health > 0)
         {
+            anim.SetTrigger("Hit");
             AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);         
             HealthBar.value = health / maxHealth;            
         }
         else
-        {
+        {          
             HealthBar.value = health / maxHealth;
             GameManager.instance.FinalBossStillAlive = false;
             coll.enabled = false;
             rigid.simulated = false;
             spriter.sortingOrder = 1;
+            anim.enabled = false;
+            gameObject.SetActive(false);
             //anim.SetBool("Dead", true);
             GameManager.instance.kill++;
             //GameManager.instance.GetExp(this);

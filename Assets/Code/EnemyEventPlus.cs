@@ -157,6 +157,10 @@ public class EnemyEventPlus : MonoBehaviour
 
         if (health > 0)
         {
+            if (timer >= cooldown)
+            {              
+                gameObject.SetActive(false);
+            }
             anim.SetTrigger("Hit");
             AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
             //.. sống,bị trúng
