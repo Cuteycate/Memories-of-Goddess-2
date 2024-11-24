@@ -7,11 +7,13 @@ public class Result : MonoBehaviour
 {
     public AchiveManager achiveManager;
     public GameObject[] titles;
+    public GameObject HUD;
     public void Lose()
     {
         int id = GameManager.instance.PlayerId;
         titles[0].SetActive(true);
         titles[id+2].SetActive(true);
+        HUD.SetActive(false);
     }
     public void Win()
     {
@@ -27,7 +29,8 @@ public class Result : MonoBehaviour
         int id = GameManager.instance.PlayerId;
         titles[1].SetActive(true);
         titles[id + 2].SetActive(true);
-        
+        HUD.SetActive(false);
+
     }
 
 }
