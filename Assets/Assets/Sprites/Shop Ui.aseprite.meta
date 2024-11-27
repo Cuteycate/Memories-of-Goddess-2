@@ -200,6 +200,26 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
+  - name: Item_UI_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 76
+      y: 4
+      width: 18
+      height: 18
+    spriteID: 947967f00dd78ec459f541a5db20795c
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 0, y: 0}
   asepriteLayers:
   - layerIndex: 0
     guid: -711295688
@@ -213,7 +233,7 @@ ScriptedImporter:
       cellRect:
         x: 22
         y: 96
-        width: 66
+        width: 90
         height: 18
       spriteId: 5fbe845537613dd489235fe50a804b1c
     linkedCells: []

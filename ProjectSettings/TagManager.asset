@@ -19,6 +19,7 @@ TagManager:
   - Wall
   - CircleCollider
   - ExpPickUp
+  - UICamera
   layers:
   - Default
   - TransparentFX
