@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public float bgmVolume;
     AudioSource bgmPlayer;
     AudioHighPassFilter bgmEffect;
+    private bool isBgmPaused = false;
 
     [Header("#OpeningBGM")]
     public AudioClip openingClip;
@@ -28,7 +29,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] List<Slider> sfxSliders = new List<Slider>();
     int channelIndex;
 
-    public enum Sfx { Dead, Hit, LevelUp = 3, Lose, Melee, Range = 7, Select, Win,Lightning,Bossdead = 12,FireballShoot,FireballExplode}
+    public enum Sfx { Dead, Hit, LevelUp = 3, Lose, Melee, Range = 7, Select, Win,Lightning,Bossdead = 12,FireballShoot,FireballExplode,Treasuremusic0,Treasuremusic1,Treasuremusic2}
 
     void Awake()
     {
@@ -96,6 +97,23 @@ public class AudioManager : MonoBehaviour
         else
         {
             bgmPlayer.Stop();
+        }
+    }
+    public void PauseBgm()
+    {
+        if (bgmPlayer.isPlaying)
+        {
+            bgmPlayer.Pause();
+            isBgmPaused = true;
+        }
+    }
+
+    public void ResumeBgm()
+    {
+        if (isBgmPaused)
+        {
+            bgmPlayer.UnPause();
+            isBgmPaused = false;
         }
     }
 

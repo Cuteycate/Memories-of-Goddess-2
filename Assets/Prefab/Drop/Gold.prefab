@@ -143,4 +143,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51526456f552ba64eae885a4b0f59b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldAmount: 30
+  goldAmount: 50
+  magnetSpeed: 5

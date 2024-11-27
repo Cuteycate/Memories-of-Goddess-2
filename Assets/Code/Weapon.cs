@@ -401,6 +401,10 @@ public class Weapon : MonoBehaviour
         int totalCount = count + initialCount;
         for (int i = 0; i < totalCount; i++)
         {
+            if (!player.scanner.nearestTarget)
+            {
+                yield break;
+            }
             Vector3 targetPos = player.scanner.farthestTarget.position;
             Vector3 dir = targetPos - transform.position;
             dir = dir.normalized;

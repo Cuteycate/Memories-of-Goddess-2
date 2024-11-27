@@ -36,7 +36,7 @@ MonoBehaviour:
   - '
 
     Fires {1} more projectile'
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: -933806470407966858, guid: a412965c220eabf449947809d2387dee, type: 3}
   baseDamage: 10
   baseCount: 1
   basePenetration: 0
@@ -62,6 +62,6 @@ MonoBehaviour:
   - 0.5
   - 0.5
   - 0.5
-  projectiles: {fileID: 4496611369239243523, guid: 9052ff40534341142bba43b38856f788, type: 3}
+  projectiles: {fileID: 2514192426124917062, guid: bac452d1c34e2234089add96c2d33ff9, type: 3}
   HitEffect: {fileID: 0}
   hand: {fileID: 0}

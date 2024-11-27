@@ -12,7 +12,6 @@ public class Item : MonoBehaviour
     Text textLevel;
     Text textName;
     Text textDesc;
-
     public static List<Weapon> ListWeapon = new List<Weapon>();
     public static List<Gear> ListGear = new List<Gear>();
     void Awake()
@@ -134,7 +133,7 @@ public class Item : MonoBehaviour
                     nextDamage += data.baseDamage * data.damages[level];
                     nextCount += data.counts[level];
                     nextPenetration += data.penetrations[level];
-                    nextSize += data.baseSize * data.sizes[level];
+                    nextSize += data.sizes[level];
                     weapon.LevelUp(nextDamage, nextCount, nextPenetration, nextSize);
                 }
                 LevelCount();

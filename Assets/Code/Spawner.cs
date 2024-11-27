@@ -33,7 +33,7 @@ public class Spawner : MonoBehaviour
         timer += Time.deltaTime;
         level = Mathf.Min(Mathf.FloorToInt(GameManager.instance.gameTime / 30f), spawnData.Length - 1);
 
-        if (level == 1 /*spawnData.Length */ - 1 && !checkBossSpawn)
+        if (level == spawnData.Length - 1 && !checkBossSpawn)
         {
             SpawnFinalBoss();
         }
