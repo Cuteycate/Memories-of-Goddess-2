@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using UnityEngine;
+using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
 
 public class EnemyEventPlus : MonoBehaviour
 {
@@ -32,7 +33,7 @@ public class EnemyEventPlus : MonoBehaviour
     public Transform bestSpawnPoint;
 
     public float timer = 0;
-    float cooldown = 10f;
+    public float cooldown = 10f;
     public int TypeEnemy;
 
     private bool isTopDown;
@@ -48,7 +49,7 @@ public class EnemyEventPlus : MonoBehaviour
         target = GameManager.instance.player.GetComponent<Rigidbody2D>();
     }
 
-    public void Init( bool c, bool isRotation, int TypeEn )
+    public void Init( bool c, bool isRotation, int TypeEn, Transform goal )
     {
         
         isLeft = c;
@@ -57,7 +58,7 @@ public class EnemyEventPlus : MonoBehaviour
         rigid.mass = health;
         isTopDown = isRotation;
         TypeEnemy = TypeEn;
-       
+        bestSpawnPoint = goal;
     }
 
     private void FixedUpdate()
@@ -121,6 +122,21 @@ public class EnemyEventPlus : MonoBehaviour
                 }
                 break;
 
+            case 5:
+               
+                Vector2 dirVec = (Vector2)bestSpawnPoint.transform.position - rigid.position;
+                Vector2 nextVec = dirVec.normalized * speed[0] * Time.fixedDeltaTime;
+                rigid.MovePosition(rigid.position + nextVec);
+                rigid.velocity = Vector2.zero;
+
+                float distance = Vector2.Distance(rigid.position, bestSpawnPoint.position);
+                if (distance < 3f)
+                {
+                    gameObject.SetActive(false);
+                    break;
+                }               
+                spriter.flipX = bestSpawnPoint.position.x > rigid.position.x;
+                break;
         }  
     }
 
@@ -144,14 +160,24 @@ public class EnemyEventPlus : MonoBehaviour
         spriter.sortingOrder = 2;
         anim.SetBool("Dead", false);
         health = maxHealth;
-        timer = 0;    
+        timer = 0;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Player"))
+        {     
+            if (TypeEnemy == 5)
+            {
+                Debug.Log("Va chạm với Player!");
+                GameManager.instance.Health -= 20;
+            }     
+        }
         if (!collision.CompareTag("Bullet") || !isLive)
             return;
+       
         health -= collision.GetComponent<Bullet>().damage;
+        Debug.Log("Va chạm với Player!");
         //StartCoroutine(KnockBack());
         ShowDamage(collision.GetComponent<Bullet>().damage.ToString());
 
@@ -211,12 +237,8 @@ public class EnemyEventPlus : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
-        if (collision.gameObject.CompareTag("Player"))
-         
-            rigid.mass = 500;
-            return;
       
+        
     }
 
     private void CreateDustLeft()

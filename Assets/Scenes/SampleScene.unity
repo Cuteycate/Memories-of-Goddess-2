@@ -32223,15 +32223,17 @@ MonoBehaviour:
     expOnDefeat: 2
     EventWave: 1
     EventWaveDetails:
-    - TypeEvent: 3
-      Count: 3
+    - TypeEvent: 5
+      Count: 10
   - spawnTime: 1
     spriteType: 0
     health: 20
     speed: 1
     expOnDefeat: 2
     EventWave: 1
-    EventWaveDetails: []
+    EventWaveDetails:
+    - TypeEvent: 5
+      Count: 15
   - spawnTime: 0.7
     spriteType: 1
     health: 30
@@ -32366,6 +32368,7 @@ MonoBehaviour:
     EventWave: 0
     EventWaveDetails: []
   PointWave: {fileID: 0}
+  timeDeafult: 3
   mapId: 0
   level: 0
 --- !u!1 &354831575
@@ -44727,7 +44730,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.185185
+  orthographic size: 7.68
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -45220,7 +45223,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -4.9000244, y: -12.200012}
+  m_AnchoredPosition: {x: -4.9000244, y: -12.200073}
   m_SizeDelta: {x: 23.78242, y: 9.44054}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &566560196
@@ -45733,6 +45736,8 @@ MonoBehaviour:
   - {fileID: 2514192426124917062, guid: cb301dcc27f29494cbd4814122078739, type: 3}
   - {fileID: 1531381644612282493, guid: aa982d05006cdab4790e84f5af300d8c, type: 3}
   - {fileID: 2675950546044449683, guid: 97c50d03e35b4b94cb4bc15bc2c1a4b3, type: 3}
+  - {fileID: 2005347981833296910, guid: 6865c22371703d048ba83bd75986e3f2, type: 3}
+  - {fileID: 8177980684375558292, guid: 4c569c627e2aefa45b82b04da569ad53, type: 3}
 --- !u!1 &579959382
 GameObject:
   m_ObjectHideFlags: 0
@@ -48451,6 +48456,7 @@ MonoBehaviour:
     EventWave: 0
     EventWaveDetails: []
   PointWave: {fileID: 0}
+  timeDeafult: 3
   mapId: 0
   level: 0
 --- !u!1 &696662426
@@ -110309,7 +110315,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -24.3, y: -55.7}
+  m_AnchoredPosition: {x: -24.3, y: -55.69995}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1774629492
