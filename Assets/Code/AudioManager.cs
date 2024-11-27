@@ -29,7 +29,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] List<Slider> sfxSliders = new List<Slider>();
     int channelIndex;
 
-    public enum Sfx { Dead, Hit, LevelUp = 3, Lose, Melee, Range = 7, Select, Win,Lightning,Bossdead = 12,FireballShoot,FireballExplode,Treasuremusic0,Treasuremusic1,Treasuremusic2}
+    public enum Sfx { Dead, Hit, LevelUp = 3, Lose, Melee, Range = 7, Select, Win,Lightning,Bossdead = 12,FireballShoot,FireballExplode,Treasuremusic0,Treasuremusic1,Treasuremusic2,Success}
 
     void Awake()
     {
