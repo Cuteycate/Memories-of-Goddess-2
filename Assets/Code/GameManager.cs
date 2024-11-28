@@ -184,4 +184,9 @@ public class GameManager : MonoBehaviour
     {
         mapid = id;
     }
+    public void levelupbybuttonfortest()
+    {
+        level++;
+        GameManager.instance.uiLevelUp.Show();
+    }
 }

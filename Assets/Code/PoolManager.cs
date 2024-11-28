@@ -31,20 +31,30 @@ public class PoolManager : MonoBehaviour
     public GameObject Get(int i)
     {
         GameObject select = null;
-        foreach(GameObject item in pools[i])
+        foreach (GameObject item in pools[i])
         {
-            if(!item.activeSelf)
+            if (!item.activeSelf)
             {
                 select = item;
                 select.SetActive(true);
                 break;
             }
         }
-        if(!select)
+        if (!select)
         {
-            select = Instantiate(prefabs[i],transform);
+            select = Instantiate(prefabs[i], transform);
             pools[i].Add(select);
         }
         return select;
+    }
+    //
+    public void ReturnToPool(GameObject obj)
+    {
+        if (obj != null)
+        {
+            obj.SetActive(false);
+            obj.transform.parent = this.transform; // Đưa đối tượng trở lại pool
+
+        }
     }
 }

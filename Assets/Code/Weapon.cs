@@ -236,9 +236,23 @@ public class Weapon : MonoBehaviour
         {
             transform.GetChild(i).gameObject.SetActive(true);
         }
-        int initialCount = ExtraCount;
-        int totalCount = count + initialCount;
-        for (int i = 0; i < totalCount; i++)
+        bool checkDW = player.isDWing;
+        count = count + ExtraCount;
+        if (checkDW)
+        {
+            count *= 2;
+        }
+        if (count != transform.childCount && checkDW == false)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                Transform child = transform.GetChild(i);
+                GameManager.instance.pool.ReturnToPool(child.gameObject);
+            }
+        }
+
+
+        for (int i = 0; i < count; i++)
         {
             Transform bullet;
             if (i < transform.childCount)
@@ -257,6 +271,13 @@ public class Weapon : MonoBehaviour
             bullet.Translate(bullet.up * 3f, Space.World);
             bullet.GetComponent<Bullet>().Init(damage, penetration, Vector3.zero, count);
         }
+
+        if (checkDW)
+        {
+            count /= 2;
+        }
+
+        count = count - ExtraCount;
     }
     //Code cho Súng tiểu liên ID 1
     IEnumerator FireCoroutine()

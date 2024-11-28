@@ -690,7 +690,7 @@ TextureImporter:
         width: 18
         height: 18
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -698,6 +698,48 @@ TextureImporter:
       bones: []
       spriteID: f990abb92e287a347bf25f59adb1b582
       internalID: -1323163944
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_BackGround
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 3
+        width: 38
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b3f568f8cfb9fb46bfe90928539f9f5
+      internalID: -6404914
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skill_Fill
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 6
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8912ed58566552d41b58f3c1edfa5434
+      internalID: -2067501386
       vertices: []
       indices: 
       edges: []
@@ -737,6 +779,8 @@ TextureImporter:
       Select 7: -966295699
       Select 8: 927338625
       Select 9: -1002307068
+      Skill_BackGround: -6404914
+      Skill_Fill: -2067501386
       Title 0: 1315674547
       Title 1: -1799623379
       Title 2: -77559378
