@@ -29,8 +29,9 @@ public class EventWave : MonoBehaviour
    
     bool check = true;
     public Spawner spawner;
-
     public GameObject spawnEffect;
+
+    public GameObject redLine;
 
     private void Awake()
     {
@@ -114,11 +115,11 @@ public class EventWave : MonoBehaviour
                    Wave.transform.position = spawnPoint[i].position;  
                    if ( i % 2 == 0)
                     {
-                        Wave.GetComponent<EnemyEventPlus>().Init( true, isRotaion ,TypeEvent);
+                        Wave.GetComponent<EnemyEventPlus>().Init( true, isRotaion ,TypeEvent, null);
                     }
                     else
                     {
-                        Wave.GetComponent<EnemyEventPlus>().Init (false, isRotaion, TypeEvent);
+                        Wave.GetComponent<EnemyEventPlus>().Init (false, isRotaion, TypeEvent, null);
                     }
                    
                    check = false;
@@ -133,22 +134,38 @@ public class EventWave : MonoBehaviour
                     Wave.transform.position = spawnPoint[i].position;
                     if (i % 2 == 0)
                     {
-                        Wave.GetComponent<EnemyEventPlus>().Init(true, isRotaion,TypeEvent);
+                        Wave.GetComponent<EnemyEventPlus>().Init(true, isRotaion,TypeEvent, null);
                     }
                     else
                     {
-                        Wave.GetComponent<EnemyEventPlus>().Init(false, isRotaion, TypeEvent);
+                        Wave.GetComponent<EnemyEventPlus>().Init(false, isRotaion, TypeEvent, null);
                     }
 
                     check = false;
                 }
             } 
 
+            if (TypeEvent == 5)
+            {
+                //GameObject Wave = GameManager.instance.pool.Get(23);
+                //Wave.transform.position = bestSpawnPoint.position;
+                //Transform goalTranform = FirstSpawnPoint;
+                //Wave.GetComponent<EnemyEventPlus>().Init(false, isRotaion, TypeEvent, goalTranform);
+                StartCoroutine(spawnEvent5());
+                check = false;
+            }
 
         }
     }
 
-
+    IEnumerator spawnEvent5()
+    {
+        yield return new WaitForSeconds(1f);
+        GameObject Wave = GameManager.instance.pool.Get(23);
+        Wave.transform.position = bestSpawnPoint.position;
+        Transform goalTranform = FirstSpawnPoint;   
+        Wave.GetComponent<EnemyEventPlus>().Init(false, isRotaion, TypeEvent, goalTranform);
+    }
 
 
     private void OnTriggerExit2D(Collider2D collision)

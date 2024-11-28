@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DestroyNumber : MonoBehaviour
 {
-    private float secondtodestroy = 1f;
+    public float secondtodestroy = 1f;
     void Start()
     {
         Destroy(gameObject,secondtodestroy);

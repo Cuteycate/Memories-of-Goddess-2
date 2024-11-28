@@ -19640,4 +19640,5 @@ MonoBehaviour:
   target: {fileID: 0}
   bestSpawnPoint: {fileID: 0}
   timer: 0
-  TypeEnemy: 0
+  cooldown: 10
+  TypeEnemy: 4
