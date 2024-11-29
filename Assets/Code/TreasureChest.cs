@@ -12,10 +12,10 @@ public class TreasureChest : MonoBehaviour
     Item[] items;
     public LevelUp uiLevelUp;
     public Text goldText;
-    public GameObject goldBurst;
     public GameObject goldRainEffect;
     public GameObject ChestOpen;
     public GameObject Chest;
+    public List<ChestIcon> chestIcons;
     private bool isChestClicked = false;
     void Awake()
     {
@@ -38,6 +38,7 @@ public class TreasureChest : MonoBehaviour
         {
             // Set the flag to true to interrupt shaking
             isChestClicked = true;
+            AudioManager.instance.StopAllSfx();
         }
         else
         {
@@ -48,6 +49,7 @@ public class TreasureChest : MonoBehaviour
             AudioManager.instance.EffectBgm(false);
             AudioManager.instance.ResumeBgm();
             isChestClicked = false;
+            HideAllitems();
             // Deactivate VFX for each item
             foreach (var item in items)
             {
@@ -79,11 +81,7 @@ public class TreasureChest : MonoBehaviour
     }
     public void HideAllEffects()
     {
-        // Set GoldBurst and RainEffect game objects to inactive
-        if (goldBurst != null)
-        {
-            goldBurst.SetActive(false);
-        }
+
 
         if (goldRainEffect != null)
         {
@@ -105,15 +103,6 @@ public class TreasureChest : MonoBehaviour
     public void Next()
     {
         HideAllitems();
-        if (goldBurst != null)
-        {
-            goldRainEffect.SetActive(true);
-            ParticleSystem burstSystem = goldRainEffect.GetComponent<ParticleSystem>();
-            if (burstSystem != null)
-            {
-                burstSystem.Play();
-            }
-        }
         // Create a list to store indices of upgradable items
         List<int> upgradableIndices = new List<int>();
         for (int i = 0; i < Item.allItemData.Count; i++)
@@ -137,6 +126,12 @@ public class TreasureChest : MonoBehaviour
     private IEnumerator ShakeAndCountGold(List<int> upgradableIndices)
     {
         // Tinh toan so vang
+        goldRainEffect.SetActive(true);
+        ParticleSystem burstSystem = goldRainEffect.GetComponent<ParticleSystem>();
+        if (burstSystem != null)
+        {
+            burstSystem.Play();
+        }
         Vector3 originalGoldTitlePosition = goldTitleRect.localPosition;
         Vector3 originalImagePosition = imageToShake != null ? imageToShake.localPosition : Vector3.zero;
         int baseGold = Random.Range(100, 450);
@@ -148,14 +143,18 @@ public class TreasureChest : MonoBehaviour
         // quyet dinh 
         int rarity = Random.Range(0, 100);
         int itemsToActivate = 0;
-
+        float soundDuration = 0f;
+        AudioManager.Sfx selectedSfx;
         if (upgradableIndices.Count >= 0)
         {
             if (rarity < 10 && upgradableIndices.Count > 2) // 3 items
             {
                 itemsToActivate = Mathf.Min(3, upgradableIndices.Count);
+                selectedSfx = AudioManager.Sfx.Treasuremusic2;
+                soundDuration = AudioManager.instance.GetSfxLength(selectedSfx);
                 AudioManager.instance.PlaySfx(AudioManager.Sfx.Treasuremusic2); // choi rare sound effect
-                StartCoroutine(Shake(goldTitleRect, 6f, 6f)); // lac vang
+                ActivateChestIcon(3);
+                StartCoroutine(Shake(goldTitleRect, soundDuration, soundDuration)); // lac vang
                 if (imageToShake != null)
                 {
                     StartCoroutine(Shake(imageToShake, 6f, 6f)); // Shake hinh
@@ -164,33 +163,33 @@ public class TreasureChest : MonoBehaviour
             else if (rarity < 40 && upgradableIndices.Count > 1) // Medium chance: Activate 2 items
             {
                 itemsToActivate = Mathf.Min(2, upgradableIndices.Count);
+                selectedSfx = AudioManager.Sfx.Treasuremusic1;
                 AudioManager.instance.PlaySfx(AudioManager.Sfx.Treasuremusic1); // choi medium sound effect
-                StartCoroutine(Shake(goldTitleRect, 6f, 6f)); // lac vang
+                soundDuration = AudioManager.instance.GetSfxLength(selectedSfx);
+                ActivateChestIcon(2);
+                StartCoroutine(Shake(goldTitleRect, soundDuration, soundDuration)); // lac vang
                 if (imageToShake != null)
                 {
-                    StartCoroutine(Shake(imageToShake, 6f, 6f)); // Shake hinh
+                    StartCoroutine(Shake(imageToShake, soundDuration, soundDuration)); // Shake hinh
                 }
             }
             else // mo mot item
             {
                 itemsToActivate = 1;
+                selectedSfx = AudioManager.Sfx.Treasuremusic0;
                 AudioManager.instance.PlaySfx(AudioManager.Sfx.Treasuremusic0); // choi item bth
-                StartCoroutine(Shake(goldTitleRect, 5f, 5f)); // lac vang
+                soundDuration = AudioManager.instance.GetSfxLength(selectedSfx);
+                ActivateChestIcon(1);
+                StartCoroutine(Shake(goldTitleRect, soundDuration, soundDuration)); // lac vang
                 if (imageToShake != null)
                 {
-                    StartCoroutine(Shake(imageToShake, 5f, 5f)); // Shake hinh
+                    StartCoroutine(Shake(imageToShake, soundDuration, soundDuration)); // Shake hinh
                 }
             }
         }
 
         int currentGold = 0;
-        float duration = 0;
-        if (rarity < 10 && upgradableIndices.Count > 2 || rarity < 40 && upgradableIndices.Count > 1)
-        {
-            duration = 5f;
-        }
-        else
-        duration = 4f;
+        float duration = soundDuration > 0 ? soundDuration : 4f;
         float elapsedTime = 0f;
 
         while (elapsedTime < duration)
@@ -207,26 +206,17 @@ public class TreasureChest : MonoBehaviour
             goldText.text = currentGold.ToString();
             yield return null;
         }
+        isChestClicked = true;
+        ActivateGoldBurstsForCurrentChest();
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Success);
         goldText.text = totalGold.ToString();
-
         StopAllCoroutines();
         goldTitleRect.localPosition = originalGoldTitlePosition;
         if (imageToShake != null)
         {
             imageToShake.localPosition = originalImagePosition;
         }
-
-        // Play gold burst particle effect
-        if (goldBurst != null)
-        {
-            goldBurst.SetActive(true);
-            ParticleSystem burstSystem = goldBurst.GetComponent<ParticleSystem>();
-            if (burstSystem != null)
-            {
-                burstSystem.Play();
-            }
-        }
+        
 
         // Activate the items visually after animation
         ActivateItemsHelper(upgradableIndices, itemsToActivate);
@@ -298,5 +288,30 @@ public class TreasureChest : MonoBehaviour
 
         target.localPosition = originalPosition; // Reset to original position
     }
+    private void ActivateChestIcon(int itemCount)
+    {
+        // Deactivate all chest icons first
+        foreach (var chestIcon in chestIcons)
+        {
+            chestIcon.Deactivate();
+        }
 
+        // Activate the correct chest icon based on item count
+        if (itemCount > 0 && itemCount <= chestIcons.Count)
+        {
+            chestIcons[itemCount - 1].Activate();
+        }
+    }
+    private void ActivateGoldBurstsForCurrentChest()
+    {
+        foreach (var chestIcon in chestIcons)
+        {
+            if (chestIcon.icon.activeSelf)
+            {
+                chestIcon.ActivateGoldBursts();
+                break;
+            }
+        }
+    }
 }
+

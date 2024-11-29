@@ -120,7 +120,7 @@ public class ExpPickUp : MonoBehaviour
                 }
 
                 //Tieng game Work In Progress
-                // AudioManager.instance.PlaySfx(AudioManager.Sfx.ExpPickup);
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.ExpPickUp);
                 // Pha XP sau khi nguoi choi nhat dc
                 gameObject.SetActive(false);
             }

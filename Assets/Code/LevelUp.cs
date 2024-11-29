@@ -58,12 +58,12 @@ public class LevelUp : MonoBehaviour
             }
         }
 
-        if (weapons.Count >= 2)
+        if (weapons.Count >= 6)
         {
             ListWeaponId.RemoveAll(id => weapons.Any(w => w.id == id));
             upgradableIndices.RemoveAll(id => ListWeaponId.Contains(id));
         }
-        if (gears.Count >= 2)
+        if (gears.Count >= 6)
         {
             ListGearId.RemoveAll(id => gears.Any(w => w.id == id));
             upgradableIndices.RemoveAll(id => ListGearId.Contains(id));

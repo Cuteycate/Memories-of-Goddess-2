@@ -119,7 +119,11 @@ public class GameManager : MonoBehaviour
     public void GetExp(Enemy enemy)
     {
         if (!isLive) return;
-
+        float chance = UnityEngine.Random.Range(1, 91);
+        if (chance == 1)
+        {
+            SpawnGold(enemy.transform.position);
+        }
         // Spawn ra hat XP duoi vi tri ma Enemy dead
         SpawnExpPickUp(enemy.transform.position, enemy.expOnDefeat);
     }
@@ -132,26 +136,64 @@ public class GameManager : MonoBehaviour
         {
             expPickUpComponent.ResetState(expAmount);
             expPickUpComponent.CheckForNearbyMerges();
+
+            // Start the random movement coroutine
+            StartCoroutine(AnimateExpPickUpMovement(expPickUp, position));
         }
     }
-    private IEnumerator DelayedMergeCheck(ExpPickUp expPickUp)
+    private IEnumerator AnimateExpPickUpMovement(GameObject expPickUp, Vector3 originPosition)
     {
-        yield return null;
-        expPickUp.CheckForNearbyMerges();
+        float radius = 1f;
+        float duration = 0.2f;
+        float elapsedTime = 0f;
+
+        Vector2 randomOffset = UnityEngine.Random.insideUnitCircle * radius;
+        Vector3 targetPosition = originPosition + new Vector3(randomOffset.x, randomOffset.y, 0);
+
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float progress = elapsedTime / duration;
+
+            expPickUp.transform.position = Vector3.Lerp(originPosition, targetPosition, progress);
+
+            yield return null;
+        }
+
+        // Ensure it ends exactly at the target position
+        expPickUp.transform.position = targetPosition;
     }
     public void GetExp(EnemyEvent enemy)
     {
         if (!isLive) return;
 
         // Spawn ra hat XP duoi vi tri ma Enemy dead
+        float chance = UnityEngine.Random.Range(1, 91);
+        if (chance == 1)
+        {
+            SpawnGold(enemy.transform.position);
+        }
         SpawnExpPickUp(enemy.transform.position, enemy.expOnDefeat);
     }
     public void GetExp(BossEnemy enemy)
     {
         if (!isLive) return;
-
+        float chance = UnityEngine.Random.Range(1, 91);
+        if (chance == 1)
+        {
+            SpawnGold(enemy.transform.position);
+        }
         // Spawn ra hat XP duoi vi tri ma Enemy dead
         SpawnExpPickUp(enemy.transform.position, enemy.expOnDefeat);
+    }
+    void SpawnGold(Vector3 position)
+    {
+        GameObject goldPrefab = instance.pool.Get(25);
+
+        if (goldPrefab != null)
+        {
+            GameObject goldPickup = Instantiate(goldPrefab, position, Quaternion.identity);
+        }
     }
     public void ResHealth(float amount)
     {

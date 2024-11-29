@@ -21,12 +21,12 @@ MonoBehaviour:
 
     Increase Damage by {0}%'
   - Add {1} Extra Axe
-  - 'Increase attack size by {2}%.
+  - 'Increase attack size by {3}%
 
     Increase Damage by {0}%'
   - 'Increase Damage By {0}%
 
-    Increase Hit Limit by {2}%'
+    Increase Hit Limit by 2'
   - Increase attack size by {3}%.
   - 'Increase Damage By {0}%
 

@@ -325,6 +325,7 @@ public class Weapon : MonoBehaviour
         // Nếu không có mục tiêu, bắn theo hướng ngẫu nhiên
         if (targetEnemies.Length == 0)
         {
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.KnifeSquirl);
             for (int i = 0; i < totalCount; i++)
             {
                 // Bắn theo hướng ngẫu nhiên
@@ -333,7 +334,6 @@ public class Weapon : MonoBehaviour
                 bullet.position = transform.position;
                 bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
                 bullet.GetComponent<Bullet>().Init(damage, penetration, dir, i);
-
             }
             return; // Exit if no targets are found
         }
@@ -361,8 +361,7 @@ public class Weapon : MonoBehaviour
                 bullet.position = transform.position;
                 bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
                 bullet.GetComponent<Bullet>().Init(damage, penetration, dir, i);
-
-
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.KnifeSquirl);
             }
             else
             {
@@ -374,7 +373,6 @@ public class Weapon : MonoBehaviour
                 bullet.GetComponent<Bullet>().Init(damage, penetration, dir, i);
             }
         }
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
     }
 
     // Phương thức hỗ trợ để xáo trộn danh sách
@@ -651,6 +649,7 @@ public class Weapon : MonoBehaviour
             StartCoroutine(DeactivateBulletAfterTime(axe, 4f));
 
             // bắn mỗi 0.5s
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.AxeSquirl);
             yield return new WaitForSeconds(0.5f);
         }
     }

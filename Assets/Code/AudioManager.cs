@@ -29,7 +29,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] List<Slider> sfxSliders = new List<Slider>();
     int channelIndex;
 
-    public enum Sfx { Dead, Hit, LevelUp = 3, Lose, Melee, Range = 7, Select, Win,Lightning,Bossdead = 12,FireballShoot,FireballExplode,Treasuremusic0,Treasuremusic1,Treasuremusic2,Success}
+    public enum Sfx { Dead, Hit, LevelUp = 3, Lose, Melee, Range = 7, Select, Win,Lightning,Bossdead = 12,FireballShoot,FireballExplode,Treasuremusic0,Treasuremusic1,Treasuremusic2,Success,KnifeSquirl,AxeSquirl,ExpPickUp,GoldPickUp}
 
     void Awake()
     {
@@ -207,5 +207,24 @@ public class AudioManager : MonoBehaviour
             player.volume = volume;
         }
         PlayerPrefs.SetFloat("SfxVolume", volume);
+    }
+    public float GetSfxLength(Sfx sfx)
+    {
+        int index = (int)sfx;
+        if (index >= 0 && index < sfxClips.Length && sfxClips[index] != null)
+        {
+            return sfxClips[index].length;
+        }
+        return 0f;
+    }
+    public void StopAllSfx()
+    {
+        foreach (var player in sfxPlayers)
+        {
+            if (player.isPlaying)
+            {
+                player.Stop(); // Dung het tat ca SFX hien tai
+            }
+        }
     }
 }
