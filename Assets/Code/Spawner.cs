@@ -10,6 +10,9 @@ public class Spawner : MonoBehaviour
     public GameObject PointWave;
     private bool checkBossSpawn = false;
 
+    private float nextTime;
+    public float timeDeafult = 3f;
+
     public int mapId;
 
     float[] Rotation = { 0, 45, 90, 135, 180, 225, 270, 315, 160 };
@@ -68,13 +71,21 @@ public class Spawner : MonoBehaviour
             for (int i = 0; i < waveDetail.Count; i++)
             {
                 yield return StartCoroutine(SpawnSingleEvent(waveDetail.TypeEvent));
-                yield return new WaitForSeconds(3f);
+                yield return new WaitForSeconds(nextTime);
             }
         }
     }
 
     IEnumerator SpawnSingleEvent(int TypeEvent)
     {
+        if(TypeEvent != 5)
+        {
+            nextTime = timeDeafult;
+        }
+        else
+        {
+            nextTime = 1;
+        }
         switch (TypeEvent)
         {
             case 1:
@@ -132,8 +143,23 @@ public class Spawner : MonoBehaviour
                     waveType3.GetComponent<EventWave>().Inti(GameManager.instance.player.transform, null, TypeEvent, false);
                 }
                 break;
-        }
 
+            case 5:
+
+                int randomCount = Random.Range(2, 4);
+                for (int i = 0; i < randomCount; i++)
+                {
+                    int random = Random.Range(0, Rotation.Length);
+                    Transform positionEvent6 = GameManager.instance.player.transform;
+                    GameObject waveType5 = GameManager.instance.pool.Get(23);
+                    Transform[] childTransformss = GetChildPositions(waveType5);
+                    waveType5.transform.position = GameManager.instance.player.transform.position;
+                    waveType5.transform.Rotate(0, 0, Rotation[random]);
+                    waveType5.GetComponent<EventWave>().Inti(childTransformss[1].transform, childTransformss[2].transform, TypeEvent, false);
+                }
+                break;
+
+        }
         yield return null;
     }
 

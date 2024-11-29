@@ -41,6 +41,7 @@ public class AfterImageGenerator : MonoBehaviour
             if (afterimage != null && afterimage.activeSelf)
             {
                 afterimage.SetActive(false);
+                Destroy(afterimage);
             }
         }
 
@@ -101,4 +102,7 @@ public class AfterImageGenerator : MonoBehaviour
         // Remove from the active list
         activeAfterimages.Remove(afterimageObj);
     }
+
+    
+
 }
