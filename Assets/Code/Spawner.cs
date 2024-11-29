@@ -143,19 +143,22 @@ public class Spawner : MonoBehaviour
                     waveType3.GetComponent<EventWave>().Inti(GameManager.instance.player.transform, null, TypeEvent, false);
                 }
                 break;
+
             case 5:
 
-                int random = Random.Range(0, Rotation.Length);
-
-                Transform positionEvent6 = GameManager.instance.player.transform;
-                GameObject waveType5 = GameManager.instance.pool.Get(22);
-
-                Transform[] childTransformss = GetChildPositions(waveType5);
-
-                waveType5.transform.position = GameManager.instance.player.transform.position;
-                waveType5.transform.Rotate(0, 0, Rotation[random]);
-                waveType5.GetComponent<EventWave>().Inti(childTransformss[1].transform, childTransformss[2].transform, TypeEvent, false);
+                int randomCount = Random.Range(2, 4);
+                for (int i = 0; i < randomCount; i++)
+                {
+                    int random = Random.Range(0, Rotation.Length);
+                    Transform positionEvent6 = GameManager.instance.player.transform;
+                    GameObject waveType5 = GameManager.instance.pool.Get(23);
+                    Transform[] childTransformss = GetChildPositions(waveType5);
+                    waveType5.transform.position = GameManager.instance.player.transform.position;
+                    waveType5.transform.Rotate(0, 0, Rotation[random]);
+                    waveType5.GetComponent<EventWave>().Inti(childTransformss[1].transform, childTransformss[2].transform, TypeEvent, false);
+                }
                 break;
+
         }
         yield return null;
     }

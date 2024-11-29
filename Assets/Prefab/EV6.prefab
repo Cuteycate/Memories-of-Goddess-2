@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed:
-  - 25
+  - 30
   health: 1000
   maxHealth: 1000
   expOnDefeat: 4

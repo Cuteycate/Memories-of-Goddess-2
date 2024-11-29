@@ -101,7 +101,7 @@ Animator:
   m_GameObject: {fileID: 424285339462184896}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: 7c621e5845720d34db888b936a79a4f6, type: 2}
+  m_Controller: {fileID: 22100000, guid: 8a627b0e0c924db41b7dcc019288b715, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -201,6 +201,14 @@ MonoBehaviour:
   - {fileID: 22100000, guid: 1ba79b1eccbc63347af1b35d2091b3e6, type: 2}
   - {fileID: 22100000, guid: 8c65e152c63208a4f8dd27f66bf9efa6, type: 2}
   - {fileID: 22100000, guid: 8a627b0e0c924db41b7dcc019288b715, type: 2}
+  - {fileID: 22100000, guid: 53a4ca3c8bb68484ca72a4f02155e702, type: 2}
+  - {fileID: 22100000, guid: acd50c3a12c87dd45a64919085d5266a, type: 2}
+  - {fileID: 22100000, guid: 69fd965fbf65d0248827687f38c074ac, type: 2}
+  - {fileID: 22100000, guid: 883d80a98f352d247b2bec599dae1824, type: 2}
+  - {fileID: 22100000, guid: 912aeec02eb29564f9dd93ca53fa73be, type: 2}
+  - {fileID: 22100000, guid: 02389eb46dca11a44b437a9e70803924, type: 2}
+  - {fileID: 22100000, guid: 051bff00df2e11e43817f98dd936ae83, type: 2}
+  - {fileID: 22100000, guid: 3aa513ee99892a24e96745868a766b9a, type: 2}
   target: {fileID: 0}
   floatingtextPrefab: {fileID: 5099652313274479680, guid: abf381679dc758648915dad2a3b66fdb, type: 3}
   isLive: 0

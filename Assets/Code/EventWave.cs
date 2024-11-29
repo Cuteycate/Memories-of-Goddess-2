@@ -147,7 +147,7 @@ public class EventWave : MonoBehaviour
 
             if (TypeEvent == 5)
             {
-                //GameObject Wave = GameManager.instance.pool.Get(23);
+                //GameObject Wave = GameManager.instance.pool.Get(24);
                 //Wave.transform.position = bestSpawnPoint.position;
                 //Transform goalTranform = FirstSpawnPoint;
                 //Wave.GetComponent<EnemyEventPlus>().Init(false, isRotaion, TypeEvent, goalTranform);
@@ -160,8 +160,8 @@ public class EventWave : MonoBehaviour
 
     IEnumerator spawnEvent5()
     {
-        yield return new WaitForSeconds(1f);
-        GameObject Wave = GameManager.instance.pool.Get(23);
+        yield return new WaitForSeconds(0.5f);
+        GameObject Wave = GameManager.instance.pool.Get(24);
         Wave.transform.position = bestSpawnPoint.position;
         Transform goalTranform = FirstSpawnPoint;   
         Wave.GetComponent<EnemyEventPlus>().Init(false, isRotaion, TypeEvent, goalTranform);

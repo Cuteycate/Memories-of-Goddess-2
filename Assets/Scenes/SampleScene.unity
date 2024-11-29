@@ -33250,7 +33250,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &353559327
 Transform:
   m_ObjectHideFlags: 0
@@ -33350,8 +33350,8 @@ MonoBehaviour:
     expOnDefeat: 2
     EventWave: 1
     EventWaveDetails:
-    - TypeEvent: 3
-      Count: 3
+    - TypeEvent: 5
+      Count: 10
   - spawnTime: 1
     spriteType: 0
     health: 20
@@ -33493,6 +33493,7 @@ MonoBehaviour:
     EventWave: 0
     EventWaveDetails: []
   PointWave: {fileID: 0}
+  timeDeafult: 3
   mapId: 0
   level: 0
 --- !u!1 &354831575
@@ -44836,67 +44837,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2068502240}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &466473983
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -4192606144025701036, guid: a7e4ffa284f88d84f91a0351c676a402, type: 3}
-      propertyPath: health
-      value: 100000000
-      objectReference: {fileID: 0}
-    - target: {fileID: 6192134893759952661, guid: a7e4ffa284f88d84f91a0351c676a402, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.972
-      objectReference: {fileID: 0}
-    - target: {fileID: 6192134893759952661, guid: a7e4ffa284f88d84f91a0351c676a402, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.631
-      objectReference: {fileID: 0}
-    - target: {fileID: 6192134893759952661, guid: a7e4ffa284f88d84f91a0351c676a402, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6192134893759952661, guid: a7e4ffa284f88d84f91a0351c676a402, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6192134893759952661, guid: a7e4ffa284f88d84f91a0351c676a402, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6192134893759952661, guid: a7e4ffa284f88d84f91a0351c676a402, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6192134893759952661, guid: a7e4ffa284f88d84f91a0351c676a402, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6192134893759952661, guid: a7e4ffa284f88d84f91a0351c676a402, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6192134893759952661, guid: a7e4ffa284f88d84f91a0351c676a402, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6192134893759952661, guid: a7e4ffa284f88d84f91a0351c676a402, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8992457237692565577, guid: a7e4ffa284f88d84f91a0351c676a402, type: 3}
-      propertyPath: m_Name
-      value: Prop1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: a7e4ffa284f88d84f91a0351c676a402, type: 3}
 --- !u!1 &474810051
 GameObject:
   m_ObjectHideFlags: 0
@@ -46260,7 +46200,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 5.4
+  orthographic size: 7.68
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -47416,6 +47356,8 @@ MonoBehaviour:
   - {fileID: 1531381644612282493, guid: aa982d05006cdab4790e84f5af300d8c, type: 3}
   - {fileID: 2675950546044449683, guid: 97c50d03e35b4b94cb4bc15bc2c1a4b3, type: 3}
   - {fileID: 2514192426124917062, guid: bac452d1c34e2234089add96c2d33ff9, type: 3}
+  - {fileID: 2005347981833296910, guid: 6865c22371703d048ba83bd75986e3f2, type: 3}
+  - {fileID: 8177980684375558292, guid: 4c569c627e2aefa45b82b04da569ad53, type: 3}
 --- !u!1 &579959382
 GameObject:
   m_ObjectHideFlags: 0
@@ -50015,7 +49957,7 @@ MonoBehaviour:
   spawnPoint: []
   spawnData:
   - spawnTime: 0.2
-    spriteType: 0
+    spriteType: 8
     health: 10
     speed: 1
     expOnDefeat: 2
@@ -50024,49 +49966,49 @@ MonoBehaviour:
     - TypeEvent: 3
       Count: 3
   - spawnTime: 1
-    spriteType: 0
+    spriteType: 9
     health: 20
     speed: 1
     expOnDefeat: 2
     EventWave: 1
     EventWaveDetails: []
   - spawnTime: 0.7
-    spriteType: 1
+    spriteType: 10
     health: 30
     speed: 1
     expOnDefeat: 2
     EventWave: 1
     EventWaveDetails: []
   - spawnTime: 0.1
-    spriteType: 0
+    spriteType: 11
     health: 5
     speed: 2
     expOnDefeat: 1
     EventWave: 1
     EventWaveDetails: []
   - spawnTime: 0.3
-    spriteType: 1
+    spriteType: 12
     health: 30
     speed: 1.1
     expOnDefeat: 2
     EventWave: 1
     EventWaveDetails: []
   - spawnTime: 0.3
-    spriteType: 1
+    spriteType: 13
     health: 40
     speed: 1.1
     expOnDefeat: 2
     EventWave: 1
     EventWaveDetails: []
   - spawnTime: 0.2
-    spriteType: 3
+    spriteType: 14
     health: 40
     speed: 1
     expOnDefeat: 2
     EventWave: 1
     EventWaveDetails: []
   - spawnTime: 0.3
-    spriteType: 2
+    spriteType: 15
     health: 50
     speed: 1
     expOnDefeat: 2
@@ -50164,6 +50106,7 @@ MonoBehaviour:
     EventWave: 0
     EventWaveDetails: []
   PointWave: {fileID: 0}
+  timeDeafult: 3
   mapId: 0
   level: 0
 --- !u!1 &696662426
@@ -127365,4 +127308,3 @@ SceneRoots:
   - {fileID: 421026719}
   - {fileID: 1394612384}
   - {fileID: 1111960673}
-  - {fileID: 466473983}
