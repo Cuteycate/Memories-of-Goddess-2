@@ -370,7 +370,6 @@ public class Weapon : MonoBehaviour
                 Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
                 bullet.position = transform.position;
                 bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
-                bullet.GetComponent<Bullet>().Init(damage, penetration, dir, i);
             }
         }
     }

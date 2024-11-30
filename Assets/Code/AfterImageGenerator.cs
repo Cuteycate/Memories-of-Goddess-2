@@ -61,6 +61,7 @@ public class AfterImageGenerator : MonoBehaviour
                 // Initialize afterimage position, rotation, and visuals
                 afterimageObj.transform.position = transform.position;
                 afterimageObj.transform.rotation = transform.rotation;
+                afterimageObj.transform.localScale = transform.localScale;
                 SpriteRenderer afterimageRenderer = afterimageObj.GetComponent<SpriteRenderer>();
 
                 if (afterimageRenderer != null)
