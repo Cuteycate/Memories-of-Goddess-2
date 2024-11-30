@@ -40,8 +40,7 @@ public class AfterImageGenerator : MonoBehaviour
         {
             if (afterimage != null && afterimage.activeSelf)
             {
-                afterimage.SetActive(false);
-                Destroy(afterimage);
+                afterimage.SetActive(false);               
             }
         }
 
