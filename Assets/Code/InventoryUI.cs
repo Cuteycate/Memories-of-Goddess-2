@@ -9,6 +9,20 @@ public class InventoryUI : MonoBehaviour
     public List<Weapon> weapons = Item.ListWeapon;
     public List<Gear> gears = Item.ListGear;
 
+    void Start()
+    {
+        if (Application.isMobilePlatform)
+        {
+            RectTransform rectTransform = GetComponent<RectTransform>();
+            if (rectTransform != null)
+            {
+                // Adjust the position on the X-axis by 15 units
+                Vector3 newPosition = rectTransform.localPosition;
+                newPosition.x += 15;
+                rectTransform.localPosition = newPosition;
+            }
+        }
+    }
     private void Update()
     {
   

@@ -75,8 +75,16 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        inputVec.x = Input.GetAxisRaw("Horizontal");
-        inputVec.y = Input.GetAxisRaw("Vertical");
+        if (Gamepad.current != null)
+        {
+            inputVec = Gamepad.current.leftStick.ReadValue();
+        }
+        else
+        {
+            // Fallback for keyboard controls
+            inputVec.x = Input.GetAxisRaw("Horizontal");
+            inputVec.y = Input.GetAxisRaw("Vertical");
+        }
 
         if (inputVec.x != 0)
         {
@@ -86,13 +94,21 @@ public class Player : MonoBehaviour
         {
             lastVerticalVector = inputVec.y;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && canDash && GameManager.instance.PlayerId == 0)
+        if ((Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame) || Input.GetKeyDown(KeyCode.Space))
         {
-            StartCoroutine(Dash());
+            if (canDash && GameManager.instance.PlayerId == 0)
+            {
+                StartCoroutine(Dash());
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Space) && canDW && GameManager.instance.PlayerId == 1)
+
+        // Double Weapon Skill (Gamepad Button South or Spacebar)
+        if ((Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame) || Input.GetKeyDown(KeyCode.Space))
         {
-            StartCoroutine(DoubleCountWeapon());
+            if (canDW && GameManager.instance.PlayerId == 1)
+            {
+                StartCoroutine(DoubleCountWeapon());
+            }
         }
     }
 
