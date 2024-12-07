@@ -6,7 +6,6 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
 public class Player : MonoBehaviour
 {
     public Vector2 inputVec;
