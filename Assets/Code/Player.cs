@@ -50,10 +50,10 @@ public class Player : MonoBehaviour
     private bool canKnife = true;
     private bool isKnife = false;
     private float knifeCooldown = 5f;
-    private float numberOfKnives = 15f;
-    private float speedKnife = 40f;  
+    private float numberOfKnives = 50f;
+    private float speedKnife = 1.5f;  
     private float[] Rotaion = {20, 40, 60, 80, 100, 120, 140, 160, 180};
-    private float numberOfWave = 3;
+    private float numberOfWave = 4;
     private float damageOfKnife = 30;
 
     //spawn 
@@ -401,7 +401,7 @@ public class Player : MonoBehaviour
     {
         canKnife = false;
         isKnife = true;
-        float knifeDelay = 1f;
+        float knifeDelay = 0.5f;
 
         float levelMultiplier = 1 + (GameManager.instance.level * 0.1f); // 10% increase per level
 
@@ -430,7 +430,10 @@ public class Player : MonoBehaviour
                 KnifePrefab.transform.position = transformsknife[1].transform.position;
 
                 KnifePrefab.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90 + 180));
-                KnifePrefab.GetComponent<BulletSpecial>().Init(damageOfKnife * levelMultiplier, speedKnife, rotationAngle, transformsknife[2]);
+
+                Vector3 dir = transformsknife[2].position - transformsknife[1].position;
+
+                KnifePrefab.GetComponent<BulletSpecial>().Init(damageOfKnife * levelMultiplier, speedKnife, rotationAngle, transformsknife[2], dir);
 
                 AfterImageGenerator generator = KnifePrefab.GetComponent<AfterImageGenerator>();
                 if (generator != null)
