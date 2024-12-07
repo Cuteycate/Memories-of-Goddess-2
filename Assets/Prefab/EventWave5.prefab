@@ -88,6 +88,7 @@ MonoBehaviour:
   target: {fileID: 0}
   spawner: {fileID: 0}
   spawnEffect: {fileID: 0}
+  redLine: {fileID: 0}
 --- !u!1 &7392739385996581692
 GameObject:
   m_ObjectHideFlags: 0

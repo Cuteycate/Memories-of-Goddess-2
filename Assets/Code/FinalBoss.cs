@@ -201,7 +201,7 @@ public class FinalBoss : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Bullet") || !GameManager.instance.FinalBossStillAlive)
+        if (!GameManager.instance.FinalBossStillAlive)
             return;
         if (isDashing || isFiring || isDoing)
         {
@@ -212,31 +212,74 @@ public class FinalBoss : MonoBehaviour
         {
             DeactivateShield();
         }
+        /*health -= collision.GetComponent<Bullet>().damage;
+        StartCoroutine(KnockBack());
+        ShowDamage(collision.GetComponent<Bullet>().damage.ToString());
+
+        if (health > 0)
+        {
+            anim.SetTrigger("hit");
+            hit += 10;
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
+            //.. sống,bị trúng
+        }
+        else
+        {
+            //Chết
+            GameManager.instance.FinalBossStillAlive = false;
+            coll.enabled = false;
+            rigid.simulated = false;
+            spriter.sortingOrder = 1;
+            anim.SetBool("Dead", true);
+            GameManager.instance.kill++;
+        //GameManager.instance.GetExp(this);
+        if (GameManager.instance.isLive)
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Bossdead);
+        }*/
+        if (collision.CompareTag("Bullet"))
+        {
+            // Nếu là Bullet, giảm máu của Enemy
             health -= collision.GetComponent<Bullet>().damage;
-            StartCoroutine(KnockBack());
             ShowDamage(collision.GetComponent<Bullet>().damage.ToString());
 
             if (health > 0)
             {
-                anim.SetTrigger("hit");
-                hit += 10;
+                anim.SetTrigger("Hit");
                 AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
-                //.. sống,bị trúng
             }
-            else
+
+        }
+        else if (collision.CompareTag("BulletSpecial"))
+        {
+            health -= collision.GetComponent<BulletSpecial>().damage;
+            //ShowDamage(collision.GetComponent<BulletSpecial>().damage.ToString());
+
+            if (health > 0)
             {
-                //Chết
-                GameManager.instance.FinalBossStillAlive = false;
-                coll.enabled = false;
-                rigid.simulated = false;
-                spriter.sortingOrder = 1;
-                anim.SetBool("Dead", true);
-                GameManager.instance.kill++;
+                anim.SetTrigger("Hit");
+                //AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
+            }
+        }
+
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            return;
+        }
+
+        // Kiểm tra xem Enemy có chết không
+        if (health <= 0)
+        {
+            //Chết
+            GameManager.instance.FinalBossStillAlive = false;
+            coll.enabled = false;
+            rigid.simulated = false;
+            spriter.sortingOrder = 1;
+            anim.SetBool("Dead", true);
+            GameManager.instance.kill++;
             //GameManager.instance.GetExp(this);
             if (GameManager.instance.isLive)
                 AudioManager.instance.PlaySfx(AudioManager.Sfx.Bossdead);
-            }
-        
+        }
     }
     void ShowDamage(string text)
     {

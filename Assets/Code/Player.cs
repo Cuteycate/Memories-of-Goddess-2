@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static UnityEditor.IMGUI.Controls.PrimitiveBoundsHandle;
 public class Player : MonoBehaviour
 {
     public Vector2 inputVec;
@@ -17,6 +19,8 @@ public class Player : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer spriter;
     Animator anim;
+
+    public GameObject EffectSkill;
     //weapon Scythe test
     [HideInInspector]
     public float lastHorizontalVector;
@@ -29,8 +33,8 @@ public class Player : MonoBehaviour
     private float dashingPower = 24f;
     private float dashinhTime = 0.2f;
     private float dashingCooldown = 5f;
-    [SerializeField] private Slider skillcooldown;
 
+    [SerializeField] private Slider skillcooldown;
     [SerializeField] private TrailRenderer tr;
 
     //DoubleWeapon
@@ -40,7 +44,26 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public bool isDWing;
     private float DWtime = 5f;
-    private float DWCooldown = 25f;
+    private float DWCooldown = 5f;
+
+    //Knife
+    [HideInInspector]
+    private bool canKnife = true;
+    private bool isKnife = false;
+    private float knifeCooldown = 5f;
+    private float numberOfKnives = 15f;
+    private float speedKnife = 40f;  
+    private float[] Rotaion = {20, 40, 60, 80, 100, 120, 140, 160, 180};
+    private float numberOfWave = 3;
+    private float damageOfKnife = 30;
+
+    //spawn 
+    [HideInInspector]
+    private bool canSpawn = true;
+    private bool isSpawning = false;
+    private float numberOfSolider = 5;
+    private float spawnCooldown = 5f;
+    private float timeToDestroy = 30f;
 
     // Start is called before the first frame update
     void Awake()
@@ -61,7 +84,16 @@ public class Player : MonoBehaviour
             skillcooldown.maxValue = DWCooldown;
             skillcooldown.value = DWCooldown; // Slider starts full
         }
-
+        if (skillcooldown != null & GameManager.instance.PlayerId == 2)
+        {
+            skillcooldown.maxValue = knifeCooldown;
+            skillcooldown.value = knifeCooldown;
+        }
+        if (skillcooldown != null & GameManager.instance.PlayerId == 3)
+        {
+            skillcooldown.maxValue = spawnCooldown;
+            skillcooldown.value = spawnCooldown;
+        }
     }
     void OnEnable()
     {
@@ -76,27 +108,74 @@ public class Player : MonoBehaviour
         {
             return;
         }
-        inputVec.x = Input.GetAxisRaw("Horizontal");
-        inputVec.y = Input.GetAxisRaw("Vertical");
-        if (inputVec != Vector2.zero)
+        if (Gamepad.current != null)
+        {
+            inputVec = Gamepad.current.leftStick.ReadValue();
+        }
+        else
+        {
+            // Fallback for keyboard controls
+            inputVec.x = Input.GetAxisRaw("Horizontal");
+            inputVec.y = Input.GetAxisRaw("Vertical");
+        }
+
+        if (inputVec.x != 0)
         {
             inputVec = inputVec.normalized;
             lastHorizontalVector = inputVec.x;
             lastVerticalVector = inputVec.y;
         }
-        if (Input.GetKeyDown(KeyCode.Space) && canDash && GameManager.instance.PlayerId == 0)
+        if ((Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame) || Input.GetKeyDown(KeyCode.Space))
         {
-            StartCoroutine(Dash());
-            AudioManager.instance.PlaySfx(AudioManager.Sfx.Dash);
+            if(canDash && GameManager.instance.PlayerId == 0){
+                EffectSkill.SetActive(true);
+                StartCoroutine(Dash());
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.Dash);
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Space) && canDW && GameManager.instance.PlayerId == 1)
+
+        // Double Weapon Skill (Gamepad Button South or Spacebar)
+        if ((Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame) || Input.GetKeyDown(KeyCode.Space))
         {
-            StartCoroutine(DoubleCountWeapon());
+            if (canDW && GameManager.instance.PlayerId == 1)
+            {
+                EffectSkill.SetActive(true);
+                StartCoroutine(DoubleCountWeapon());
+            }
         }
         if (Input.GetMouseButtonDown(0)) // chuốt trái
         {
             useMouseToAim = !useMouseToAim; // Toggle
         }
+
+        if ((Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame) || Input.GetKeyDown(KeyCode.Space))
+        {
+            if (canKnife && GameManager.instance.PlayerId == 2)
+            {
+                EffectSkill.SetActive(true);
+                StartCoroutine(Knife());    
+            }
+        }
+
+        if ((Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame) || Input.GetKeyDown(KeyCode.Space))
+        {
+            if (canSpawn && GameManager.instance.PlayerId == 3)
+            {
+                EffectSkill.SetActive(true);
+                StartCoroutine(SpawnSolider());
+            }
+        }
+        /*
+        if (Input.GetKeyDown(KeyCode.Space) && canKnife && GameManager.instance.PlayerId == 2)
+        {
+            EffectSkill.SetActive(true);
+            StartCoroutine(Knife());             
+        }
+        if (Input.GetKeyDown(KeyCode.Space) && canSpawn && GameManager.instance.PlayerId == 3)
+        {
+            EffectSkill.SetActive(true);
+            StartCoroutine(SpawnSolider());         
+        }    */  
     }
 
     void FixedUpdate()
@@ -140,6 +219,10 @@ public class Player : MonoBehaviour
         if (collision.otherCollider != playerCollider)
             return;
         if (collision.gameObject.CompareTag("Turet"))
+        {
+            return;
+        }
+        if (collision.gameObject.CompareTag("TuretSkill"))
         {
             return;
         }
@@ -239,6 +322,7 @@ public class Player : MonoBehaviour
         rigid.gravityScale = originalGravity;
         rigid.velocity = Vector2.zero; // Dừng lại sau Dash
         isDashing = false;
+        EffectSkill.SetActive(false);
         // Chờ thời gian hồi chiêu trước khi cho phép Dash lần tiếp theo
         //Hien thi thoi gian cho tren slider
         float cooldownTimer = 0;
@@ -287,6 +371,7 @@ public class Player : MonoBehaviour
                 weapon.ExtraCount /= 2;
             }
         }
+        EffectSkill.SetActive(false);
         // Chờ thời gian hồi chiêu trước khi cho phép Dash lần tiếp theo
         //Hien thi thoi gian cho tren slider
         float cooldownTimer = 0;
@@ -305,6 +390,124 @@ public class Player : MonoBehaviour
             skillcooldown.value = DWCooldown;
         }
         canDW = true;
+    }
+
+    Transform[] GetChildPositions(GameObject parentObject)
+    {
+        Transform[] childTransforms = parentObject.GetComponentsInChildren<Transform>();
+        return childTransforms;
+    }
+
+    private IEnumerator Knife()
+    {
+        canKnife = false;
+        isKnife = true;
+        float knifeDelay = 1f;
+
+        float levelMultiplier = 1 + (GameManager.instance.level * 0.1f); // 10% increase per level
+
+        for (int i = 0; i < numberOfKnives / numberOfWave; i++)
+        {
+            for (int j = 0; j < numberOfWave; j++)
+            {
+                int yinYang = Random.Range(0, 2);
+                int ran = Random.Range(0, Rotaion.Length);
+                GameObject PointKnife = GameManager.instance.pool.Get(27);
+                PointKnife.transform.position = new Vector3(GameManager.instance.player.transform.position.x + Random.Range(-5, 5),
+                                                                GameManager.instance.player.transform.position.y + Random.Range(-5, 5),
+                                                                0);
+                Transform[] transformsknife = GetChildPositions(PointKnife);
+                float rotationAngle = Rotaion[ran];
+                if (yinYang == 1)
+                {
+                    rotationAngle = -rotationAngle;
+                }
+                PointKnife.transform.Rotate(0, 0, rotationAngle);
+                Vector3 direction = (transformsknife[2].position - transformsknife[1].position).normalized;
+
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+                GameObject KnifePrefab = GameManager.instance.pool.Get(26);
+                KnifePrefab.transform.position = transformsknife[1].transform.position;
+
+                KnifePrefab.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 90 + 180));
+                KnifePrefab.GetComponent<BulletSpecial>().Init(damageOfKnife * levelMultiplier, speedKnife, rotationAngle, transformsknife[2]);
+
+                AfterImageGenerator generator = KnifePrefab.GetComponent<AfterImageGenerator>();
+                if (generator != null)
+                {
+                    generator.StartAfterImages(); 
+                }
+            }
+
+            yield return new WaitForSeconds(knifeDelay);
+        }
+        isKnife = false;
+        EffectSkill.SetActive(false);
+        yield return new WaitForSeconds(0.1f);
+        float cooldownTimer = 0;
+        while (cooldownTimer < knifeCooldown)
+        {
+            cooldownTimer += Time.deltaTime;
+            if (skillcooldown != null)
+            {
+                skillcooldown.value = cooldownTimer;
+            }
+            yield return null;
+        }
+
+        if (skillcooldown != null)
+        {
+            skillcooldown.value = knifeCooldown;
+        }
+
+        canKnife = true;
+    }
+
+    private IEnumerator SpawnSolider()
+    {
+        canSpawn = false;
+        isSpawning = true;
+
+        float levelMultiplier = 1 + (GameManager.instance.level * 0.1f); 
+
+        Vector3[] spawnPositions = new Vector3[]
+        {
+        new Vector3(GameManager.instance.player.transform.position.x + 4, GameManager.instance.player.transform.position.y, 0),
+        new Vector3(GameManager.instance.player.transform.position.x, GameManager.instance.player.transform.position.y + 4, 0),
+        new Vector3(GameManager.instance.player.transform.position.x - 4, GameManager.instance.player.transform.position.y, 0),
+        new Vector3(GameManager.instance.player.transform.position.x, GameManager.instance.player.transform.position.y - 4, 0)
+        };
+
+        foreach (Vector3 spawnPos in spawnPositions)
+        {
+            GameObject SmokeEffect = GameManager.instance.pool.Get(31);
+            SmokeEffect.transform.position = new Vector3(spawnPos.x, spawnPos.y + 2, 0);
+            yield return new WaitForSeconds(0.5f);
+
+            GameObject TurretSkill = GameManager.instance.pool.Get(29);
+            TurretSkill.transform.position = spawnPos;
+
+            TurretSkill.GetComponent<TurretSkill>().Init(10f * levelMultiplier, 0.5f, timeToDestroy);
+        }
+
+        isSpawning = false;
+        float cooldownTimer = 0;
+        while (cooldownTimer < spawnCooldown)
+        {
+            cooldownTimer += Time.deltaTime;
+            if (skillcooldown != null)
+            {
+                skillcooldown.value = cooldownTimer;
+            }
+            yield return null;
+        }
+        if (skillcooldown != null)
+        {
+            skillcooldown.value = spawnCooldown;
+        }
+
+        canSpawn = true;
     }
 
 }
