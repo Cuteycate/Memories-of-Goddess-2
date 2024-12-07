@@ -43586,8 +43586,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bd838f5a790649342b470e7e57da8c0d, type: 3}
   - {fileID: 8300000, guid: 7c01573696bbaf941a0927df449cf26d, type: 3}
   - {fileID: 8300000, guid: 43c18424cf5008a42a40ab05347a4a66, type: 3}
+  - {fileID: 8300000, guid: 8d1b6d8fa28625b46a97ad80968080e0, type: 3}
   sfxVolume: 0.1
-  channels: 23
+  channels: 24
   bgmSliders:
   - {fileID: 1174230723}
   - {fileID: 1172554283}
@@ -58417,7 +58418,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -40, y: -50}
+  m_AnchoredPosition: {x: -40, y: -49.999985}
   m_SizeDelta: {x: 75, y: 20}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &792603125
