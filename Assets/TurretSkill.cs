@@ -115,8 +115,8 @@ public class TurretSkill : MonoBehaviour
             
             Vector3 firingDirection = barrelTransform.right;
 
-            bullet1.GetComponent<Bullet>().Init(30, 5, firingDirection, 5);
-            bullet2.GetComponent<Bullet>().Init(30, 5, firingDirection, 5);
+            bullet1.GetComponent<Bullet>().Init(30, 5, firingDirection, 5,0.33f);
+            bullet2.GetComponent<Bullet>().Init(30, 5, firingDirection, 5,0.33f);
 
             yield return new WaitForSeconds(timeBetweenShots + Random.Range(-0.1f, 0.1f));
         }
