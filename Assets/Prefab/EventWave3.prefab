@@ -1280,11 +1280,13 @@ MonoBehaviour:
   bestSpawnPoint: {fileID: 0}
   FirstSpawnPoint: {fileID: 0}
   TypeEvent: 0
+  isRotaion: 0
   Timer: 0
   coolTime: 5
   target: {fileID: 0}
   spawner: {fileID: 0}
   spawnEffect: {fileID: 3055892998958464220, guid: f0178a1535a5472409cfa6c67c59c393, type: 3}
+  redLine: {fileID: 0}
 --- !u!50 &-503826807739398832
 Rigidbody2D:
   serializedVersion: 4

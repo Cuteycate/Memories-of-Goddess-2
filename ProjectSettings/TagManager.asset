@@ -20,6 +20,8 @@ TagManager:
   - CircleCollider
   - ExpPickUp
   - UICamera
+  - BulletSpecial
+  - TuretSkill
   layers:
   - Default
   - TransparentFX

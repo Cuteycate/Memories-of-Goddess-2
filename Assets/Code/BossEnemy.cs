@@ -127,21 +127,43 @@ public class BossEnemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Bullet") || !isLive)
+        if (!isLive)
             return;
-        health -= collision.GetComponent<Bullet>().damage;
-        StartCoroutine(KnockBack());
-        ShowDamage(collision.GetComponent<Bullet>().damage.ToString());
 
-        if (health > 0)
+        if (collision.CompareTag("Bullet"))
         {
-            anim.SetTrigger("Hit");
-            AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
-            //.. sống,bị trúng
+            // Nếu là Bullet, giảm máu của Enemy
+            health -= collision.GetComponent<Bullet>().damage;
+            ShowDamage(collision.GetComponent<Bullet>().damage.ToString());
+
+            if (health > 0)
+            {
+                anim.SetTrigger("Hit");
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
+            }
+
         }
-        else
+        else if (collision.CompareTag("BulletSpecial"))
         {
-            //Chết
+            health -= collision.GetComponent<BulletSpecial>().damage;
+            //ShowDamage(collision.GetComponent<BulletSpecial>().damage.ToString());
+
+            if (health > 0)
+            {
+                anim.SetTrigger("Hit");
+                //AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
+            }
+        }
+
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            return;
+        }
+
+        // Kiểm tra xem Enemy có chết không
+        if (health <= 0)
+        {
+            // Chết
             isLive = false;
             coll.enabled = false;
             rigid.simulated = false;

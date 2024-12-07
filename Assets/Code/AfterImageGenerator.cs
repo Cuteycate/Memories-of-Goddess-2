@@ -8,10 +8,11 @@ public class AfterImageGenerator : MonoBehaviour
     public float interval = 0.05f; // Time between afterimages
     public float afterimageDuration = 0.1f; // How long the afterimage lasts
     public int poolIndex = 20; // Index of the afterimage prefab in the pool
-
+    
     private SpriteRenderer spriteRenderer;
     private List<GameObject> activeAfterimages = new List<GameObject>(); // Track active afterimages
-
+   
+    public SpriteRenderer spE;
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -63,13 +64,20 @@ public class AfterImageGenerator : MonoBehaviour
                 afterimageObj.transform.rotation = transform.rotation;
                 afterimageObj.transform.localScale = transform.localScale;
                 SpriteRenderer afterimageRenderer = afterimageObj.GetComponent<SpriteRenderer>();
-
                 if (afterimageRenderer != null)
                 {
-                    afterimageRenderer.sprite = spriteRenderer.sprite;
-                    afterimageRenderer.color = spriteRenderer.color;
-                    afterimageRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
-
+                    if ( poolIndex == 28)
+                    {
+                        afterimageRenderer.sprite = spE.sprite;
+                        afterimageRenderer.color = spE.color;
+                        afterimageRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
+                    }
+                    else
+                    {
+                        afterimageRenderer.sprite = spriteRenderer.sprite;
+                        afterimageRenderer.color = spriteRenderer.color;
+                        afterimageRenderer.sortingOrder = spriteRenderer.sortingOrder - 1;
+                    }
                     // Start the fade coroutine
                     StartCoroutine(FadeAndReturnToPool(afterimageRenderer, afterimageObj));
                 }
