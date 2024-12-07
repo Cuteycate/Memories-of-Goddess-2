@@ -128,17 +128,41 @@ public class Player : MonoBehaviour
         }
         if ((Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame) || Input.GetKeyDown(KeyCode.Space))
         {
-            EffectSkill.SetActive(true);
-            StartCoroutine(Dash());
+            if(canDash && GameManager.instance.PlayerId == 0){
+                EffectSkill.SetActive(true);
+                StartCoroutine(Dash());
+            }
         }
 
         // Double Weapon Skill (Gamepad Button South or Spacebar)
         if ((Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame) || Input.GetKeyDown(KeyCode.Space))
         {
-            EffectSkill.SetActive(true);
-            StartCoroutine(DoubleCountWeapon());
+            if (canDW && GameManager.instance.PlayerId == 1)
+            {
+                EffectSkill.SetActive(true);
+                StartCoroutine(DoubleCountWeapon());
+            }
         }
-        if (Input.GetKeyDown(KeyCode.Space) && canSpawn && GameManager.instance.PlayerId == 2)
+
+        if ((Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame) || Input.GetKeyDown(KeyCode.Space))
+        {
+            if (canKnife && GameManager.instance.PlayerId == 2)
+            {
+                EffectSkill.SetActive(true);
+                StartCoroutine(Knife());    
+            }
+        }
+
+        if ((Gamepad.current != null && Gamepad.current.buttonSouth.wasPressedThisFrame) || Input.GetKeyDown(KeyCode.Space))
+        {
+            if (canSpawn && GameManager.instance.PlayerId == 3)
+            {
+                EffectSkill.SetActive(true);
+                StartCoroutine(SpawnSolider());
+            }
+        }
+        /*
+        if (Input.GetKeyDown(KeyCode.Space) && canKnife && GameManager.instance.PlayerId == 2)
         {
             EffectSkill.SetActive(true);
             StartCoroutine(Knife());             
@@ -147,7 +171,7 @@ public class Player : MonoBehaviour
         {
             EffectSkill.SetActive(true);
             StartCoroutine(SpawnSolider());         
-        }      
+        }    */  
     }
 
     void FixedUpdate()
