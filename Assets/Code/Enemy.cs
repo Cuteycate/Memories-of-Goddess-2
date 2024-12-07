@@ -129,36 +129,55 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Bullet") || !isLive)
+        if (!isLive)
             return;
-        health -= collision.GetComponent<Bullet>().damage;
-     //   StartCoroutine(KnockBack());
-        ShowDamage(collision.GetComponent<Bullet>().damage.ToString());
+
+        if (collision.CompareTag("Bullet"))
+        {
+            // Nếu là Bullet, giảm máu của Enemy
+            health -= collision.GetComponent<Bullet>().damage;
+            ShowDamage(collision.GetComponent<Bullet>().damage.ToString());
+
+            if (health > 0)
+            {
+                anim.SetTrigger("Hit");
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
+            }
+
+        }
+        else if (collision.CompareTag("BulletSpecial"))
+        {        
+            health -= collision.GetComponent<BulletSpecial>().damage;
+            //ShowDamage(collision.GetComponent<BulletSpecial>().damage.ToString());
+
+            if (health > 0)
+            {
+                anim.SetTrigger("Hit");
+                //AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
+            }
+        }
+
         if (collision.gameObject.CompareTag("Wall"))
         {
             return;
         }
 
-        if (health > 0)
+        // Kiểm tra xem Enemy có chết không
+        if (health <= 0)      
         {
-            anim.SetTrigger("Hit");
-            AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
-            //.. sống,bị trúng
-        }
-        else
-        {
-            //Chết
+            // Chết
             isLive = false;
             coll.enabled = false;
             rigid.simulated = false;
             spriter.sortingOrder = 1;
-            anim.SetBool("Dead",true);
+            anim.SetBool("Dead", true);
             GameManager.instance.kill++;
             GameManager.instance.GetExp(this);
-            if(GameManager.instance.isLive)
-            AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead);
+            if (GameManager.instance.isLive)
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead);
         }
     }
+
     IEnumerator KnockBack()
     {
         /*   yield return null; //khựng 1 frame
