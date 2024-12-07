@@ -19,6 +19,7 @@ public class ItemData : ScriptableObject
     public int basePenetration;
     public float baseCoolDown;
     public float baseSize;
+    public float HitCooldown;
     public float[] damages;
     public int[] counts;
     public int[] penetrations;

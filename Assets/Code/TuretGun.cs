@@ -103,7 +103,7 @@ public class TuretGun : MonoBehaviour
             Transform bullet = GameManager.instance.pool.Get(2).transform;
             bullet.position = transform.position;
             bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
-            bullet.GetComponent<Bullet>().Init(damage, per, dir, i);
+            bullet.GetComponent<Bullet>().Init(damage, per, dir, i, 0.33f);
             //AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
             yield return new WaitForSeconds(0.1f); // Chia thời gian cho số lượng viên đạn để đảm bảo rằng chỉ có 5 viên đạn được bắn sau mỗi 20 giây
         }

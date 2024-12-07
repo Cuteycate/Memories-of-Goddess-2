@@ -53,9 +53,12 @@ public class Gear : MonoBehaviour
             level++;
             IncreaseRadius();
         }
-        this.rate = rate;
-        level++;
-        ApplyGear();
+        else
+        {
+            this.rate = rate;
+            level++;
+            ApplyGear();
+        }
     }
     void ApplyGear()
     {

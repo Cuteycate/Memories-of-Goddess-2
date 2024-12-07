@@ -42,6 +42,7 @@ MonoBehaviour:
   basePenetration: 0
   baseCoolDown: 0.6
   baseSize: 0
+  HitCooldown: 0.33
   damages:
   - 0
   - 0.2

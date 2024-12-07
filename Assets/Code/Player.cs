@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     public Scanner scanner;
     public Hand[] hands;
     public RuntimeAnimatorController[] animCon;
+    public bool useMouseToAim = false;
     Rigidbody2D rigid;
     SpriteRenderer spriter;
     Animator anim;
@@ -77,22 +78,24 @@ public class Player : MonoBehaviour
         }
         inputVec.x = Input.GetAxisRaw("Horizontal");
         inputVec.y = Input.GetAxisRaw("Vertical");
-
-        if (inputVec.x != 0)
+        if (inputVec != Vector2.zero)
         {
+            inputVec = inputVec.normalized;
             lastHorizontalVector = inputVec.x;
-        }
-        if (inputVec.y != 0)
-        {
             lastVerticalVector = inputVec.y;
         }
         if (Input.GetKeyDown(KeyCode.Space) && canDash && GameManager.instance.PlayerId == 0)
         {
             StartCoroutine(Dash());
+            AudioManager.instance.PlaySfx(AudioManager.Sfx.Dash);
         }
         if (Input.GetKeyDown(KeyCode.Space) && canDW && GameManager.instance.PlayerId == 1)
         {
             StartCoroutine(DoubleCountWeapon());
+        }
+        if (Input.GetMouseButtonDown(0)) // chuốt trái
+        {
+            useMouseToAim = !useMouseToAim; // Toggle
         }
     }
 

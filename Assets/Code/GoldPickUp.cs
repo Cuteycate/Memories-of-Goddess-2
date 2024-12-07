@@ -38,9 +38,7 @@ public class GoldPickUp : MonoBehaviour
                 gameManager.gold += Mathf.RoundToInt(goldAmount * ShopStats.Instance.goldMultiplier);
 
                 AudioManager.instance.PlaySfx(AudioManager.Sfx.GoldPickUp);
-
-                // phá vàng
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
     }

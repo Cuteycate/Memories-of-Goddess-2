@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         Health = MaxHealth; // Health = maxHealth
         player.gameObject.SetActive(true); // Set player object true de bat dau
         instance.player.StartHealthRecovery(0); // Bat dau HealthRecovery nhung khong co gear (trong truong hop nay gear = 0)
-        uiLevelUp.Select(14); //
+        uiLevelUp.Select(PlayerId % 2); //
         Resume();
         AudioManager.instance.PlayOpening(false);
         AudioManager.instance.PlayBgm(true);

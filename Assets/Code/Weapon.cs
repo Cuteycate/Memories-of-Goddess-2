@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
     public int penetration;
     public float speed;
     public float size;
+    public float hitCooldown;
     public int ExtraCount;
     float timer;
     private bool isBatchEnabled = false;
@@ -21,7 +22,6 @@ public class Weapon : MonoBehaviour
     public GameObject hiteffect;
     private Coroutine batchCoroutine;
     Player player;
-
     public Sprite Icon;
     public int level = 1;
     public int maxlevel;
@@ -111,6 +111,7 @@ public class Weapon : MonoBehaviour
         count = data.baseCount + Character.Count + ExtraCount + ShopStats.Instance.projectileMultiplier;
         penetration = data.basePenetration;
         size = data.baseSize;
+        hitCooldown = data.HitCooldown;
         //Su dung de tinh CoolDown Cua vu khi va luu tru vao baseCoolDowns
         float calculatedSpeed = 0f;
         //hiteffect
@@ -269,7 +270,7 @@ public class Weapon : MonoBehaviour
             Vector3 rotVec = Vector3.forward * 360 * i / count;
             bullet.Rotate(rotVec);
             bullet.Translate(bullet.up * 3f, Space.World);
-            bullet.GetComponent<Bullet>().Init(damage, penetration, Vector3.zero, count);
+            bullet.GetComponent<Bullet>().Init(damage, penetration, Vector3.zero, count, hitCooldown);
         }
 
         if (checkDW)
@@ -284,33 +285,62 @@ public class Weapon : MonoBehaviour
     {
         int initialCount = ExtraCount;
         int totalCount = count + initialCount;
+
         for (int i = 0; i < totalCount; i++)
         {
-            if (!player.scanner.nearestTarget)
+            Vector3 dir;
+            float angle;
+
+            if (player.useMouseToAim)
             {
-                yield break;
+                // nhấm bằng vị trí chuột
+                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                dir = mousePos - transform.position;
+                dir.z = 0; 
+                dir = dir.normalized;
+
+                angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             }
-            Vector3 targetPos = player.scanner.nearestTarget.position;
-            Vector3 dir = targetPos - transform.position;
-            dir = dir.normalized;
+            else
+            {
+                // tự nhấm
+                if (!player.scanner.nearestTarget)
+                {
+                    yield break;
+                }
+
+                Vector3 targetPos = player.scanner.nearestTarget.position;
+                dir = targetPos - transform.position;
+                dir = dir.normalized;
+
+                angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            }
+
+            
             Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
             bullet.position = transform.position;
+
+            // Thêm rotation
             bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
-            bullet.GetComponent<Bullet>().Init(damage, penetration, dir, i);
+
+            // bắt đầu bullet
+            bullet.GetComponent<Bullet>().Init(damage, penetration, dir, i, hitCooldown);
+
             AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
             yield return new WaitForSeconds(0.1f);
         }
     }
-    // Knife Code below ID 14///
+
+
+    //Knife code below
     void Fire()
     {
         int initialCount = ExtraCount; // Số lượng súng bổ sung
         int totalCount = count + initialCount; // Tổng số súng
-
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
         // Lấy tất cả mục tiêu có thể từ bộ quét
         RaycastHit2D[] hitResults = GameManager.instance.player.GetComponent<Scanner>().targets;
         List<Transform> targetTransforms = new List<Transform>();
-
         foreach (RaycastHit2D hitResult in hitResults)
         {
             if (hitResult.transform != null)
@@ -318,14 +348,11 @@ public class Weapon : MonoBehaviour
                 targetTransforms.Add(hitResult.transform); // Thêm mục tiêu vào danh sách
             }
         }
-
         // Chuyển đổi danh sách mục tiêu thành mảng để dễ truy cập
         Transform[] targetEnemies = targetTransforms.ToArray();
-
         // Nếu không có mục tiêu, bắn theo hướng ngẫu nhiên
         if (targetEnemies.Length == 0)
         {
-            AudioManager.instance.PlaySfx(AudioManager.Sfx.KnifeSquirl);
             for (int i = 0; i < totalCount; i++)
             {
                 // Bắn theo hướng ngẫu nhiên
@@ -333,11 +360,10 @@ public class Weapon : MonoBehaviour
                 Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
                 bullet.position = transform.position;
                 bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
-                bullet.GetComponent<Bullet>().Init(damage, penetration, dir, i);
+                bullet.GetComponent<Bullet>().Init(damage, penetration, dir, i, hitCooldown);
             }
             return; // Exit if no targets are found
         }
-
         // Sắp xếp mục tiêu ngẫu nhiên để đảm bảo không có mục tiêu trùng lặp
         List<int> targetIndices = new List<int>();
         for (int i = 0; i < targetEnemies.Length; i++)
@@ -345,7 +371,6 @@ public class Weapon : MonoBehaviour
             targetIndices.Add(i);
         }
         ShuffleList(targetIndices); // Xáo trộn danh sách mục tiêu
-
         // Lặp qua tất cả "súng" (dựa trên số lượng totalCount)
         for (int i = 0; i < totalCount; i++)
         {
@@ -355,13 +380,11 @@ public class Weapon : MonoBehaviour
                 int randomIndex = targetIndices[i];
                 Vector3 targetPos = targetEnemies[randomIndex].position;
                 Vector3 dir = (targetPos - transform.position).normalized;
-
                 // Bắn đạn vào mục tiêu
                 Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
                 bullet.position = transform.position;
                 bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
-                bullet.GetComponent<Bullet>().Init(damage, penetration, dir, i);
-                AudioManager.instance.PlaySfx(AudioManager.Sfx.KnifeSquirl);
+                bullet.GetComponent<Bullet>().Init(damage, penetration, dir, i, hitCooldown);
             }
             else
             {
@@ -370,10 +393,10 @@ public class Weapon : MonoBehaviour
                 Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
                 bullet.position = transform.position;
                 bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
+                bullet.GetComponent<Bullet>().Init(damage, penetration, dir, i, hitCooldown);
             }
         }
     }
-
     // Phương thức hỗ trợ để xáo trộn danh sách
     void ShuffleList(List<int> list)
     {
@@ -392,77 +415,120 @@ public class Weapon : MonoBehaviour
     //Shotgun code ID 8
     void FireShotgun()
     {
-        if (!player.scanner.nearestTarget)
-        {
-            return;
-        }
-
         int initialCount = ExtraCount;
         int totalCount = count + initialCount;
+        Vector3 dirToTarget;
+        if (player.useMouseToAim)
+        {
+            // ban su dung chuot
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            dirToTarget = (mousePos - transform.position).normalized;
+            dirToTarget.z = 0; // Ensure 2D direction
+            dirToTarget = dirToTarget.normalized;
+        }
+        else
+        {
+            dirToTarget = new Vector3(player.lastHorizontalVector, player.lastVerticalVector, 0).normalized;
+            if (dirToTarget == Vector3.zero)
+            {
+                dirToTarget = Vector3.right;
+            }
+        }
 
-        Vector3 targetPos = player.scanner.nearestTarget.position;
-        Vector3 dirToTarget = (targetPos - transform.position).normalized;
         for (int i = 0; i < totalCount; i++)
         {
-            float angle = i * (45f / count);
+            float angle = (i - (totalCount - 1) / 2f) * 10f;
             Vector3 spreadDir = Quaternion.Euler(0, 0, angle) * dirToTarget;
             Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
             bullet.position = transform.position;
-            bullet.GetComponent<Bullet>().Init(damage, penetration, spreadDir, i);
-            AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
+            bullet.rotation = Quaternion.FromToRotation(Vector3.up, spreadDir);
+            bullet.GetComponent<Bullet>().Init(damage, penetration, spreadDir, i, hitCooldown);
         }
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
     }
+
     //Sniper rifle code ID 9
     IEnumerator SniperFireCoroutine()
     {
         int initialCount = ExtraCount;
         int totalCount = count + initialCount;
+
         for (int i = 0; i < totalCount; i++)
         {
-            if (!player.scanner.nearestTarget)
+            Vector3 dir;
+
+            if (player.useMouseToAim)
             {
-                yield break;
+                Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                dir = (mousePos - transform.position).normalized;
+                dir.z = 0; 
+                dir = dir.normalized;
             }
-            Vector3 targetPos = player.scanner.farthestTarget.position;
-            Vector3 dir = targetPos - transform.position;
-            dir = dir.normalized;
+            else
+            {
+                if (!player.scanner.farthestTarget)
+                {
+                    yield break;
+                }
+
+                Vector3 targetPos = player.scanner.farthestTarget.position;
+                dir = (targetPos - transform.position).normalized;
+                dir = dir.normalized;
+            }
             Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
             bullet.position = transform.position;
             bullet.rotation = Quaternion.FromToRotation(Vector3.up, dir);
-            bullet.GetComponent<Bullet>().Init(damage, penetration, dir, i);
+            bullet.GetComponent<Bullet>().Init(damage, penetration, dir, i, hitCooldown);
             AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
             yield return new WaitForSeconds(0.5f);
         }
     }
+
     //Melee Attack code ID 10 (Scythe)
     void MeleeAttack()
     {
         float temp = 1f + (float)count * 0.2f;
+
         if (!player.scanner.nearestTarget)
             return;
-        Vector3 targetPos = player.scanner.nearestTarget.position;
-        Vector3 dir = targetPos - transform.position;
-        dir = dir.normalized;
-        Quaternion rotation;
+
+        Vector3 direction;
+
+        if (player.useMouseToAim)
+        {
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            direction = (mousePosition - transform.position);
+            direction.z = 0;
+            direction = direction.normalized;
+        }
+        else
+        {
+            Vector3 movementDirection = new Vector3(player.inputVec.x, player.inputVec.y, 0);
+            if (movementDirection == Vector3.zero)
+            {
+                movementDirection = new Vector3(player.lastHorizontalVector, player.lastVerticalVector, 0);
+            }
+            direction = movementDirection.normalized;
+            if (direction == Vector3.zero)
+            {
+                direction = Vector3.right;
+            }
+        }
+        Quaternion rotation = Quaternion.FromToRotation(Vector3.right, direction);
 
         Transform bullet = GameManager.instance.pool.Get(prefabId).transform;
         bullet.position = transform.position;
 
-        if (player.lastHorizontalVector > 0)
-        {
-            rotation = Quaternion.Euler(0f, 0f, 0);
-        }
-        else
-        {
-            rotation = Quaternion.Euler(0f, 0f, 180f);
-        }
-        bullet.localScale = new Vector3(temp, temp, 1f); //tang Scale Cua SLash
-        bullet.rotation = rotation; //Xoay Slash
-        bullet.Translate(bullet.right * 3f, Space.World); //Khaong Cach Slash so voi nguoi choi
-        bullet.GetComponent<Bullet>().Init(damage, penetration, dir, 1); // Tao Slash
-        AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
+        bullet.localScale = new Vector3(temp, temp, 1f);
+        bullet.rotation = rotation;
+        bullet.Translate(bullet.right * 3f, Space.World);
+        bullet.GetComponent<Bullet>().Init(damage, penetration, direction, 1, hitCooldown);
 
+        AudioManager.instance.PlaySfx(AudioManager.Sfx.Range);
     }
+
+
+
 
     HashSet<Transform> enemiesHit = new HashSet<Transform>(); // HashSet to store enemies hit by lightning
 
@@ -538,10 +604,8 @@ public class Weapon : MonoBehaviour
 
     void AreaAttack(Vector3 center, float radius, float damage)
     {
-        // Detect all colliders within the specified radius around the center position
         Collider2D[] colliders = Physics2D.OverlapCircleAll(center, radius);
 
-        // Loop through all colliders found in the radius
         foreach (Collider2D collider in colliders)
         {
             if (collider.CompareTag("Enemy"))
@@ -635,7 +699,7 @@ public class Weapon : MonoBehaviour
             ).normalized;
 
             // Khởi tạo rìu
-            axe.GetComponent<Bullet>().Init(damage, penetration, initialDirection, i);
+            axe.GetComponent<Bullet>().Init(damage, penetration, initialDirection, i, hitCooldown);
 
             // Bắt đầu Coroutine cho rìu quay
             StartCoroutine(SpiralMovementSingleAxe(axe));
