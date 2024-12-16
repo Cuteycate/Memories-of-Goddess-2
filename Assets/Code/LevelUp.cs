@@ -10,11 +10,13 @@ public class LevelUp : MonoBehaviour
     Item[] items;
     public List<Weapon> weapons = Item.ListWeapon;
     public List<Gear> gears = Item.ListGear;
+
     void Awake()
     {
         rect = GetComponent<RectTransform>();
-        items = GetComponentsInChildren<Item>(true);
+        items = GetComponentsInChildren<Item>(true); // Get all children of this GameObject with Item component
     }
+
     public void Show()
     {
         Next();
@@ -22,20 +24,21 @@ public class LevelUp : MonoBehaviour
         GameManager.instance.Stop();
         AudioManager.instance.PlaySfx(AudioManager.Sfx.LevelUp);
         AudioManager.instance.EffectBgm(true);
-
     }
+
     public void Hide()
     {
         rect.localScale = Vector3.zero;
         GameManager.instance.Resume();
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Select);
         AudioManager.instance.EffectBgm(false);
-
     }
+
     public void Select(int index)
     {
         items[index].OnClick();
     }
+
     void Next()
     {
         // Deactivate all items
@@ -44,17 +47,25 @@ public class LevelUp : MonoBehaviour
             item.gameObject.SetActive(false);
         }
 
-        // Create a list to store indices of upgradable items
         List<int> upgradableIndices = new List<int>();
-        List<int> ListWeaponId = new List<int> {0,1,8,9,10,11,13,14};//id data item of weapon
-        List<int> ListGearId = new List<int> { 2,3,4,5,6,7,12 };  //id data item of gear
-        // Find upgradable items and store their indices
-        for (int i = 0; i < items.Length-1; i++)
+        List<int> ListWeaponId = new List<int> { 0, 1, 8, 9, 10, 11, 13, 14 }; // Weapon IDs
+        List<int> ListGearId = new List<int> { 2, 3, 4, 5, 6, 7, 12 };         // Gear IDs
+
+        for (int i = 0; i < items.Length-1; i++) // Changed the loop condition to `items.Length` directly
         {
             Item currentItem = items[i];
-            if (currentItem.level < currentItem.data.damages.Length)
+            if (Item.ItemLevels.TryGetValue(currentItem.data.itemId, out int currentLevel))
             {
-                upgradableIndices.Add(i);
+                if (currentLevel < currentItem.data.damages?.Length && currentItem.data.damages.Length > 0)
+                {
+                    upgradableIndices.Add(i);
+                }
+            }
+            else // If the itemId is not in ItemLevels, initialize it
+            {
+                Debug.Log($"Initializing itemId {currentItem.data.itemId} in ItemLevels.");
+                Item.ItemLevels[currentItem.data.itemId] = 0;
+                upgradableIndices.Add(i); // Now add it to upgradable indices by default
             }
         }
 
@@ -68,10 +79,8 @@ public class LevelUp : MonoBehaviour
             ListGearId.RemoveAll(id => gears.Any(w => w.id == id));
             upgradableIndices.RemoveAll(id => ListGearId.Contains(id));
         }
-        // Activate items based on the number of upgradable items available
         if (upgradableIndices.Count >= 3)
         {
-            // If there are at least three upgradable items, activate exactly three of them
             for (int i = 0; i < 3; i++)
             {
                 int randomIndex = Random.Range(0, upgradableIndices.Count);
@@ -99,4 +108,5 @@ public class LevelUp : MonoBehaviour
             items[15].gameObject.SetActive(true);
         }
     }
+
 }

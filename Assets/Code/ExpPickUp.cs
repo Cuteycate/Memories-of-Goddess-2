@@ -4,66 +4,54 @@ using UnityEngine;
 
 public class ExpPickUp : MonoBehaviour
 {
-    public float expAmount; // Kinh nghiem
-    public SpriteRenderer spriteRenderer;
-    public List<Sprite> xpSprites; //Danh sách Sprites
-    public float magnetSpeed = 5f; // Tốc độ Magnet
-    public float mergeRadius = 0.5f; // Ban Kinh ket hop exp
+    public float expAmount; // Kinh nghiệm
+    public SpriteRenderer spriteRenderer; // Để hiển thị sprite
+    public List<Sprite> xpSprites; // Danh sách sprites cho các cấp
+    public float magnetSpeed = 10f; // Tốc độ hút
+    public float mergeRadius = 0.5f; // Bán kính kết hợp
     private Transform playerTransform;
-    public RuntimeAnimatorController[] animControllers;
-    public Animator animator;
-    private bool isBeingPulled = false;
+    public bool isBeingPulled = false;
 
-    private bool isMerging = false; //EXP co merge duoc hay khong
-    private Transform mergeTarget; //Muc tieu merge
+    private bool isMerging = false; // EXP có thể merge không
+    private Transform mergeTarget; // Mục tiêu để merge
+
     void Start()
     {
-        if (animator == null)
+        if (spriteRenderer == null)
         {
-            animator = GetComponent<Animator>();
+            spriteRenderer = GetComponent<SpriteRenderer>();
         }
-        SetAnimationBasedOnExp();
-        StartCoroutine(MergeCheckCoroutine());
+        SetSpriteBasedOnExp(); // Cập nhật sprite ngay khi khởi tạo
     }
-    private IEnumerator MergeCheckCoroutine() // Dung de kiem tra merge moi x giay
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(1.5f); // kiem tra merge moi 1.5 giay
-            if (!isBeingPulled && GameManager.instance != null && GameManager.instance.isLive)
-            {
-                CheckForNearbyMerges();
-            }
-        }
-    }
+
     void Update()
     {
         if (!GameManager.instance.isLive)
             return;
+
         if (isBeingPulled && playerTransform != null)
         {
-            // di chuyển XP Orb tới vị trí của người chơi
+            // Di chuyển XP tới người chơi
+            Debug.Log($"Moving towards player at {playerTransform.position}.");
             transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, magnetSpeed * Time.deltaTime);
         }
+
         if (isMerging && mergeTarget != null && !isBeingPulled)
         {
-            transform.position = Vector2.MoveTowards(transform.position, mergeTarget.position, magnetSpeed * Time.deltaTime);
-
-            // merge kinh nghiem lai khi den du gan
-            if (Vector2.Distance(transform.position, mergeTarget.position) < 0.1f)
-            {
-                CompleteMerge();
-            }
+            transform.position = mergeTarget.position;
+            CompleteMerge();
         }
     }
-    public void SetAnimationBasedOnExp()
+
+    public void SetSpriteBasedOnExp()
     {
         int tier = GetSpriteTier(expAmount);
-        if (animControllers != null && tier < animControllers.Length)
+        if (xpSprites != null && tier < xpSprites.Count)
         {
-            animator.runtimeAnimatorController = animControllers[tier]; // Dựa vào tier để chỉnh sửa drop kinh nghiệm
+            spriteRenderer.sprite = xpSprites[tier]; // Cập nhật sprite theo tier
         }
     }
+
     public void ResetState(float newExpAmount)
     {
         expAmount = newExpAmount;
@@ -71,21 +59,19 @@ public class ExpPickUp : MonoBehaviour
         isMerging = false;
         playerTransform = null;
         mergeTarget = null;
-        if (spriteRenderer == null)
-        {
-            spriteRenderer = GetComponent<SpriteRenderer>();
-        }
-        SetAnimationBasedOnExp(); // Reset Animation
+        SetSpriteBasedOnExp(); // Cập nhật sprite khi reset
         gameObject.SetActive(true);
     }
-    public void SetMergeAnimationBasedOnExp(float totalExp)
+
+    public void SetMergeSpriteBasedOnExp(float totalExp)
     {
         int newTier = GetSpriteTier(totalExp);
-        if (animControllers != null && newTier < animControllers.Length)
+        if (xpSprites != null && newTier < xpSprites.Count)
         {
-            animator.runtimeAnimatorController = animControllers[newTier];
+            spriteRenderer.sprite = xpSprites[newTier]; // Cập nhật sprite mới sau merge
         }
     }
+
     int GetSpriteTier(float amount)
     {
         if (amount >= 1 && amount <= 5) return 0;
@@ -93,6 +79,7 @@ public class ExpPickUp : MonoBehaviour
         if (amount >= 11 && amount <= 15) return 2;
         return 3;
     }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("CircleCollider"))
@@ -106,12 +93,10 @@ public class ExpPickUp : MonoBehaviour
 
             if (gameManager != null && gameManager.isLive)
             {
-                // Truyen XP cua nguoi choi dua vao chi so
-                // cong thuc exp = exp quai * ti le tu Item * ti le tu multiplier shop 
-                // Co the sai neu nhu sai thi kho noi :(((( t luoi test vai dai ra 
+                // Truyền XP cho người chơi
                 gameManager.exp += expAmount * (1 + gameManager.ExtraRateExp) * ShopStats.Instance.xpMultiplier;
 
-                // Kiem tra level up
+                // Kiểm tra level up
                 if (gameManager.exp >= gameManager.nextExp[Mathf.Min(gameManager.level, gameManager.nextExp.Length - 1)])
                 {
                     gameManager.level++;
@@ -119,13 +104,12 @@ public class ExpPickUp : MonoBehaviour
                     gameManager.uiLevelUp.Show();
                 }
 
-                //Tieng game Work In Progress
                 AudioManager.instance.PlaySfx(AudioManager.Sfx.ExpPickUp);
-                // Pha XP sau khi nguoi choi nhat dc
-                gameObject.SetActive(false);
+                gameObject.SetActive(false); // Ẩn XP sau khi nhặt
             }
         }
     }
+
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.CompareTag("CircleCollider"))
@@ -134,15 +118,15 @@ public class ExpPickUp : MonoBehaviour
             playerTransform = null;
         }
     }
+
     public void CheckForNearbyMerges()
     {
         Collider2D[] nearbyPickups = Physics2D.OverlapCircleAll(transform.position, mergeRadius);
         List<ExpPickUp> mergeablePickups = new List<ExpPickUp>();
         float totalExp = expAmount;
         int currentTier = GetSpriteTier(expAmount);
-        float expNeeded = GetExpForNextTier(currentTier) - expAmount; // Tính EXP cần để qua tier tiếp theo
+        float expNeeded = GetExpForNextTier(currentTier) - expAmount;
 
-        // Filter pickup xung quanh
         foreach (Collider2D collider in nearbyPickups)
         {
             if (collider != null && collider.gameObject != gameObject && collider.CompareTag("ExpPickUp"))
@@ -152,7 +136,6 @@ public class ExpPickUp : MonoBehaviour
                 {
                     int otherTier = GetSpriteTier(otherExpPickUp.expAmount);
 
-                    // Chỉ merge nếu như cùng tier
                     if (otherTier == currentTier)
                     {
                         mergeablePickups.Add(otherExpPickUp);
@@ -161,10 +144,8 @@ public class ExpPickUp : MonoBehaviour
             }
         }
 
-        // Sort những Pickups tăng dần
         mergeablePickups.Sort((a, b) => a.expAmount.CompareTo(b.expAmount));
 
-        // Chỉ merge đủ không merge dư
         List<ExpPickUp> selectedPickups = new List<ExpPickUp>();
         foreach (ExpPickUp pickup in mergeablePickups)
         {
@@ -176,28 +157,27 @@ public class ExpPickUp : MonoBehaviour
 
         if (selectedPickups.Count > 0 && expNeeded <= 0)
         {
-            // Bắt đầu merge
             foreach (ExpPickUp pickup in selectedPickups)
             {
-                pickup.isMerging = true; // Mark là đang bị merge
-                pickup.mergeTarget = this.transform; // Đặt Target merge
-                StartCoroutine(PullPickupToMerge(pickup)); // Kéo merge vào target
-                totalExp += pickup.expAmount; // Cập nhật tổng exp
+                pickup.isMerging = true;
+                pickup.gameObject.SetActive(false); // Instantly "consume" the merging pickup
+                totalExp += pickup.expAmount;
             }
 
-            expAmount = totalExp; // cập nhật kinh nghiệm
-            SetMergeAnimationBasedOnExp(totalExp); // Cập nhật Sprite
+            expAmount = totalExp;
+            SetMergeSpriteBasedOnExp(totalExp); // Update the sprite for the new total EXP
+            CheckForNearbyMerges(); // Check again for possible merges
         }
     }
 
     private float GetExpForNextTier(int tier)
     {
-        // Tính EXP cho mỗi tier trong th này tier 0 = 6 tier 1 = 11 tier 2 = 16 có thể chỉnh sửa ở phía trên dựa vào new tier
-        if (tier == 0) return 6f; 
-        if (tier == 1) return 11f; 
+        if (tier == 0) return 6f;
+        if (tier == 1) return 11f;
         if (tier == 2) return 16f;
-        return float.MaxValue; 
+        return float.MaxValue;
     }
+
     private IEnumerator PullPickupToMerge(ExpPickUp pickup)
     {
         while (pickup != null && Vector2.Distance(pickup.transform.position, transform.position) > 0.1f)
@@ -208,15 +188,18 @@ public class ExpPickUp : MonoBehaviour
 
         if (pickup != null)
         {
-            pickup.gameObject.SetActive(false); // xoa sau khi merge
+            pickup.gameObject.SetActive(false);
         }
     }
+
     void CompleteMerge()
     {
         isMerging = false;
         mergeTarget = null;
+        CheckForNearbyMerges();
     }
-    private void OnDrawGizmosSelected() // Dung de debug
+
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, mergeRadius);

@@ -98,6 +98,7 @@ public class GameManager : MonoBehaviour
     public void GameRetry()
     {
         AudioManager.instance.PlayOpening(true);
+        Item.ResetItems();
         SceneManager.LoadScene(0);
         AudioManager.instance.PlaySfx(AudioManager.Sfx.Select);
     }
@@ -135,33 +136,66 @@ public class GameManager : MonoBehaviour
         {
             expPickUpComponent.ResetState(expAmount);
             expPickUpComponent.CheckForNearbyMerges();
-
-            // Start the random movement coroutine
             StartCoroutine(AnimateExpPickUpMovement(expPickUp, position));
         }
     }
+
     private IEnumerator AnimateExpPickUpMovement(GameObject expPickUp, Vector3 originPosition)
     {
-        float radius = 1f;
-        float duration = 0.2f;
+        if (!expPickUp.activeSelf) yield break;
+
+        ExpPickUp expScript = expPickUp.GetComponent<ExpPickUp>();
+        if (expScript == null) yield break;
+
+        float dropDistance = 1f;
+        float dropDuration = 0.4f;
+        Vector3 dropPosition = originPosition + new Vector3(
+            UnityEngine.Random.Range(-0.1f, 0.1f),
+            -UnityEngine.Random.Range(0.1f, dropDistance),
+            0);
+
         float elapsedTime = 0f;
-
-        Vector2 randomOffset = UnityEngine.Random.insideUnitCircle * radius;
-        Vector3 targetPosition = originPosition + new Vector3(randomOffset.x, randomOffset.y, 0);
-
-        while (elapsedTime < duration)
+        while (elapsedTime < dropDuration && expPickUp.activeSelf)
         {
+            if (expScript.isBeingPulled) yield break; // Stop if being pulled
             elapsedTime += Time.deltaTime;
-            float progress = elapsedTime / duration;
-
-            expPickUp.transform.position = Vector3.Lerp(originPosition, targetPosition, progress);
-
+            float progress = elapsedTime / dropDuration;
+            expPickUp.transform.position = Vector3.Lerp(originPosition, dropPosition, progress);
             yield return null;
         }
 
-        // Ensure it ends exactly at the target position
-        expPickUp.transform.position = targetPosition;
+        expPickUp.transform.position = dropPosition;
+
+        float floatOffsetY = 0.2f;
+        float floatDuration = 2f;
+        Vector3 upPosition = dropPosition + new Vector3(0, floatOffsetY, 0);
+
+        while (expPickUp.activeSelf)
+        {
+            elapsedTime = 0f;
+            while (elapsedTime < floatDuration / 2 && expPickUp.activeSelf)
+            {
+                if (expScript.isBeingPulled) yield break; // Stop if being pulled
+                elapsedTime += Time.deltaTime;
+                float progress = elapsedTime / (floatDuration / 2);
+                expPickUp.transform.position = Vector3.Lerp(dropPosition, upPosition, progress);
+                yield return null;
+            }
+
+            elapsedTime = 0f;
+            while (elapsedTime < floatDuration / 2 && expPickUp.activeSelf)
+            {
+                if (expScript.isBeingPulled) yield break; // Stop if being pulled
+                elapsedTime += Time.deltaTime;
+                float progress = elapsedTime / (floatDuration / 2);
+                expPickUp.transform.position = Vector3.Lerp(upPosition, dropPosition, progress);
+                yield return null;
+            }
+        }
     }
+
+
+
     public void GetExp(EnemyEvent enemy)
     {
         if (!isLive) return;

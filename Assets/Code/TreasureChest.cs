@@ -15,21 +15,31 @@ public class TreasureChest : MonoBehaviour
     public GameObject ChestOpen;
     public GameObject Chest;
     public List<ChestIcon> chestIcons;
+    public GameObject ChestPopUp;
     private bool isChestClicked = false;
+    public ChestPopUp chestPopUp;
+    public HashSet<int> unlockedItems;
+    public List<int> activatedItems = new List<int>();
     void Awake()
     {
         rect = GetComponent<RectTransform>();
         items = GetComponentsInChildren<Item>(true);
+        unlockedItems = new HashSet<int>();
     }
     public void Show()
     {
-        rect.localScale = Vector3.one;
+        rect.localScale = Vector3.one; 
         GameManager.instance.Stop();
         AudioManager.instance.PlaySfx(AudioManager.Sfx.LevelUp);
         AudioManager.instance.PauseBgm();
         AudioManager.instance.EffectBgm(true);
         goldText.text = "000";
+        if (ChestPopUp != null)
+        {
+            ChestPopUp.transform.localScale = Vector3.zero;
+        }
     }
+
 
     public void Hide()
     {
@@ -102,6 +112,7 @@ public class TreasureChest : MonoBehaviour
     public void Next()
     {
         HideAllitems();
+
         // Create a list to store indices of upgradable items
         List<int> upgradableIndices = new List<int>();
         for (int i = 0; i < Item.allItemData.Count; i++)
@@ -110,7 +121,10 @@ public class TreasureChest : MonoBehaviour
             for (int j = 0; j < items.Length; j++)
             {
                 Item currentItem = items[j];
-                if (currentItem.data == currentItemData && currentItem.level < currentItem.data.damages.Length)
+
+                // Check if the item's data matches and is not max level
+                if (currentItem.data == currentItemData &&
+                    Item.ItemLevels[currentItem.data.itemId] < currentItem.data.damages.Length)
                 {
                     upgradableIndices.Add(j);
                     Debug.Log($"Added index {j} to upgradableIndices. Current count: {upgradableIndices.Count}");
@@ -121,6 +135,7 @@ public class TreasureChest : MonoBehaviour
         // Start shaking and gold counting, and activate items afterward
         StartCoroutine(ShakeAndCountGold(upgradableIndices));
     }
+
 
     private IEnumerator ShakeAndCountGold(List<int> upgradableIndices)
     {
@@ -218,13 +233,20 @@ public class TreasureChest : MonoBehaviour
         
 
         // Activate the items visually after animation
-        ActivateItemsHelper(upgradableIndices, itemsToActivate);
-
+        ActivateItemsHelper(upgradableIndices, itemsToActivate,chestPopUp);
+        chestPopUp.InitializeChest();
+        if (ChestPopUp != null)
+        {
+            ChestPopUp.transform.localScale = Vector3.one;
+        }
         // Update game gold
         GameManager.instance.gold += totalGold;
     }
-    private void ActivateItemsHelper(List<int> indices, int count)
+    public void ActivateItemsHelper(List<int> indices, int count, ChestPopUp chestPopUp)
     {
+        // Clear previous chest items from ChestPopUp
+        chestPopUp.ClearChestItems();
+
         for (int i = 0; i < count; i++)
         {
             if (indices.Count > 0)
@@ -253,6 +275,16 @@ public class TreasureChest : MonoBehaviour
                 // Notify UI about the activation
                 uiLevelUp.Select(activatedIndex);
 
+                // Record the activated item for later use in ChestPopUp
+                activatedItems.Add(activatedIndex);
+
+                // Add the GameObject directly to ChestPopUp
+                chestPopUp.AddChestItem(itemGameObject);
+                chestPopUp.InitializeChest();
+                if (ChestPopUp != null)
+                {
+                    ChestPopUp.transform.localScale = Vector3.one;
+                }
                 // Remove the used index from the list
                 indices.RemoveAt(randomIndex);
             }
@@ -311,6 +343,10 @@ public class TreasureChest : MonoBehaviour
                 break;
             }
         }
+    }
+    public List<int> GetActivatedItems()
+    {
+        return activatedItems;
     }
 }
 

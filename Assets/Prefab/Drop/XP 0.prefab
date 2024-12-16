@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7441594703261596246}
-  - component: {fileID: -2657418167838204912}
   - component: {fileID: 647564087609957470}
   - component: {fileID: 575053774324567804}
-  - component: {fileID: -5645351300522764829}
+  - component: {fileID: -1302212925756772083}
   m_Layer: 0
   m_Name: XP 0
   m_TagString: ExpPickUp
@@ -29,33 +28,12 @@ Transform:
   m_GameObject: {fileID: 8398588510668082214}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.24, y: 1.763, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &-2657418167838204912
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8398588510668082214}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 1b9e7a4a0e11db245ab7ed0eafd414c8, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &647564087609957470
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -153,7 +131,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.2270875, y: 0.2689571}
   m_EdgeRadius: 0
---- !u!114 &-5645351300522764829
+--- !u!114 &-1302212925756772083
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -166,17 +144,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   expAmount: 0
-  spriteRenderer: {fileID: 0}
+  spriteRenderer: {fileID: 647564087609957470}
   xpSprites:
   - {fileID: 2034397622, guid: 1b844eb500c246947a102338811890b0, type: 3}
   - {fileID: -1750557128, guid: e217163a8332b44499c128ab10ff952f, type: 3}
   - {fileID: 241849338, guid: 303b4b05056bc6b498459eeb347c07da, type: 3}
   - {fileID: 600135587, guid: a2409339e218fbc41876e1544fe66639, type: 3}
   magnetSpeed: 5
-  mergeRadius: 1
-  animControllers:
-  - {fileID: 9100000, guid: 1b9e7a4a0e11db245ab7ed0eafd414c8, type: 2}
-  - {fileID: 22100000, guid: fe3977449be67de4b88260d25f1cc341, type: 2}
-  - {fileID: 22100000, guid: 001977fd4e61d2a4aaabeef37c39803a, type: 2}
-  - {fileID: 22100000, guid: 9fea67742d815a246b3f00e7da25dda3, type: 2}
-  animator: {fileID: -2657418167838204912}
+  mergeRadius: 0.5
