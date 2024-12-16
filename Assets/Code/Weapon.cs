@@ -9,11 +9,13 @@ public class Weapon : MonoBehaviour
     public int prefabId;
     public float damage;
     public int count;
+    public int CountStatic;
     public int penetration;
     public float speed;
     public float size;
     public float hitCooldown;
     public int ExtraCount;
+    public int ExtraCountStatic;
     float timer;
     private bool isBatchEnabled = false;
     public float MeleeCoolDown = 3f;
@@ -109,6 +111,7 @@ public class Weapon : MonoBehaviour
         baseCoolDown = data.baseCoolDown;
         // Base Count = Count nguyên bản - ExtraCount = Count từ Gear ProjectileMultiplier = Count từ Shop
         count = data.baseCount + Character.Count + ExtraCount + ShopStats.Instance.projectileMultiplier;
+        CountStatic = data.baseCount + Character.Count + ExtraCount + ShopStats.Instance.projectileMultiplier;
         penetration = data.basePenetration;
         size = data.baseSize;
         hitCooldown = data.HitCooldown;
@@ -173,6 +176,7 @@ public class Weapon : MonoBehaviour
             case 14:
                 this.damage += damage;
                 this.count += count;
+                this.CountStatic += count;
                 this.penetration += penetration;
                 this.size = size;
                 speed = baseCoolDown * Character.WeaponRate * (1f - size);
@@ -180,12 +184,14 @@ public class Weapon : MonoBehaviour
             case 13:
                 this.damage += damage;
                 this.count += count;
+                this.CountStatic += count;
                 this.penetration += penetration;
                 this.size += size;
                 break;
             default:
                 this.damage += damage;
                 this.count += count;
+                this.CountStatic += count;
                 this.penetration += penetration;
                 break;
         }

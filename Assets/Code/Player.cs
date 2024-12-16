@@ -142,7 +142,8 @@ public class Player : MonoBehaviour
                 StartCoroutine(DoubleCountWeapon());
             }
         }
-        if (Input.GetMouseButtonDown(0)) // chuốt trái
+        
+        if (Input.GetMouseButtonDown(1)) // chuốt trái
         {
             useMouseToAim = !useMouseToAim; // Toggle
         }
@@ -351,8 +352,8 @@ public class Player : MonoBehaviour
                 weapon.BroadcastMessage("Batch", SendMessageOptions.DontRequireReceiver);
             else
             {
-                weapon.count *= 2;
-                weapon.ExtraCount *= 2;
+                weapon.count = weapon.CountStatic * 2;
+                weapon.ExtraCount =weapon.ExtraCountStatic * 2;
             }
         }
         // Kết thúc x2 weapon
@@ -366,8 +367,8 @@ public class Player : MonoBehaviour
                 weapon.BroadcastMessage("Batch", SendMessageOptions.DontRequireReceiver);
             else
             {
-                weapon.count /= 2;
-                weapon.ExtraCount /= 2;
+                weapon.count = weapon.CountStatic;
+                weapon.ExtraCount = weapon.ExtraCountStatic;
             }
         }
         EffectSkill.SetActive(false);
