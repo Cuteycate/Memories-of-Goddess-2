@@ -135,6 +135,7 @@ public class Gear : MonoBehaviour
             {
                 case 0:
                     weapon.ExtraCount = Mathf.Min((int)rate, 2);
+                    weapon.ExtraCountStatic = Mathf.Min((int)rate, 2);
                     weapon.BroadcastMessage("Batch", SendMessageOptions.DontRequireReceiver);
                     break;
                 case 1:
@@ -144,9 +145,9 @@ public class Gear : MonoBehaviour
                 case 13:
                 case 14:
                     weapon.ExtraCount = Mathf.Min((int)rate, 2);
+                    weapon.ExtraCountStatic = Mathf.Min((int)rate, 2);
                     break;
-
-                default:
+            default:
                     break;
             }
         }
