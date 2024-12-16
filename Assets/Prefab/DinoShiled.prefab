@@ -19417,7 +19417,6 @@ GameObject:
   - component: {fileID: 7230599545199263462}
   - component: {fileID: 2723543829649562084}
   - component: {fileID: 1385496971928786884}
-  - component: {fileID: 7891786614842513628}
   - component: {fileID: 5265107514073593210}
   m_Layer: 6
   m_Name: DinoShiled
@@ -19531,7 +19530,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 5000
+  m_Mass: 1000
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -19591,29 +19590,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.0035211, y: 0.94323534}
   m_EdgeRadius: 0
---- !u!114 &7891786614842513628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7317869106351284931}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c510669508d487469d8d694aa3c48fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: []
-  health: 0
-  maxHealth: 1000
-  expOnDefeat: 1
-  animController: []
-  floatingtextPrefab: {fileID: 5099652313274479680, guid: abf381679dc758648915dad2a3b66fdb, type: 3}
-  isLive: 0
-  timer: 0
-  TypeEnemy: 0
-  target: {fileID: 0}
-  bestSpawnPoint: {fileID: 0}
 --- !u!114 &5265107514073593210
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -44,7 +44,7 @@ GameObject:
   m_Layer: 0
   m_Name: PointWave1
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8d9ea2a2ec1c634d911f5b7d455faff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeToDisable: 10
+  TimeToDisable: 15
 --- !u!1 &8623452194609580237
 GameObject:
   m_ObjectHideFlags: 0

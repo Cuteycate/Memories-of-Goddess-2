@@ -11,7 +11,7 @@ public class TurretSkill : MonoBehaviour
     private bool canShoot = true;
     private Scanner scanner;
     private bool isShooting = false;
-    private float numberOfBullet = 5;
+    private float numberOfBullet = 10;
 
     public Animator anim;
     public Transform[] spawnPoint;
@@ -96,7 +96,7 @@ public class TurretSkill : MonoBehaviour
         barrelTransform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));  
     }
 
-    public float timeBetweenShots = 0.5f;
+    public float timeBetweenShots = 0.2f;
     public float restTime = 2f;
     IEnumerator ShootBullet(Vector3 dir)
     {

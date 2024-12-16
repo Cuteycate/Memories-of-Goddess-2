@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 6427178788999018951}
   - component: {fileID: 7981265204130101509}
   - component: {fileID: 6060392652001570318}
-  - component: {fileID: 8938152021240758577}
   - component: {fileID: 6940310621041934629}
+  - component: {fileID: 3177930748221714947}
   m_Layer: 0
   m_Name: Purple_Circle
   m_TagString: BulletBoss
@@ -144,25 +144,6 @@ CircleCollider2D:
   m_Offset: {x: -0.04, y: -0.009999918}
   serializedVersion: 2
   m_Radius: 0.21708962
---- !u!114 &8938152021240758577
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7432635948825912236}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5119059e4ebe4dc43abaa1ce61b46df3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 20
-  per: 0
-  projectileNumber: 0
-  PlayerTranform: {fileID: 0}
-  FinalBoss: 0
-  BossMap2: 1
-  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!50 &6940310621041934629
 Rigidbody2D:
   serializedVersion: 4
@@ -190,3 +171,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3177930748221714947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7432635948825912236}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c406d7301cf72489a91d78deca5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 40
+  per: 0
+  projectileNumber: 0
+  PlayerTranform: {fileID: 0}
+  FinalBoss: 0
+  targetPosition: {x: 0, y: 0, z: 0}

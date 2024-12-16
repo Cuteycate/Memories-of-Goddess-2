@@ -146,3 +146,4 @@ MonoBehaviour:
   damage: 0
   per: 0
   projectileNumber: 0
+  hitCooldown: 0

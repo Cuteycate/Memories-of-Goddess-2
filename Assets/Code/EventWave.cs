@@ -10,6 +10,7 @@ using static UnityEngine.UI.CanvasScaler;
 public class EventWave : MonoBehaviour
 {
     public float speed;
+    public GameObject redline;
 
     Rigidbody2D rigid;
     public Transform[] spawnPoint;
@@ -37,6 +38,10 @@ public class EventWave : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody2D>();      
         spawnPoint = GetComponentsInChildren<Transform>();
+        if (redLine != null )
+        {
+            redline.SetActive(true);
+        }
     }
 
     public void Inti(Transform BestSpawnPoint, Transform f, int TypeEv, bool isRotationR)
@@ -56,7 +61,10 @@ public class EventWave : MonoBehaviour
         objectPos = transform.position;
         Timer = 0;
         check = true;
-  
+        if (redLine != null)
+        {
+            redline.SetActive(true);
+        }
     }
 
     private void Update()
@@ -115,11 +123,11 @@ public class EventWave : MonoBehaviour
                    Wave.transform.position = spawnPoint[i].position;  
                    if ( i % 2 == 0)
                     {
-                        Wave.GetComponent<EnemyEventPlus>().Init( true, isRotaion ,TypeEvent, null);
+                        Wave.GetComponent<EnemyEventPlus>().Init( true, isRotaion ,TypeEvent, null, 11f);
                     }
                     else
                     {
-                        Wave.GetComponent<EnemyEventPlus>().Init (false, isRotaion, TypeEvent, null);
+                        Wave.GetComponent<EnemyEventPlus>().Init (false, isRotaion, TypeEvent, null, 11f);
                     }
                    
                    check = false;
@@ -134,11 +142,11 @@ public class EventWave : MonoBehaviour
                     Wave.transform.position = spawnPoint[i].position;
                     if (i % 2 == 0)
                     {
-                        Wave.GetComponent<EnemyEventPlus>().Init(true, isRotaion,TypeEvent, null);
+                        Wave.GetComponent<EnemyEventPlus>().Init(true, isRotaion,TypeEvent, null, 14f);
                     }
                     else
                     {
-                        Wave.GetComponent<EnemyEventPlus>().Init(false, isRotaion, TypeEvent, null);
+                        Wave.GetComponent<EnemyEventPlus>().Init(false, isRotaion, TypeEvent, null, 14f);
                     }
 
                     check = false;
@@ -155,16 +163,56 @@ public class EventWave : MonoBehaviour
                 check = false;
             }
 
+            if ( TypeEvent == 6) 
+            {
+                for (int i = 1; i < spawnPoint.Length; i++)
+                {
+                    GameObject Wave = GameManager.instance.pool.Get(16);
+                    Wave.transform.position = spawnPoint[i].position;
+                    Wave.GetComponent<EnemyEventPlus>().Init(false, false, TypeEvent, null, 20f);
+                }
+                check = false;
+            }
+
+            if (TypeEvent == 7)
+            {
+                for (int i = 1; i < spawnPoint.Length; i++)
+                {
+                    GameObject Wave = GameManager.instance.pool.Get(16);
+                    Wave.transform.position = spawnPoint[i].position;
+                    Wave.GetComponent<EnemyEventPlus>().Init(false, false, TypeEvent, null, 20f);
+                }
+                check = false;
+            }
+
+            if (TypeEvent == 10)
+            {
+                for (int i = 1; i < spawnPoint.Length; i++)
+                {
+                    GameObject Wave = GameManager.instance.pool.Get(16);
+                    Wave.transform.position = spawnPoint[i].position;
+                    if (i % 2 == 0)
+                    {
+                        Wave.GetComponent<EnemyEventPlus>().Init(true, isRotaion, TypeEvent, null, 14f);
+                    }
+                    else
+                    {
+                        Wave.GetComponent<EnemyEventPlus>().Init(false, isRotaion, TypeEvent, null, 14f);
+                    }
+
+                    check = false;
+                }
+            }
         }
     }
 
     IEnumerator spawnEvent5()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1.25f);
         GameObject Wave = GameManager.instance.pool.Get(24);
         Wave.transform.position = bestSpawnPoint.position;
         Transform goalTranform = FirstSpawnPoint;   
-        Wave.GetComponent<EnemyEventPlus>().Init(false, isRotaion, TypeEvent, goalTranform);
+        Wave.GetComponent<EnemyEventPlus>().Init(false, isRotaion, TypeEvent, goalTranform, 10f);
     }
 
 

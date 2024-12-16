@@ -25,7 +25,7 @@ public class EnemyEvent : MonoBehaviour
     Rigidbody2D rigid;
 
     public float timer = 0;
-    float cooldown = 20f;
+    float cooldown = 30f;
     public int TypeEnemy;
 
     public Rigidbody2D target;
@@ -49,12 +49,12 @@ public class EnemyEvent : MonoBehaviour
 
         if (TypeEnemy == 1)
         {
-            health = 1000;
+            health = 1000 + (GameManager.instance.level * 10f); ;
             rigid.mass = 1000;       
         }
         else
         {
-            health = maxHealth;
+            health = maxHealth + (GameManager.instance.level * 10f); ;
             rigid.mass = 1f;
         }
     }
@@ -130,19 +130,34 @@ public class EnemyEvent : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Bullet") || !isLive)
+        if (!isLive)
             return;
-        health -= collision.GetComponent<Bullet>().damage;
-        //StartCoroutine(KnockBack());
-        ShowDamage(collision.GetComponent<Bullet>().damage.ToString());
 
-        if (health > 0)
+        if (collision.CompareTag("Bullet"))
         {
-            anim.SetTrigger("Hit");
-            AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
-            //.. sống,bị trúng
+            // Nếu là Bullet, giảm máu của Enemy
+            health -= collision.GetComponent<Bullet>().damage;
+            ShowDamage(collision.GetComponent<Bullet>().damage.ToString());
+
+            if (health > 0)
+            {
+                anim.SetTrigger("Hit");
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
+            }
+
         }
-        else
+        else if (collision.CompareTag("BulletSpecial"))
+        {
+            health -= collision.GetComponent<BulletSpecial>().damage;
+            //ShowDamage(collision.GetComponent<BulletSpecial>().damage.ToString());
+
+            if (health > 0)
+            {
+                anim.SetTrigger("Hit");
+                //AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
+            }
+        }
+        if (health <= 0)
         {
             //Chết
             isLive = false;

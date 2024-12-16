@@ -204,6 +204,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interval: 0.05
-  afterimageDuration: 0.1
+  afterimageDuration: 2
   poolIndex: 28
   spE: {fileID: 3182127104221567405, guid: 45ff59b6c1356b343aeea907717bd046, type: 3}

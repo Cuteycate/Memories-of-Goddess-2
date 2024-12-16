@@ -32,7 +32,7 @@ public class EnemyEventPlus : MonoBehaviour
     public Transform bestSpawnPoint;
 
     public float timer = 0;
-    public float cooldown = 10f;
+    public float cooldown = 12f;
     public int TypeEnemy;
 
     private bool isTopDown;
@@ -48,16 +48,16 @@ public class EnemyEventPlus : MonoBehaviour
         target = GameManager.instance.player.GetComponent<Rigidbody2D>();
     }
 
-    public void Init( bool c, bool isRotation, int TypeEn, Transform goal )
+    public void Init( bool c, bool isRotation, int TypeEn, Transform goal, float cooltime )
     {
         
         isLeft = c;
-        maxHealth = 1000;
+        maxHealth = 1000 + (GameManager.instance.level * 10f);
         health = maxHealth;
-        rigid.mass = health;
         isTopDown = isRotation;
         TypeEnemy = TypeEn;
-        bestSpawnPoint = goal;
+        bestSpawnPoint = goal;   
+        this.cooldown = cooltime;
     }
 
     private void FixedUpdate()
@@ -108,14 +108,15 @@ public class EnemyEventPlus : MonoBehaviour
                 
                 if (isLeft)
                 {
-                    rigid.velocity = Vector2.right * 5f;
+                    spriter.flipX = false;
+                    rigid.velocity = Vector2.right * 4f;
                     CreateDustLeft();
                     
                 }
                 else
                 {
                     spriter.flipX = true;
-                    rigid.velocity = Vector2.left * 5f;
+                    rigid.velocity = Vector2.left * 4f;
                     CreateDustRight();
                     
                 }
@@ -136,10 +137,34 @@ public class EnemyEventPlus : MonoBehaviour
                 }               
                 spriter.flipX = bestSpawnPoint.position.x > rigid.position.x;
                 break;
+
+            case 6:
+
+                rigid.velocity = Vector2.left * 4f;
+                //CreateDustRight();
+                spriter.flipX = true;
+                break;
+            case 7:
+                rigid.velocity = Vector2.right * 4f;
+                spriter.flipX = false;
+                break;
+            case 10:
+                if (isLeft)
+                {
+                    rigid.velocity = Vector2.up * 4f;
+                    //CreateDustLeft();
+
+                }
+                else
+                {
+                    spriter.flipX = true;
+                    rigid.velocity = Vector2.down * 4f;
+                    //CreateDustRight();
+
+                }
+                break;
         }  
     }
-
-
 
     private void Update()
     {
@@ -167,36 +192,54 @@ public class EnemyEventPlus : MonoBehaviour
         if (collision.CompareTag("Player"))
         {     
             if (TypeEnemy == 5)
-            {
-                Debug.Log("Va chạm với Player!");
+            {              
                 GameManager.instance.Health -= 20;
             }     
         }
-        if (!collision.CompareTag("Bullet") || !isLive)
+        if (!isLive)
             return;
-       
-        health -= collision.GetComponent<Bullet>().damage;
-        Debug.Log("Va chạm với Player!");
-        //StartCoroutine(KnockBack());
-        ShowDamage(collision.GetComponent<Bullet>().damage.ToString());
 
-        if (health > 0)
+        if (collision.CompareTag("Bullet"))
         {
-            if (timer >= cooldown)
-            {              
-                gameObject.SetActive(false);
+            // Nếu là Bullet, giảm máu của Enemy
+            health -= collision.GetComponent<Bullet>().damage;
+            ShowDamage(collision.GetComponent<Bullet>().damage.ToString());
+
+            if (health > 0)
+            {
+                anim.SetTrigger("Hit");
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
+                if (timer >= cooldown)
+                {
+                    gameObject.SetActive(false);
+                }
             }
-            anim.SetTrigger("Hit");
-            AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
-            //.. sống,bị trúng
+
         }
-        else
+        else if (collision.CompareTag("BulletSpecial"))
         {
+            health -= collision.GetComponent<BulletSpecial>().damage;
+            //ShowDamage(collision.GetComponent<BulletSpecial>().damage.ToString());
+
+            if (health > 0)
+            {
+                anim.SetTrigger("Hit");
+                //AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
+                if (timer >= cooldown)
+                {                   
+                    gameObject.SetActive(false);
+                }
+            }
+        }
+        if (health <= 0)
+        {
+            
             //Chết
             isLive = false;
             coll.enabled = false;
             rigid.simulated = false;
             spriter.sortingOrder = 1;
+            gameObject.SetActive(false);
             anim.SetBool("Dead", true);
             GameManager.instance.kill++;
             //GameManager.instance.GetExp(this);
@@ -232,12 +275,6 @@ public class EnemyEventPlus : MonoBehaviour
             if (GameManager.instance.isLive)
                 AudioManager.instance.PlaySfx(AudioManager.Sfx.Dead);
         }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-      
-        
     }
 
     private void CreateDustLeft()
