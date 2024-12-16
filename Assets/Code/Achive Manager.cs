@@ -69,7 +69,7 @@ public class AchiveManager : MonoBehaviour
                 isAchive = GameManager.instance.kill >= 1000;
                 break;
             case Achive.UnlockCharacter3:
-                isAchive = GameManager.instance.gameTime == GameManager.instance.maxgameTime;
+                isAchive = GameManager.instance.gameTime >= GameManager.instance.maxgameTime;
                 break;
         }
         if (isAchive && PlayerPrefs.GetInt(achive.ToString()) == 0)

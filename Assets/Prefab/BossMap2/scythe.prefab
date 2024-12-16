@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 684050123107074617}
   - component: {fileID: 1903505952899854464}
   - component: {fileID: -5806334312626209563}
+  - component: {fileID: 1204950061644311071}
   m_Layer: 7
   m_Name: scythe
   m_TagString: BulletBoss
@@ -267,7 +268,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3318769610866591101}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5119059e4ebe4dc43abaa1ce61b46df3, type: 3}
   m_Name: 
@@ -277,7 +278,24 @@ MonoBehaviour:
   projectileNumber: 0
   PlayerTranform: {fileID: 0}
   FinalBoss: 0
-  BossMap2: 1
+  targetPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &1204950061644311071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3318769610866591101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75c406d7301cf72489a91d78deca5073, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 40
+  per: 0
+  projectileNumber: 0
+  PlayerTranform: {fileID: 0}
+  FinalBoss: 0
   targetPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &5873777251543626764
 GameObject:

@@ -1192,7 +1192,7 @@ GameObject:
   m_Layer: 0
   m_Name: EventWave3
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1280,11 +1280,13 @@ MonoBehaviour:
   bestSpawnPoint: {fileID: 0}
   FirstSpawnPoint: {fileID: 0}
   TypeEvent: 0
+  isRotaion: 0
   Timer: 0
   coolTime: 5
   target: {fileID: 0}
   spawner: {fileID: 0}
   spawnEffect: {fileID: 3055892998958464220, guid: f0178a1535a5472409cfa6c67c59c393, type: 3}
+  redLine: {fileID: 0}
 --- !u!50 &-503826807739398832
 Rigidbody2D:
   serializedVersion: 4

@@ -145,7 +145,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.41666666
+        time: 0.083333336
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -154,16 +154,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.75
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1.1666667
+        time: 1.0833334
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -177,7 +168,7 @@ AnimationClip:
     attribute: m_Enabled
     path: 
     classID: 114
-    script: {fileID: 11500000, guid: 5119059e4ebe4dc43abaa1ce61b46df3, type: 3}
+    script: {fileID: 11500000, guid: 75c406d7301cf72489a91d78deca5073, type: 3}
     flags: 16
   m_PPtrCurves:
   - serializedVersion: 2
@@ -243,7 +234,7 @@ AnimationClip:
     - serializedVersion: 2
       path: 0
       attribute: 3305885265
-      script: {fileID: 11500000, guid: 5119059e4ebe4dc43abaa1ce61b46df3, type: 3}
+      script: {fileID: 11500000, guid: 75c406d7301cf72489a91d78deca5073, type: 3}
       typeID: 114
       customType: 24
       isPPtrCurve: 0
@@ -422,7 +413,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.41666666
+        time: 0.083333336
         value: 1
         inSlope: Infinity
         outSlope: Infinity
@@ -431,16 +422,7 @@ AnimationClip:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.75
-        value: 0
-        inSlope: Infinity
-        outSlope: Infinity
-        tangentMode: 103
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1.1666667
+        time: 1.0833334
         value: 0
         inSlope: Infinity
         outSlope: Infinity
@@ -454,7 +436,7 @@ AnimationClip:
     attribute: m_Enabled
     path: 
     classID: 114
-    script: {fileID: 11500000, guid: 5119059e4ebe4dc43abaa1ce61b46df3, type: 3}
+    script: {fileID: 11500000, guid: 75c406d7301cf72489a91d78deca5073, type: 3}
     flags: 16
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0

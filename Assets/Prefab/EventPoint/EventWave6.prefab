@@ -13,7 +13,7 @@ GameObject:
   m_Layer: 0
   m_Name: EventWave6
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3443629218296621865, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
+  redline: {fileID: 2549389934713798627}
   spawnPoint: []
   bestSpawnPoint: {fileID: 0}
   FirstSpawnPoint: {fileID: 0}
@@ -188,6 +189,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8666128153688934224, guid: 31a9bb6d7de048a4c99da2123c7350e4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 9211650478141211781}
+    - targetCorrespondingSourceObject: {fileID: 8666128153688934224, guid: 31a9bb6d7de048a4c99da2123c7350e4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2426696443511454946}
   m_SourcePrefab: {fileID: 100100000, guid: 31a9bb6d7de048a4c99da2123c7350e4, type: 3}
 --- !u!1 &2549389934713798627 stripped
 GameObject:
@@ -201,12 +205,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2549389934713798627}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6239feb067752e94284cd09b58eb0f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondtodestroy: 0.6
+  secondtodestroy: 1.5
+--- !u!114 &2426696443511454946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2549389934713798627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8d9ea2a2ec1c634d911f5b7d455faff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimeToDisable: 1
 --- !u!4 &2795460846738440147 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9074328645185374048, guid: 31a9bb6d7de048a4c99da2123c7350e4, type: 3}

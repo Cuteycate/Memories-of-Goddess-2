@@ -14,6 +14,9 @@ public class BossMap2 : MonoBehaviour
     public float maxHealth = 1000;
     public float expOnDefeat = 50f;
 
+    [Header("# State")]
+    public bool isImmune = false; // Boss miễn sát thương khi đang sử dụng skill
+
     public float moveInterval = 5f; 
     public float moveSpeed = 5f;
     public bool isLeft = false;
@@ -86,6 +89,8 @@ public class BossMap2 : MonoBehaviour
         //spriter.sortingOrder = 2;
         health = maxHealth;
         HealthBar.value = health;
+        HealthBar.transform.localScale = new Vector3(1f, 5f, 1f); // Gấp đôi chiều ngang, giữ nguyên chiều dọc
+
     }
 
     void Start()
@@ -132,8 +137,6 @@ public class BossMap2 : MonoBehaviour
             yield return null;
         }
 
-        // Alternatively, replace the above with custom logic to detect cutscene completion
-        // For example, use a public method in the cutscene manager to signal completion
     }
 
     void Update()
@@ -229,6 +232,7 @@ public class BossMap2 : MonoBehaviour
 
     IEnumerator ShootSkill()
     {
+        isImmune = true;
         isUsingSkill = true;
         skill1Timer = skill1Cooldown;
 
@@ -245,6 +249,7 @@ public class BossMap2 : MonoBehaviour
         }
        
         isUsingSkill = false;
+        isImmune = false;
     }
 
     IEnumerator ShootWavePattern()
@@ -299,6 +304,7 @@ public class BossMap2 : MonoBehaviour
     IEnumerator PerformWaveSkill()
     {
         isUsingSkill = true;
+        isImmune = true;
         skill2Timer = skill2Cooldown; 
 
         Vector3 leftPosition = new Vector3(
@@ -316,11 +322,13 @@ public class BossMap2 : MonoBehaviour
         yield return StartCoroutine(ShootWavePattern());
 
         isUsingSkill = false;
+        isImmune = true;
     }
 
     IEnumerator ShootTurretProjectiles()
     {
         isUsingSkill = true;
+        isImmune = true;
         skill3Timer = skill3Cooldown;
 
         for (int i = 0; i < 3; i++)
@@ -332,6 +340,7 @@ public class BossMap2 : MonoBehaviour
         }
 
         yield return new WaitForSeconds(1f);  isUsingSkill = false;
+        isImmune = false;
     }
 
     IEnumerator MoveProjectileToPosition(GameObject projectile, Vector3 targetPosition)
@@ -350,6 +359,7 @@ public class BossMap2 : MonoBehaviour
     IEnumerator SummonLightningStrikes()
     {
         isUsingSkill = true;
+        isImmune = true;
         skill4Timer = skill4Cooldown;
 
         int strikeCount = 0; 
@@ -386,24 +396,49 @@ public class BossMap2 : MonoBehaviour
         }
 
         isUsingSkill = false;
+        isImmune = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.CompareTag("Bullet") || !GameManager.instance.FinalBossStillAlive)
-            return;      
-        health -= collision.GetComponent<Bullet>().damage;     
-
-        if (health > 0)
+        if (!GameManager.instance.FinalBossStillAlive || isImmune)
+            return;
+        if (collision.CompareTag("Bullet"))
         {
-            anim.SetTrigger("Hit");
-            AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);         
-            HealthBar.value = health / maxHealth;            
+            // Nếu là Bullet, giảm máu của Enemy
+            health -= collision.GetComponent<Bullet>().damage;
+            //ShowDamage(collision.GetComponent<Bullet>().damage.ToString());
+
+            if (health > 0)
+            {
+                anim.SetTrigger("Hit");
+                AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
+                HealthBar.value = health / maxHealth;
+            }
         }
-        else
+        else if (collision.CompareTag("BulletSpecial"))
+        {
+            health -= collision.GetComponent<BulletSpecial>().damage;
+            //ShowDamage(collision.GetComponent<BulletSpecial>().damage.ToString());
+
+            if (health > 0)
+            {
+                anim.SetTrigger("Hit");
+                //AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
+                HealthBar.value = health / maxHealth;
+            }
+        }
+        //if (health > 0)
+        //{
+        //    anim.SetTrigger("Hit");
+        //    AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);         
+        //    HealthBar.value = health / maxHealth;            
+        //}
+        if (health <= 0)
         {          
             HealthBar.value = health / maxHealth;
             GameManager.instance.FinalBossStillAlive = false;
+            HealthBar.transform.localScale = new Vector3(0f, 0f, 0f); // Gấp đôi chiều ngang, giữ nguyên chiều dọc
             coll.enabled = false;
             rigid.simulated = false;
             spriter.sortingOrder = 1;

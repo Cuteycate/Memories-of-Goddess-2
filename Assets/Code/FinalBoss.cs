@@ -303,7 +303,7 @@ public class FinalBoss : MonoBehaviour
         // Check if the enemy is dead
         if (health > 0)
         {
-            anim.SetTrigger("hit");
+            anim.SetTrigger("Hit");
             AudioManager.instance.PlaySfx(AudioManager.Sfx.Hit);
             //.. sống,bị trúng
         }

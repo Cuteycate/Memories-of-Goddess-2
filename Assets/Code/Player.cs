@@ -43,13 +43,13 @@ public class Player : MonoBehaviour
     [HideInInspector]
     public bool isDWing;
     private float DWtime = 5f;
-    private float DWCooldown = 5f;
+    private float DWCooldown = 25f;
 
     //Knife
     [HideInInspector]
     private bool canKnife = true;
     private bool isKnife = false;
-    private float knifeCooldown = 5f;
+    private float knifeCooldown = 20f;
     private float numberOfKnives = 50f;
     private float speedKnife = 1.5f;  
     private float[] Rotaion = {20, 40, 60, 80, 100, 120, 140, 160, 180};
@@ -61,8 +61,8 @@ public class Player : MonoBehaviour
     private bool canSpawn = true;
     private bool isSpawning = false;
     private float numberOfSolider = 5;
-    private float spawnCooldown = 5f;
-    private float timeToDestroy = 30f;
+    private float spawnCooldown = 30f;
+    private float timeToDestroy = 15f;
 
     // Start is called before the first frame update
     void Awake()
@@ -152,7 +152,7 @@ public class Player : MonoBehaviour
             if (canKnife && GameManager.instance.PlayerId == 2)
             {
                 EffectSkill.SetActive(true);
-                StartCoroutine(Knife());    
+                StartCoroutine(Knife());
             }
         }
 
@@ -470,25 +470,67 @@ public class Player : MonoBehaviour
     {
         canSpawn = false;
         isSpawning = true;
+        Vector3 nextSpawnPosition;
+        Vector3 direction;
 
-        float levelMultiplier = 1 + (GameManager.instance.level * 0.1f); 
+        float levelMultiplier = 1 + (GameManager.instance.level * 0.1f);
 
         Vector3[] spawnPositions = new Vector3[]
         {
-        new Vector3(GameManager.instance.player.transform.position.x + 4, GameManager.instance.player.transform.position.y, 0),
-        new Vector3(GameManager.instance.player.transform.position.x, GameManager.instance.player.transform.position.y + 4, 0),
-        new Vector3(GameManager.instance.player.transform.position.x - 4, GameManager.instance.player.transform.position.y, 0),
-        new Vector3(GameManager.instance.player.transform.position.x, GameManager.instance.player.transform.position.y - 4, 0)
+            new Vector3(GameManager.instance.player.transform.position.x + 4, GameManager.instance.player.transform.position.y, 0),
+            new Vector3(GameManager.instance.player.transform.position.x, GameManager.instance.player.transform.position.y + 4, 0),
+            new Vector3(GameManager.instance.player.transform.position.x - 4, GameManager.instance.player.transform.position.y, 0),
+            new Vector3(GameManager.instance.player.transform.position.x, GameManager.instance.player.transform.position.y - 4, 0)
         };
 
-        foreach (Vector3 spawnPos in spawnPositions)
+
+        for (int i = 0; i < spawnPositions.Length; i++)
         {
+            Vector3 middlePosition;
+            switch (i)
+            {
+                case 0:
+                    middlePosition = (spawnPositions[i] + spawnPositions[i + 1]) / 2f;
+                    direction = spawnPositions[i + 1] - spawnPositions[i];
+                    break;
+                case 1:
+                    middlePosition = (spawnPositions[i] + spawnPositions[i + 1]) / 2f;
+                    direction = spawnPositions[i + 1] - spawnPositions[i];
+                    break;
+                case 2:
+                    middlePosition = (spawnPositions[i] + spawnPositions[i + 1]) / 2f;
+                    direction = spawnPositions[i + 1] - spawnPositions[i];
+                    break;
+                case 3:
+                    middlePosition = (spawnPositions[i] + spawnPositions[0]) / 2f;
+                    direction = spawnPositions[0] - spawnPositions[i];
+                    break;
+                default:
+                    middlePosition = (spawnPositions[i] + spawnPositions[0]) / 2f;
+                    direction = spawnPositions[0] - spawnPositions[i];
+                    break;
+            }
+
+            if (middlePosition != null || direction != null)
+            {
+                // Tạo object tại điểm trung gian
+                GameObject rotatingObject = GameManager.instance.pool.Get(32);
+                rotatingObject.transform.position = middlePosition;
+               
+                float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;  // Tính góc xoay
+
+                // Xoay object theo hướng từ spawnPositions[i] đến spawnPositions[i+1]
+                rotatingObject.transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
+
+            }
+
+
             GameObject SmokeEffect = GameManager.instance.pool.Get(31);
-            SmokeEffect.transform.position = new Vector3(spawnPos.x, spawnPos.y + 2, 0);
+            SmokeEffect.transform.position = new Vector3(spawnPositions[i].x, spawnPositions[i].y + 2, 0);
             yield return new WaitForSeconds(0.5f);
 
             GameObject TurretSkill = GameManager.instance.pool.Get(29);
-            TurretSkill.transform.position = spawnPos;
+            TurretSkill.transform.position = spawnPositions[i];
 
             TurretSkill.GetComponent<TurretSkill>().Init(10f * levelMultiplier, 0.5f, timeToDestroy);
         }
@@ -511,5 +553,6 @@ public class Player : MonoBehaviour
 
         canSpawn = true;
     }
+
 
 }
