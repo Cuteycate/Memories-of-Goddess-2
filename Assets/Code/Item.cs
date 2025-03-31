@@ -196,19 +196,68 @@ public class Item : MonoBehaviour
     }
     public static void ResetItems()
     {
-        ItemLevels.Clear();
-        foreach (var weapon in ListWeapon)
-        {
-            Destroy(weapon.gameObject);
-        }
-        ListWeapon.Clear();
+        Debug.Log("[Item.ResetItems] Attempting Reset...");
+        ItemLevels.Clear(); 
+        allItemData.Clear(); 
 
-        foreach (var gear in ListGear)
+        if (ListWeapon != null)
         {
-            Destroy(gear.gameObject);
+            Debug.Log($"[Item.ResetItems] Processing {ListWeapon.Count} weapon(s) for destruction.");
+            for (int i = ListWeapon.Count - 1; i >= 0; i--)
+            {
+                if (ListWeapon[i] != null)
+                {
+                    if (ListWeapon[i].gameObject != null)
+                    {
+                        Object.DestroyImmediate(ListWeapon[i].gameObject);
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"[Item.ResetItems] Weapon at index {i} had a null GameObject. Already destroyed?");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning($"[Item.ResetItems] Found a null Weapon entry at index {i}.");
+                }
+            }
+            ListWeapon.Clear();
         }
-        ListGear.Clear();
-        allItemData.Clear();
-        Debug.Log("All items, levels, and components have been reset.");
+        else
+        {
+            Debug.LogError("[Item.ResetItems] ListWeapon is NULL! Re-initializing.");
+            ListWeapon = new List<Weapon>();
+        }
+        if (ListGear != null)
+        {
+            Debug.Log($"[Item.ResetItems] Processing {ListGear.Count} gear(s) for destruction.");
+            for (int i = ListGear.Count - 1; i >= 0; i--)
+            {
+                if (ListGear[i] != null)
+                {
+                    if (ListGear[i].gameObject != null)
+                    {
+                        Object.DestroyImmediate(ListGear[i].gameObject);
+                    }
+                    else
+                    {
+                        Debug.LogWarning($"[Item.ResetItems] Gear at index {i} had a null GameObject. Already destroyed?");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning($"[Item.ResetItems] Found a null Gear entry at index {i}.");
+                }
+            }
+            ListGear.Clear();
+        }
+        else
+        {
+            Debug.LogError("[Item.ResetItems] ListGear is NULL! Re-initializing.");
+            ListGear = new List<Gear>();
+        }
+
+
+        Debug.Log("[Item.ResetItems] Reset complete.");
     }
 }

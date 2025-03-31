@@ -4777,6 +4777,16 @@ MonoBehaviour:
   uiResult: {fileID: 445763108}
   enemyCleaner: {fileID: 252969317}
   ExpPickUpPrefab: {fileID: 8398588510668082214, guid: 8676480a4d719fd4bb88b3217ab6e887, type: 3}
+  allShopData:
+  - {fileID: 11400000, guid: afbd1e070c207d248a7fd6837cc3baa4, type: 2}
+  - {fileID: 11400000, guid: 23363f7b8462fab4caf1814335f2c1db, type: 2}
+  - {fileID: 11400000, guid: 80f8a738ee1ea4443ade1692953d1d2a, type: 2}
+  - {fileID: 11400000, guid: afe37f7f729ecfb4a9934e2ceff6cb90, type: 2}
+  - {fileID: 11400000, guid: 903d3d8248f4fdc4397b0895a9afc300, type: 2}
+  - {fileID: 11400000, guid: 428e6904f2643f8409e24360d6015ee0, type: 2}
+  - {fileID: 11400000, guid: b01f6beb3169dcb4497c944a76cd5838, type: 2}
+  - {fileID: 11400000, guid: 4e555d706a7de3b4097cdca52342ca90, type: 2}
+  - {fileID: 11400000, guid: 598817784fcfdca4a8397fe32816ecf4, type: 2}
   mapid: 0
 --- !u!4 &148727616
 Transform:
@@ -46274,7 +46284,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 8.185185
+  orthographic size: 6.1363635
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

@@ -33,12 +33,38 @@ public class GameManager : MonoBehaviour
     public Result uiResult;
     public GameObject enemyCleaner;
     public GameObject ExpPickUpPrefab;
+    public List<ShopData> allShopData;
 
     public int mapid;
     void Awake()
     {
         instance = this;
         totalGold = PlayerPrefs.GetInt("TotalGold", 0);
+    }
+    void Start()
+    {
+        LoadAllShopData();
+    }
+
+    void OnApplicationQuit()
+    {
+        SaveAllShopData();
+    }
+
+    public void SaveAllShopData()
+    {
+        foreach (ShopData shopData in allShopData)
+        {
+            shopData.SaveData();
+        }
+    }
+
+    public void LoadAllShopData()
+    {
+        foreach (ShopData shopData in allShopData)
+        {
+            shopData.LoadData();
+        }
     }
     public void GameStart(int id)
     {
@@ -225,9 +251,12 @@ public class GameManager : MonoBehaviour
 
         if (goldPrefab != null)
         {
-            GameObject goldPickup = Instantiate(goldPrefab, position, Quaternion.identity);
+            goldPrefab.transform.position = position;
+            goldPrefab.transform.rotation = Quaternion.identity;
+            goldPrefab.SetActive(true);
         }
     }
+
     public void ResHealth(float amount)
     {
         if(Health < MaxHealth)

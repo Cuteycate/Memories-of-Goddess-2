@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static Cinemachine.DocumentationSortingAttribute;
 public class HUD : MonoBehaviour
 {
     public enum InfoType { Exp, Level, Kill,Gold , Time, Health, Totalgold ,CountTime,Score}

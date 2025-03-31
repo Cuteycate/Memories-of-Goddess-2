@@ -152,3 +152,4 @@ MonoBehaviour:
   - {fileID: 600135587, guid: a2409339e218fbc41876e1544fe66639, type: 3}
   magnetSpeed: 5
   mergeRadius: 0.5
+  isBeingPulled: 0

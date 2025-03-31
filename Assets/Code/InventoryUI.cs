@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿
+using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +15,8 @@ public class InventoryUI : MonoBehaviour
     {
         if (Application.isMobilePlatform)
         {
-            if (canmove) {
+            if (canmove)
+            {
                 RectTransform rectTransform = GetComponent<RectTransform>();
                 if (rectTransform != null)
                 {
@@ -27,28 +30,29 @@ public class InventoryUI : MonoBehaviour
     }
     private void Update()
     {
-  
+        if (!GameManager.instance.isLive)
+            return;
         for (int i = 0; i < ListWeapon.Count && i < weapons.Count; i++)
         {
             UpdateWeaponCanvas(ListWeapon[i], weapons[i]);
-            ListWeapon[i].gameObject.SetActive(true); 
+            ListWeapon[i].gameObject.SetActive(true);
 
         }
 
         for (int i = weapons.Count; i < ListWeapon.Count; i++)
         {
-            ListWeapon[i].gameObject.SetActive(false); 
+            ListWeapon[i].gameObject.SetActive(false);
         }
 
         for (int i = 0; i < ListGear.Count && i < gears.Count; i++)
         {
             UpdateGearCanvas(ListGear[i], gears[i]);
-            ListGear[i].gameObject.SetActive(true); 
+            ListGear[i].gameObject.SetActive(true);
         }
 
         for (int i = gears.Count; i < ListGear.Count; i++)
         {
-            ListGear[i].gameObject.SetActive(false); 
+            ListGear[i].gameObject.SetActive(false);
         }
     }
 
@@ -83,7 +87,7 @@ public class InventoryUI : MonoBehaviour
         Image imageComponent = gearCanvas.GetComponentInChildren<Image>();
         if (imageComponent != null)
         {
-            imageComponent.sprite = gear.Icon; 
+            imageComponent.sprite = gear.Icon;
         }
         Text textComponent = gearCanvas.GetComponentInChildren<Text>();
         if (textComponent != null)

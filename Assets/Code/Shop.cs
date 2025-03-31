@@ -5,23 +5,28 @@ using UnityEngine.UI;
 
 public class Shop : MonoBehaviour
 {
-    public ShopData data; // Reference to the ShopData ScriptableObject
-    public Image icon; // UI element for displaying icon
+    public ShopData data;          // Reference to the ShopData ScriptableObject
+    public Image icon;             // UI element for displaying icon
     public int level = 0;
-    public Text textName; // UI element for displaying shop name
-    public Text textLevel; // UI element for displaying level
-    public Text textDesc; // UI element for displaying description
-    public Text goldAmount; // UI element for displaying gold amount
+    public Text textName;          // UI element for displaying shop name
+    public Text textLevel;         // UI element for displaying level
+    public Text textDesc;          // UI element for displaying description
+    public Text goldAmount;        // UI element for displaying gold amount
     public ItemPopUp itemPopUp;
     public ShopStats shopStats;
+
     void Awake()
     {
+        // Load saved data for this shop
+        data.LoadData();
+
         // Add click listener for the shop button
         GetComponent<Button>().onClick.AddListener(OnShopClick);
+
+        // Assign UI elements
         icon = GetComponentsInChildren<Image>()[1];
         icon.sprite = data.shopIcon;
 
-        // Retrieve and assign text components in the hierarchy
         Text[] texts = GetComponentsInChildren<Text>();
         if (texts.Length >= 4)
         {
@@ -31,7 +36,6 @@ public class Shop : MonoBehaviour
             goldAmount = texts[3];
         }
 
-        // Set icon and name if not null
         if (icon != null && data != null)
         {
             icon.sprite = data.shopIcon;
@@ -41,6 +45,9 @@ public class Shop : MonoBehaviour
         {
             textName.text = data.shopName;
         }
+
+        // Update UI with loaded data
+        UpdateUI();
     }
 
     void OnShopClick()
@@ -58,9 +65,37 @@ public class Shop : MonoBehaviour
     public void UpdateLevel(int newLevel)
     {
         data.currentLevel = newLevel;
+
+        // Check if the item is maxed out
         if (data.currentLevel >= data.shopDesc.Length)
         {
             data.isMaxed = true;
+        }
+
+        // Save the updated level and max status
+        data.SaveData();
+
+        // Update UI
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        // Update level text and description
+        if (textLevel != null)
+        {
+            textLevel.text = $"Level: {data.currentLevel}";
+        }
+
+        if (textDesc != null && data.shopDesc.Length > data.currentLevel)
+        {
+            textDesc.text = data.shopDesc[data.currentLevel];
+        }
+
+        // Update gold amount display
+        if (goldAmount != null && data.Golds.Length > data.currentLevel)
+        {
+            goldAmount.text = $"Gold: {data.Golds[data.currentLevel]}";
         }
     }
 }
